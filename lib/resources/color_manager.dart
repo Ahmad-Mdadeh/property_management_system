@@ -23,7 +23,7 @@ class ColorManager {
       end: Alignment.bottomRight,
       colors: [
         Color(0xFF21899C),
-        Color(0xFFF56B3F),
+        Color(0xF5061C48),
       ],
     ),
   );

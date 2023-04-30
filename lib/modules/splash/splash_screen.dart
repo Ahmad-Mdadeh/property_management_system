@@ -57,12 +57,13 @@ class _SplashScreen1SubState extends State<SplashScreen1Sub>
     );
 
     Timer(
-      const Duration(milliseconds: 1700),
+      const Duration(milliseconds: 2000),
       () {
         Get.offAll(
           const LoginScreen(),
+          transition: Transition.native,
           duration: const Duration(
-            milliseconds: 1,
+            seconds: 2,
           ),
         );
       },
@@ -88,11 +89,11 @@ class _SplashScreen1SubState extends State<SplashScreen1Sub>
           ),
           Center(
             child: AnimatedOpacity(
-              duration: const Duration(milliseconds: 2000),
+              duration: const Duration(milliseconds: 3000),
               curve: Curves.fastLinearToSlowEaseIn,
               opacity: _containerOpacity,
               child: AnimatedContainer(
-                duration: const Duration(milliseconds: 2000),
+                duration: const Duration(milliseconds: 3000),
                 curve: Curves.fastLinearToSlowEaseIn,
                 height: 200,
                 width: 200,

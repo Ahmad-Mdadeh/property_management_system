@@ -6,6 +6,7 @@ class TextUtils extends StatelessWidget {
   final Color? backgroundColor;
   final FontWeight fontWeight;
   final double fontSize;
+  final int ?maxLines;
   final TextDecoration? textDecoration;
   final TextAlign? textAlign;
   final TextOverflow? textOverflow;
@@ -16,6 +17,7 @@ class TextUtils extends StatelessWidget {
     required this.color,
     required this.fontWeight,
     required this.fontSize,
+     this.maxLines,
     this.textDecoration,
     this.textAlign,
     this.textOverflow,
@@ -27,7 +29,7 @@ class TextUtils extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      maxLines: 1,
+      maxLines: maxLines,
       textAlign: textAlign,
       style: TextStyle(
         backgroundColor: backgroundColor,

@@ -59,7 +59,7 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(height: AppSize.s32,),
             AuthButton(
               borderRadius: AppSize.s12,
-              color: ColorManager.primary,
+              color: ColorManager.blue,
               text: "Continue",
               width: 353,
               height: 55,

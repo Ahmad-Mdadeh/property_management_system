@@ -38,9 +38,12 @@ class _SplashScreen1SubState extends State<SplashScreen1Sub>
   void initState() {
     super.initState();
 
-    _controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 3,),);
-
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(
+        seconds: 3,
+      ),
+    );
 
     _controller.forward();
 
@@ -78,7 +81,6 @@ class _SplashScreen1SubState extends State<SplashScreen1Sub>
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Stack(
         children: [

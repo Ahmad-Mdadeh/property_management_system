@@ -13,7 +13,7 @@ class OnBoardingController extends GetxController {
   forwardAction() {
     if (isLastPage)  {
       Get.to(
-        const LoginScreen(),
+         LoginScreen(),
         transition: Transition.circularReveal,
         duration: const Duration(
           seconds: 3,

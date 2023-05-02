@@ -18,19 +18,20 @@ class LoginScreen extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                top: AppPadding.p100,
+                top: AppPadding.p56,
                 left: AppPadding.p32,
               ),
-              child: Image.asset(ImagesAssets.phoneNumber),
+              child: Image.asset(ImagesAssets.logInPic),
             ),
             const SizedBox(
               height: AppSize.s73,
             ),
             TextUtils(
-              text: "Enter your phone number",
+              text: "Sign in to use our app",
               color: ColorManager.black,
               fontWeight: FontWeightManager.bold,
               fontSize: FontSize.s22,
+              fontFamily: 'Outfit',
             ),
             const SizedBox(
               height: AppSize.s16,
@@ -40,10 +41,11 @@ class LoginScreen extends StatelessWidget {
               child: TextUtils(
                 textAlign: TextAlign.center,
                 text:
-                    "Please enter the phone number we will send the OTP in this phone number.",
+                    "Please enter your full name & phone number, We will send you the OTP for verification.",
                 color: ColorManager.grey2,
                 fontWeight: FontWeightManager.regular,
                 fontSize: FontSize.s14,
+                fontFamily: 'Outfit',
               ),
             ),
             Padding(
@@ -54,16 +56,42 @@ class LoginScreen extends StatelessWidget {
               ),
               child: IntlPhoneField(
                 initialCountryCode: 'SY',
+                cursorColor: ColorManager.primary,
+                style: TextStyle(color: ColorManager.primary),
+                cursorHeight: 20,
+                disableLengthCheck: true,
+                dropdownIcon:
+                    Icon(Icons.arrow_drop_down, color: ColorManager.primary),
+                dropdownTextStyle: TextStyle(
+                  color: ColorManager.primary,
+                  fontFamily: 'Outfit',
+                ),
+                decoration: const InputDecoration(
+                    label: Text('phone number',
+                        style: TextStyle(
+                            fontFamily: 'Outfit', color: Color(0xFF097C7D))),
+                    hintStyle: TextStyle(color: Colors.grey),
+                    fillColor: Color(0xFF097C7D),
+                    focusColor: Color(0xFF097C7D),
+                    hoverColor: Color(0xFF097C7D),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF097C7D)),
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xFF097C7D)),
+                        borderRadius: BorderRadius.all(Radius.circular(10)))),
               ),
             ),
-            const SizedBox(height: AppSize.s32,),
+            const SizedBox(
+              height: AppSize.s32,
+            ),
             AuthButton(
-              borderRadius: AppSize.s12,
-              color: ColorManager.blue,
+              color: ColorManager.primary,
+              borderRadius: AppSize.s60,
               text: "Continue",
-              width: 353,
+              width: 300,
               height: 55,
-              function: (){},
+              function: () {},
             ),
           ],
         ),

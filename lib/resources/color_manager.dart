@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ColorManager {
-  static Color primary = const Color(0xFFF56B3F);
-  static Color lightPrimary = const Color(0xFFFE9879);
+  static Color primary = const Color.fromARGB(255, 10, 141, 144);
+  static Color lightPrimary = const Color(0xFF9BA4B5);
   static Color blue = const Color(0xFF21899C);
   static Color blueField = const Color(0xFF4DA1B0);
   static Color darkColor = const Color(0xFF121212);
@@ -28,7 +28,9 @@ class ColorManager {
     ),
   );
   static BoxDecoration gradientBackColorCard = BoxDecoration(
-    borderRadius: BorderRadius.circular(20.0,),
+    borderRadius: BorderRadius.circular(
+      20.0,
+    ),
     gradient: const LinearGradient(
       colors: [
         Color(0xFF21899C),

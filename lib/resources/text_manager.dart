@@ -2,22 +2,25 @@ import 'package:flutter/material.dart';
 
 class TextUtils extends StatelessWidget {
   final String text;
+  String? fontFamily = 'Outfit';
   final Color color;
   final Color? backgroundColor;
   final FontWeight fontWeight;
   final double fontSize;
-  final int ?maxLines;
+  final int? maxLines;
   final TextDecoration? textDecoration;
   final TextAlign? textAlign;
   final TextOverflow? textOverflow;
   final double? height;
 
-   const TextUtils({Key? key,
+  TextUtils({
+    Key? key,
     required this.text,
+    this.fontFamily,
     required this.color,
     required this.fontWeight,
     required this.fontSize,
-     this.maxLines,
+    this.maxLines,
     this.textDecoration,
     this.textAlign,
     this.textOverflow,
@@ -36,6 +39,7 @@ class TextUtils extends StatelessWidget {
         height: height,
         color: color,
         fontSize: fontSize,
+        fontFamily: fontFamily,
         overflow: textOverflow,
         fontWeight: fontWeight,
         decoration: textDecoration,

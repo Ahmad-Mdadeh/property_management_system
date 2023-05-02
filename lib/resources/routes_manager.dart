@@ -1,6 +1,9 @@
 import 'package:get/get.dart';
-
+import 'package:property_management_system/bindings/on_boarding_binding.dart';
+import 'package:property_management_system/modules/login/login_screen.dart';
+import 'package:property_management_system/modules/onboarding/on_boarding_screen.dart';
 import 'package:property_management_system/modules/splash/splash_screen.dart';
+
 
 
 class AppRoutes {
@@ -13,9 +16,9 @@ class AppRoutes {
   static const warehouseDetails = Routes.warehouseDetails;
 
   static final getPages = [
-    // GetPage(name: Routes.splash, page: () =>  const SplashScreen1()),
-    // GetPage(name: Routes.onBoarding, page: () =>  OnBoarding(),binding : OnBoardingBinding()),
-    GetPage(name: Routes.login, page: () =>  const SplashScreen1()),
+    GetPage(name: Routes.splash, page: () =>  const SplashScreen1()),
+    GetPage(name: Routes.onBoarding, page: () =>   OnBoardingScreen(),binding: OnBoardingBinding()),
+    GetPage(name: Routes.login, page: () =>  const LoginScreen()),
     // GetPage(name: Routes.home, page: () =>   HomeScreen()),
     // GetPage(name: Routes.register, page: () => const Register(),binding: RegisterBinding()),
     // GetPage(name: Routes.warehouse, page: () =>  WareHouse(),binding: WareHouseBinding()),

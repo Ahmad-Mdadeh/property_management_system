@@ -23,7 +23,7 @@ class LoginScreen extends StatelessWidget {
                 left: AppPadding.p32,
               ),
 
-              child: Image.asset(ImagesAssets.logInPic),
+              child: Image.asset(ImagesAssets.logInPic,),
 
             ),
             const SizedBox(
@@ -40,7 +40,7 @@ class LoginScreen extends StatelessWidget {
               height: AppSize.s16,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p28),
+              padding: const EdgeInsets.symmetric(horizontal: AppPadding.p28,),
               child: TextUtils(
                 textAlign: TextAlign.center,
                 text:
@@ -58,32 +58,29 @@ class LoginScreen extends StatelessWidget {
                 right: AppPadding.p32,
               ),
               child: IntlPhoneField(
-                dropdownTextStyle: const TextStyle(fontWeight: FontWeightManager.medium),
+                dropdownTextStyle: const TextStyle(fontWeight: FontWeightManager.medium,),
                 initialCountryCode: 'SY',
                 cursorColor: ColorManager.primary,
-                style: TextStyle(color: ColorManager.primary),
+                style: TextStyle(color: ColorManager.primary,),
                 cursorHeight: 20,
                 disableLengthCheck: true,
                 dropdownIcon:
-                    Icon(Icons.arrow_drop_down, color: ColorManager.primary),
-                dropdownTextStyle: TextStyle(
-                  color: ColorManager.primary,
-                  fontFamily: 'Outfit',
-                ),
+                    Icon(Icons.arrow_drop_down, color: ColorManager.primary,),
+
                 decoration: const InputDecoration(
                     label: Text('phone number',
                         style: TextStyle(
-                            fontFamily: 'Outfit', color: Color(0xFF097C7D))),
+                            fontFamily: 'Outfit', color: Color(0xFF097C7D,),),),
                     hintStyle: TextStyle(color: Colors.grey),
                     fillColor: Color(0xFF097C7D),
                     focusColor: Color(0xFF097C7D),
                     hoverColor: Color(0xFF097C7D),
                     enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF097C7D)),
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                        borderSide: BorderSide(color: Color(0xFF097C7D,),),
+                        borderRadius: BorderRadius.all(Radius.circular(10,),),),
                     focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Color(0xFF097C7D)),
-                        borderRadius: BorderRadius.all(Radius.circular(10)))),
+                        borderSide: BorderSide(color: Color(0xFF097C7D,),),
+                        borderRadius: BorderRadius.all(Radius.circular(10,),),),),
               ),
             ),
             const SizedBox(

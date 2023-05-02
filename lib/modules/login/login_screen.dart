@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:property_management_system/resources/assets_manager.dart';
 import 'package:property_management_system/resources/color_manager.dart';
@@ -21,7 +22,7 @@ class LoginScreen extends StatelessWidget {
                 top: AppPadding.p100,
                 left: AppPadding.p32,
               ),
-              child: Image.asset(ImagesAssets.phoneNumber),
+              child: SvgPicture.asset(ImagesAssets.phoneNumber),
             ),
             const SizedBox(
               height: AppSize.s73,
@@ -53,17 +54,48 @@ class LoginScreen extends StatelessWidget {
                 right: AppPadding.p32,
               ),
               child: IntlPhoneField(
+                dropdownTextStyle: const TextStyle(fontWeight: FontWeightManager.medium),
                 initialCountryCode: 'SY',
+                cursorColor: ColorManager.black,
+                cursorHeight: 20,
+                disableLengthCheck: true,
+                decoration: const InputDecoration(
+                  hintStyle: TextStyle(color: Colors.black),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(
+                        20,
+                      ),
+                    ),
+                  ),
+                  labelText: 'Enter Your Number',
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(
+                        20,
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ),
-            const SizedBox(height: AppSize.s32,),
-            AuthButton(
-              borderRadius: AppSize.s12,
-              color: ColorManager.blue,
-              text: "Continue",
-              width: 353,
-              height: 55,
-              function: (){},
+            const SizedBox(
+              height: AppSize.s40,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppPadding.p32,
+              ),
+              child: AuthButton(
+                borderRadius: AppSize.s12,
+                color: ColorManager.primary,
+                text: "Continue",
+                width: MediaQuery.of(context).size.width,
+                height: 55,
+                function: () {},
+              ),
             ),
           ],
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:property_management_system/resources/assets_manager.dart';
 import 'package:property_management_system/resources/color_manager.dart';
@@ -21,7 +22,9 @@ class LoginScreen extends StatelessWidget {
                 top: AppPadding.p56,
                 left: AppPadding.p32,
               ),
+
               child: Image.asset(ImagesAssets.logInPic),
+
             ),
             const SizedBox(
               height: AppSize.s73,
@@ -55,6 +58,7 @@ class LoginScreen extends StatelessWidget {
                 right: AppPadding.p32,
               ),
               child: IntlPhoneField(
+                dropdownTextStyle: const TextStyle(fontWeight: FontWeightManager.medium),
                 initialCountryCode: 'SY',
                 cursorColor: ColorManager.primary,
                 style: TextStyle(color: ColorManager.primary),
@@ -92,6 +96,7 @@ class LoginScreen extends StatelessWidget {
               width: 300,
               height: 55,
               function: () {},
+
             ),
           ],
         ),

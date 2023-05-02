@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:property_management_system/modules/login/login_screen.dart';
+import 'package:property_management_system/modules/onBoarding/on_boarding_screen.dart';
 import 'package:property_management_system/resources/assets_manager.dart';
 
 class SplashScreen1 extends StatefulWidget {
@@ -63,7 +63,7 @@ class _SplashScreen1SubState extends State<SplashScreen1Sub>
       const Duration(milliseconds: 2000),
       () {
         Get.offAll(
-          const LoginScreen(),
+           OnBoardingScreen(),
           transition: Transition.native,
           duration: const Duration(
             seconds: 2,
@@ -91,14 +91,14 @@ class _SplashScreen1SubState extends State<SplashScreen1Sub>
           ),
           Center(
             child: AnimatedOpacity(
-              duration: const Duration(milliseconds: 3000),
+              duration: const Duration(milliseconds: 4000),
               curve: Curves.fastLinearToSlowEaseIn,
               opacity: _containerOpacity,
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 3000),
                 curve: Curves.fastLinearToSlowEaseIn,
-                height: 300,
-                width: 300,
+                height: MediaQuery.of(context).size.height * 0.6,
+                width: MediaQuery.of(context).size.width *0.6,
                 alignment: Alignment.center,
                 child: SvgPicture.asset(
                   ImagesAssets.splashLogo,

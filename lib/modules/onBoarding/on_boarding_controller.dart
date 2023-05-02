@@ -16,7 +16,7 @@ class OnBoardingController extends GetxController {
         const LoginScreen(),
         transition: Transition.circularReveal,
         duration: const Duration(
-          seconds: 2,
+          seconds: 3,
         ),
       );
     } else {

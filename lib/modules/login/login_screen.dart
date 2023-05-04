@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:get/get.dart';
+import 'package:property_management_system/modules/base/base_screen.dart';
 import 'package:property_management_system/resources/assets_manager.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
@@ -79,7 +80,7 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: AppSize.s12,
+                height: AppSize.s14,
               ),
               Padding(
                 padding: const EdgeInsets.only(
@@ -87,8 +88,7 @@ class LoginScreen extends StatelessWidget {
                   right: AppPadding.p32,
                 ),
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.065,
-
+                  height: MediaQuery.of(context).size.height * 0.07,
                   child: const AuthIntlPhoneField(),
                 ),
               ),
@@ -101,7 +101,13 @@ class LoginScreen extends StatelessWidget {
                 text: "Continue",
                 width: 300,
                 height: 55,
-                function: () {},
+                function: () => Get.to(
+                  () =>  BaseScreen(),
+                  transition: Transition.fade,
+                  duration: const Duration(
+                    milliseconds: 700,
+                  ),
+                ),
               ),
             ],
           ),

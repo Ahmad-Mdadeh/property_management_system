@@ -24,6 +24,7 @@ class AuthIntlPhoneField extends StatelessWidget {
         color: ColorManager.primary,
       ),
       decoration: InputDecoration(
+
         fillColor: Colors.grey.shade200,
         filled: true,
         label: const Text(

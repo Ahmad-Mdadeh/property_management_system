@@ -30,7 +30,7 @@ class AuthTextFromField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.065,
+      height: MediaQuery.of(context).size.height * 0.07,
       child: TextFormField(
         style: const TextStyle(
           fontFamily:  'Outfit',
@@ -42,6 +42,7 @@ class AuthTextFromField extends StatelessWidget {
         obscureText: obscureText,
         validator: (value) => validator(value),
         decoration: InputDecoration(
+          floatingLabelAlignment: FloatingLabelAlignment.center,
           prefixIcon: prefixIcon,
           prefixIconColor: ColorManager.primary,
           suffixIcon: suffixIcon,

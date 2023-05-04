@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:property_management_system/modules/base/base_screen.dart';
+import 'package:property_management_system/modules/otp/otp_screen.dart';
 import 'package:property_management_system/resources/assets_manager.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
@@ -102,7 +103,7 @@ class LoginScreen extends StatelessWidget {
                 width: 300,
                 height: 55,
                 function: () => Get.to(
-                  () =>  BaseScreen(),
+                  () => OTPScreen(),
                   transition: Transition.fade,
                   duration: const Duration(
                     milliseconds: 700,

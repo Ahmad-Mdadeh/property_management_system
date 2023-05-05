@@ -39,7 +39,6 @@ class LoginScreen extends StatelessWidget {
                 color: ColorManager.black,
                 fontWeight: FontWeightManager.bold,
                 fontSize: FontSize.s22,
-                fontFamily: 'Outfit',
               ),
               const SizedBox(
                 height: AppSize.s16,
@@ -55,7 +54,6 @@ class LoginScreen extends StatelessWidget {
                   color: ColorManager.grey2,
                   fontWeight: FontWeightManager.regular,
                   fontSize: FontSize.s14,
-                  fontFamily: 'Outfit',
                 ),
               ),
               Padding(
@@ -103,9 +101,9 @@ class LoginScreen extends StatelessWidget {
                 height: 55,
                 function: () => Get.to(
                   () =>  BaseScreen(),
-                  transition: Transition.fade,
+                  transition: Transition.fadeIn,
                   duration: const Duration(
-                    milliseconds: 700,
+                    milliseconds: 1200,
                   ),
                 ),
               ),

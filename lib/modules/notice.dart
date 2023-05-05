@@ -4,8 +4,8 @@ import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
 
-class Chat extends StatelessWidget {
-  const Chat({Key? key}) : super(key: key);
+class Notice extends StatelessWidget {
+  const Notice({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class Chat extends StatelessWidget {
         centerTitle: true,
         backgroundColor: ColorManager.lightPrimary,
         title: TextUtils(
-          text: "CHAT",
+          text: "NOTICE",
           color: ColorManager.white,
           fontWeight: FontWeightManager.medium,
           fontSize: FontSize.s17,
@@ -29,7 +29,7 @@ class Chat extends StatelessWidget {
               width: 250,
             ),
           ),
-          const Text("Chat")
+          const Text("Notice")
         ],
       ),
     );

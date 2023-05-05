@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class TextUtils extends StatelessWidget {
   final String text;
-  String? fontFamily = 'Outfit';
   final Color color;
   final Color? backgroundColor;
   final FontWeight fontWeight;
@@ -16,7 +15,6 @@ class TextUtils extends StatelessWidget {
   TextUtils({
     Key? key,
     required this.text,
-    this.fontFamily,
     required this.color,
     required this.fontWeight,
     required this.fontSize,
@@ -39,7 +37,7 @@ class TextUtils extends StatelessWidget {
         height: height,
         color: color,
         fontSize: fontSize,
-        fontFamily: fontFamily,
+        fontFamily: 'Outfit',
         overflow: textOverflow,
         fontWeight: fontWeight,
         decoration: textDecoration,

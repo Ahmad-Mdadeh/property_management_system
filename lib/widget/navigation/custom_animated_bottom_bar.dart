@@ -17,6 +17,7 @@ class CustomAnimatedBottomBar extends StatelessWidget {
     StateMachineController? stateMachineController;
 
     return Container(
+      height: MediaQuery.of(context).size.height * 0.1,
       decoration: BoxDecoration(
         color: ColorManager.lightPrimary,
         borderRadius: const BorderRadius.only(
@@ -28,7 +29,6 @@ class CustomAnimatedBottomBar extends StatelessWidget {
           ),
         ),
       ),
-      height: MediaQuery.of(context).size.height * 0.1,
       padding: const EdgeInsets.all(
         12.0,
       ),
@@ -48,14 +48,14 @@ class CustomAnimatedBottomBar extends StatelessWidget {
                 bottomNav[index].input?.change(false);
               },
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   SizedBox(
-                    height: 30.0,
-                    width: 30.0,
+                    height: MediaQuery.of(context).size.height * 0.043,
+                    width:MediaQuery.of(context).size.height * 0.055,
                     child: Obx(
                       () => Opacity(
-                        opacity: bottomNav[index] == select.value ? 1 : 0.5,
+                        opacity: bottomNav[index] == select.value ? 1 : 0.35,
                         child: RiveAnimation.asset(
                           "assets/rive/animated_icon.riv",
                           artboard: bottomNav[index].artBoard,
@@ -83,7 +83,7 @@ class CustomAnimatedBottomBar extends StatelessWidget {
                   ),
                   Obx(
                     () => Opacity(
-                      opacity: bottomNav[index] == select.value ? 1 : 0.5,
+                      opacity: bottomNav[index] == select.value ? 1 : 0.35,
                       child: TextUtils(
                         text: nameIcon[index],
                         color: const Color(

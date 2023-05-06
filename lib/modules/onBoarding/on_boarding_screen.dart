@@ -9,15 +9,13 @@ import 'package:property_management_system/resources/values_manager.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingScreen extends StatelessWidget {
-  OnBoardingScreen({Key? key}) : super(key: key);
-
-  final OnBoardingController onBoardingController =
-      Get.put(OnBoardingController());
+  const OnBoardingScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final onBoardingController = Get.put(OnBoardingController());
     return Scaffold(
-      backgroundColor: ColorManager.white,
+      backgroundColor: ColorManager.ofWhite,
       body: SafeArea(
         child: Stack(
           children: [
@@ -82,7 +80,6 @@ class OnBoardingScreen extends StatelessWidget {
             Positioned(
               right: 20,
               bottom: 20,
-
               child: FloatingActionButton(
                 backgroundColor: ColorManager.primary,
                 elevation: 0,

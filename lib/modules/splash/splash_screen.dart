@@ -62,7 +62,7 @@ class _SplashScreen1SubState extends State<SplashScreen1Sub>
     Timer(
       const Duration(milliseconds: 2000),
       () {
-        Get.offAll(
+        Get.off( () =>
            OnBoardingScreen(),
           transition: Transition.native,
           duration: const Duration(

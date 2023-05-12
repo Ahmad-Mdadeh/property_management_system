@@ -1,9 +1,6 @@
-<<<<<<< Updated upstream
-=======
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:property_management_system/modules/base/base_screen.dart';
-import 'package:slide_countdown_clock/slide_countdown_clock.dart';
 
 import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
@@ -15,9 +12,9 @@ import '../../widget/auth_widget/auth_otp_field.dart';
 
 import 'otp_controller.dart';
 
-class OTPScreen extends GetView<OTPController> {
+class OtpScreen extends GetView<OtpController> {
   final _formKey = GlobalKey<FormState>();
-  OTPScreen({super.key});
+  OtpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -67,9 +64,9 @@ class OTPScreen extends GetView<OTPController> {
               child: AuthOTPField()),
         ),
       ),
-      SlideCountdownClock(
-        duration: const Duration(minutes: 1),
-      ),
+      // SlideCountdownClock(
+      //   duration: const Duration(minutes: 1),
+      // ),
       const SizedBox(
         height: AppSize.s32,
       ),
@@ -109,4 +106,3 @@ class OTPScreen extends GetView<OTPController> {
     ])));
   }
 }
->>>>>>> Stashed changes

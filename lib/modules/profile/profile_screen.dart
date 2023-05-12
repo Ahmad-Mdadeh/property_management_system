@@ -98,7 +98,7 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         ProfileButton(
                           borderRadius: 6,
-                          color: ColorManager.lightTeal,
+                          color: ColorManager.black,
                           text: "Edit Profile",
                           width: MediaQuery.of(context).size.width * 0.4,
                           height: MediaQuery.of(context).size.width * 0.074,
@@ -191,7 +191,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-                            left: AppPadding.p100,
+                          left: AppPadding.p100,
                         ),
                         child: Container(
                           width: 35,

@@ -12,7 +12,7 @@ class TextUtils extends StatelessWidget {
   final TextOverflow? textOverflow;
   final double? height;
 
-  TextUtils({
+  const TextUtils({
     Key? key,
     required this.text,
     required this.color,

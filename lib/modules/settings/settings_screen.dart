@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:property_management_system/resources/assets_manager.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
 import 'package:property_management_system/resources/values_manager.dart';
 import 'package:property_management_system/widget/profile/profile_elevated_button.dart';
+import 'package:property_management_system/widget/profile/profile_list_setting.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  ProfileScreen({Key? key}) : super(key: key);
+  RxBool x = true.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +40,12 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(AppPadding.p20),
+              padding: const EdgeInsets.only(
+                top: AppPadding.p24,
+                bottom: AppPadding.p24,
+                left: AppPadding.p20,
+                right: AppPadding.p20,
+              ),
               child: Container(
                 padding: const EdgeInsets.only(
                   top: AppPadding.p20,
@@ -47,6 +55,10 @@ class ProfileScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 1,
                 height: MediaQuery.of(context).size.height * 0.16,
                 decoration: BoxDecoration(
+                  border: Border.all(
+                    color: const Color(0Xff43464d),
+                    width: 2,
+                  ),
                   color: ColorManager.lightPrimary,
                   borderRadius: BorderRadius.circular(
                     AppSize.s18,
@@ -112,11 +124,11 @@ class ProfileScreen extends StatelessWidget {
                         bottom: AppPadding.p24,
                       ),
                       child: Container(
-                        width: 40,
-                        height: 40,
+                        width: 35,
+                        height: 35,
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: ColorManager.grey1,
+                            color: const Color(0Xff43464d),
                             width: 2,
                           ),
                           borderRadius: BorderRadius.circular(
@@ -134,7 +146,11 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(AppPadding.p20),
+              padding: const EdgeInsets.only(
+                bottom: AppPadding.p24,
+                left: AppPadding.p20,
+                right: AppPadding.p20,
+              ),
               child: Container(
                 padding: const EdgeInsets.only(
                   top: AppPadding.p20,
@@ -147,72 +163,77 @@ class ProfileScreen extends StatelessWidget {
                     AppSize.s18,
                   ),
                 ),
-                child: ListView.separated(
-                  separatorBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SizedBox(
-                      child: Divider(
-                        color: ColorManager.grey1,
-                        thickness: 0.5,
+                child: Column(
+                  children: [
+                    ListView.separated(
+                      separatorBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SizedBox(
+                          child: Divider(
+                            color: ColorManager.grey1,
+                            thickness: 0.5,
+                          ),
+                        ),
+                      ),
+                      itemCount: 13,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) =>
+                          const ProfileListSitting(),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        child: Divider(
+                          color: ColorManager.grey1,
+                          thickness: 0.5,
+                        ),
                       ),
                     ),
-                  ),
-                  itemCount: 13,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) => Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: AppPadding.p20,
-                          right: AppPadding.p20,
-                        ),
-                        child: Container(
-                          width: 45,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: const Color(0xff293d44),
-                            image: const DecorationImage(
-                              image: AssetImage(
-                                ImagesAssets.searching,
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: AppPadding.p20,
+                            right: AppPadding.p20,
+                          ),
+                          child: Container(
+                            width: 40,
+                            height: 43,
+                            decoration: BoxDecoration(
+                              color: const Color(0xff293d44),
+                              borderRadius: BorderRadius.circular(
+                                AppSize.s8,
                               ),
                             ),
-                            borderRadius: BorderRadius.circular(
-                              AppSize.s8,
+                            child: Icon(
+                              Icons.dark_mode_outlined,
+                              color: ColorManager.lightTeal,
+                              size: 30,
                             ),
                           ),
                         ),
-                      ),
-                      TextUtils(
-                        text: "My Enquiry",
-                        color: ColorManager.white,
-                        fontWeight: FontWeightManager.medium,
-                        fontSize: FontSize.s15,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: AppPadding.p100,
+                        TextUtils(
+                          text: "Dark Mode",
+                          color: ColorManager.white,
+                          fontWeight: FontWeightManager.medium,
+                          fontSize: FontSize.s15,
                         ),
-                        child: Container(
-                          width: 35,
-                          height: 35,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: ColorManager.grey1,
-                              width: 2,
-                            ),
-                            borderRadius: BorderRadius.circular(
-                              7.0,
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: AppPadding.p87,
+                          ),
+                          child: Obx(
+                            () => Switch(
+                              value: x.value,
+                              onChanged: (value) => {x.value = value},
+                              activeColor: ColorManager.lightTeal,
                             ),
                           ),
-                          child: Icon(
-                            Icons.arrow_forward_ios_outlined,
-                            color: ColorManager.ofWhite,
-                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),

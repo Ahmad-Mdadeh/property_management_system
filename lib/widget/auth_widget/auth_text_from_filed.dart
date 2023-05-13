@@ -6,16 +6,19 @@ class AuthTextFromField extends StatelessWidget {
   final TextInputType textInputType;
   final bool obscureText;
   final Function validator;
+  final Function function;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final String labelText;
   final bool filled;
   final Color? color;
-  final double fontSize;
-  final FontWeight? fontWeight;
+  final double labelFontSize;
+  final FontWeight? labelFontWeight;
 
-  const AuthTextFromField({super.key,
+  const AuthTextFromField({
+    super.key,
     required this.validator,
+    required this.function,
     required this.textInputType,
     required this.obscureText,
     required this.prefixIcon,
@@ -23,25 +26,29 @@ class AuthTextFromField extends StatelessWidget {
     required this.labelText,
     required this.filled,
     required this.color,
-    required this.fontSize,
-    required this.fontWeight,
+    required this.labelFontSize,
+    required this.labelFontWeight,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.065,
+      height: MediaQuery.of(context).size.height * 0.07,
       child: TextFormField(
-        style: const TextStyle(
-          fontFamily:  'Outfit',
-          color: Colors.black,
-          fontSize: 17.0,
-        ),
-        cursorColor: Get.isDarkMode ? ColorManager.primary : ColorManager.primary,
+        onChanged: (value) => function(value),
+        cursorColor:
+            Get.isDarkMode ? ColorManager.primary : ColorManager.primary,
         keyboardType: textInputType,
         obscureText: obscureText,
         validator: (value) => validator(value),
+        style: TextStyle(
+          height: MediaQuery.of(context).size.height * 0.0013,
+          fontFamily: 'Outfit',
+          color: Colors.black,
+          fontSize: 17.0,
+        ),
         decoration: InputDecoration(
+          floatingLabelAlignment: FloatingLabelAlignment.center,
           prefixIcon: prefixIcon,
           prefixIconColor: ColorManager.primary,
           suffixIcon: suffixIcon,
@@ -50,16 +57,14 @@ class AuthTextFromField extends StatelessWidget {
           labelText: labelText,
           labelStyle: TextStyle(
             color: Colors.black54,
-            fontSize: fontSize,
-            fontWeight: fontWeight,
+            fontSize: labelFontSize,
+            fontWeight: labelFontWeight,
           ),
-          enabledBorder: const OutlineInputBorder(
+          enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: Color(
-                0xFF097C7D,
-              ),
+              color: ColorManager.primary,
             ),
-            borderRadius: BorderRadius.all(
+            borderRadius: const BorderRadius.all(
               Radius.circular(
                 10,
               ),
@@ -75,20 +80,24 @@ class AuthTextFromField extends StatelessWidget {
               ),
             ),
           ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              color: Colors.white,
+          errorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.red,
             ),
-            borderRadius: BorderRadius.circular(
-              10.0,
+            borderRadius: BorderRadius.all(
+              Radius.circular(
+                10,
+              ),
             ),
           ),
-          errorBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              color: Colors.white,
+          focusedErrorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.red,
             ),
-            borderRadius: BorderRadius.circular(
-              10.0,
+            borderRadius: BorderRadius.all(
+              Radius.circular(
+                10,
+              ),
             ),
           ),
         ),

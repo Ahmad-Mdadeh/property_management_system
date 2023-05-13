@@ -4,6 +4,7 @@ import 'package:property_management_system/resources/routes_manager.dart';
 
 void main() {
   runApp(const MyApp());
+  
 }
 
 class MyApp extends StatelessWidget {
@@ -16,6 +17,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.splash,
       getPages: AppRoutes.getPages,
+      
+      
     );
   }
 }

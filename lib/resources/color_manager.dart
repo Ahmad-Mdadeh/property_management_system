@@ -2,19 +2,16 @@ import 'package:flutter/material.dart';
 
 class ColorManager {
   static Color primary = const Color.fromARGB(255, 10, 141, 144);
-  static Color lightPrimary = const Color(0xFF9BA4B5);
-  static Color blue = const Color(0xFF21899C);
-  static Color blueField = const Color(0xFF4DA1B0);
-  static Color darkColor = const Color(0xFF121212);
-  static Color blue2 = Colors.blueAccent;
-  static Color darkGrey = const Color(0xff525252);
-  static Color grey = const Color(0xff737477);
+  static Color lightTeal = const Color(0xFF53adae);
+  static Color lightPrimary = const Color(0xFF282f39);
+  static Color dark = const Color(0xff3b424c);
+  static Color error = Colors.red;
   static Color grey1 = const Color(0x287c7878);
+  static Color grey3 = const Color(0x17343434);
   static Color grey2 = const Color(0xff797979);
   static Color lightGrey = const Color(0xffa9a9a9);
   static Color white = const Color(0xffFFFFFF);
   static Color ofWhite = const Color(0xFFF5F0F1);
-  static Color red = const Color(0xffE61F34);
   static Color black = const Color(0xff000000);
 
   static BoxDecoration gradientBackColor = const BoxDecoration(

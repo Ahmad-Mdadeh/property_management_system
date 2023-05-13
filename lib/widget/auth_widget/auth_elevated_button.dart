@@ -35,7 +35,6 @@ class AuthButton extends StatelessWidget {
         ),
         onPressed: function,
         child: TextUtils(
-          fontFamily: 'Outfit',
           text: text,
           color: Colors.white,
           fontWeight: FontWeight.normal,

@@ -13,6 +13,7 @@ class ImagesAssets {
   static const String houseSearchingOnBoarding = '$imagePath/house_searching.svg';
   static const String houseBuyOnBoarding = '$imagePath/house_buy.svg';
   static const String rightArrowOnBoarding = '$imagePath/right_arrow_ic.svg';
+  static const String building = '$imagePath/building.jpg';
 
 }
 

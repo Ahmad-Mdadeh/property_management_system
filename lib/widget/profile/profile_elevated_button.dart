@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
 
 class ProfileButton extends StatelessWidget {
   final Color? color;
   final String text;
-  final double width;
   final double height;
   final double borderRadius;
   final Function() function;
@@ -14,7 +14,6 @@ class ProfileButton extends StatelessWidget {
     required this.borderRadius,
     required this.color,
     required this.text,
-    required this.width,
     required this.height,
     required this.function,
   });
@@ -22,7 +21,6 @@ class ProfileButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width,
       height: height,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
@@ -40,14 +38,8 @@ class ProfileButton extends StatelessWidget {
             TextUtils(
               text: text,
               color: Colors.white,
-              fontWeight: FontWeight.normal,
-              fontSize: 13.0,
-            ),
-            const SizedBox(
-              width: 4,
-            ),
-            const Icon(
-              Icons.edit_note_outlined,
+              fontWeight: FontWeightManager.medium,
+              fontSize: 20.0,
             ),
           ],
         ),

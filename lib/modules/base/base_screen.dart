@@ -15,7 +15,7 @@ class BaseScreen extends StatelessWidget {
       bottomNavigationBar: CustomAnimatedBottomBar(),
       body: Obx(
         () => AnimatedSwitcher(
-          duration: Duration(seconds: 1),
+          duration: const Duration(seconds: 1),
           child: IndexedStack(
             index: baseController.selectedIndex.value,
             children: baseController.namePages,

@@ -7,11 +7,11 @@ class ColorManager {
   static Color dark = const Color(0xff3b424c);
   static Color error = Colors.red;
   static Color grey1 = const Color(0x287c7878);
+  static Color grey3 = const Color(0x17343434);
   static Color grey2 = const Color(0xff797979);
   static Color lightGrey = const Color(0xffa9a9a9);
   static Color white = const Color(0xffFFFFFF);
   static Color ofWhite = const Color(0xFFF5F0F1);
-
   static Color black = const Color(0xff000000);
 
   static BoxDecoration gradientBackColor = const BoxDecoration(

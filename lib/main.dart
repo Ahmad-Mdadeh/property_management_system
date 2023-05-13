@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:property_management_system/resources/routes_manager.dart';
-import 'package:property_management_system/utils/theme.dart';
 
 void main() {
   runApp(const MyApp());

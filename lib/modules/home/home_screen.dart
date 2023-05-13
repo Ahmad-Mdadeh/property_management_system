@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:property_management_system/modules/property_detail/property_details_screen.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
@@ -22,7 +24,6 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-
         children: [
           Center(
             child: Lottie.asset(
@@ -30,7 +31,15 @@ class HomeScreen extends StatelessWidget {
               width: 250,
             ),
           ),
-          const Text("Home")
+          ElevatedButton(
+              onPressed: () {
+                Get.to(
+                  () => PropertyDetailsScreen(),
+                  transition: Transition.fadeIn,
+                  duration: const Duration(milliseconds: 700,),
+                );
+              },
+              child: const Text("details"))
         ],
       ),
     );

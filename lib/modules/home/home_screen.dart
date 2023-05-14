@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
           fontSize: FontSize.s17,
         ),
         centerTitle: true,
-        backgroundColor: ColorManager.lightPrimary,
+        backgroundColor: ColorManager.darkPrimary,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -36,7 +36,9 @@ class HomeScreen extends StatelessWidget {
                 Get.to(
                   () => PropertyDetailsScreen(),
                   transition: Transition.fadeIn,
-                  duration: const Duration(milliseconds: 700,),
+                  duration: const Duration(
+                    milliseconds: 700,
+                  ),
                 );
               },
               child: const Text("details"))

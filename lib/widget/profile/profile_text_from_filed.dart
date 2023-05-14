@@ -15,7 +15,7 @@ class ProfileTextFromFiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      onChanged:(value) => function,
+      onChanged: (value) => function,
       validator: (value) => validator(value),
       keyboardType: textInputType,
       style: const TextStyle(
@@ -41,7 +41,7 @@ class ProfileTextFromFiled extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: ColorManager.lightTeal,
+            color: ColorManager.darkPrimary,
           ),
           borderRadius: const BorderRadius.all(
             Radius.circular(

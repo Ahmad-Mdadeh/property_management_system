@@ -57,7 +57,9 @@ class OtpScreen extends StatelessWidget {
                     fontWeight: FontWeightManager.regular,
                     fontSize: FontSize.s14,
                   ),
-                  const SizedBox(width: 5,),
+                  const SizedBox(
+                    width: 5,
+                  ),
                   TextUtils(
                     textAlign: TextAlign.center,
                     text: _otpController.phoneNumber,
@@ -104,7 +106,7 @@ class OtpScreen extends StatelessWidget {
                   child: Text(
                     "RESEND",
                     style: TextStyle(
-                      color: ColorManager.lightPrimary,
+                      color: ColorManager.darkPrimary,
                       fontWeight: FontWeight.bold,
                       fontSize: FontSize.s16,
                     ),
@@ -118,7 +120,6 @@ class OtpScreen extends StatelessWidget {
               text: "Submit",
               width: MediaQuery.of(context).size.width * 0.83,
               height: MediaQuery.of(context).size.height * 0.073,
-
               function: () => Get.off(
                 () => BaseScreen(),
                 transition: Transition.fade,

@@ -66,10 +66,15 @@ class PropertyDetailsScreen extends StatelessWidget {
                           )
                         ],
                       ),
-                      buildTag(
-                        'Rent',
-                        AppSize.s50,
-                      )
+                      // buildTag(
+                      //   'Rent',
+                      //   AppSize.s50,
+                      // ),
+                      TextUtils(
+                          text: 'Rent',
+                          color: ColorManager.primary,
+                          fontWeight: FontWeight.w400,
+                          fontSize: AppSize.s16)
                     ],
                   ),
                   const SizedBox(

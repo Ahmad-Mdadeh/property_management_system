@@ -27,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
             color: ColorManager.primary,
           ),
         ),
-        backgroundColor: ColorManager.lightPrimary,
+        backgroundColor: ColorManager.dark,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomRight: Radius.circular(
@@ -128,9 +128,9 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   ProfileButton(
                     borderRadius: 16,
-                    color: ColorManager.lightTeal,
+                    color: ColorManager.primary,
                     text: "Update Profile",
-                    height: MediaQuery.of(context).size.height/17,
+                    height: MediaQuery.of(context).size.height / 17,
                     function: () {},
                   ),
                 ],

@@ -19,7 +19,7 @@ class CustomAnimatedBottomBar extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height * 0.1,
       decoration: BoxDecoration(
-        color: ColorManager.lightPrimary,
+        color: ColorManager.darkPrimary,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(
             8,
@@ -52,7 +52,7 @@ class CustomAnimatedBottomBar extends StatelessWidget {
                 children: [
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.043,
-                    width:MediaQuery.of(context).size.height * 0.055,
+                    width: MediaQuery.of(context).size.height * 0.055,
                     child: Obx(
                       () => Opacity(
                         opacity: bottomNav[index] == select.value ? 1 : 0.35,

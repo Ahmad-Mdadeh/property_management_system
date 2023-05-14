@@ -23,7 +23,7 @@ class SettingScreen extends StatelessWidget {
           fontWeight: FontWeightManager.semiBold,
           fontSize: FontSize.s18,
         ),
-        backgroundColor: ColorManager.lightPrimary,
+        backgroundColor: ColorManager.darkPrimary,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomRight: Radius.circular(
@@ -60,7 +60,7 @@ class SettingScreen extends StatelessWidget {
                     color: const Color(0Xff43464d),
                     width: 2,
                   ),
-                  color: ColorManager.lightPrimary,
+                  color: ColorManager.darkPrimary,
                   borderRadius: BorderRadius.circular(
                     AppSize.s18,
                   ),
@@ -73,8 +73,8 @@ class SettingScreen extends StatelessWidget {
                         right: AppPadding.p12,
                       ),
                       child: Container(
-                        width: MediaQuery.of(context).size.width /6.4,
-                        height: MediaQuery.of(context).size.width /6.4,
+                        width: MediaQuery.of(context).size.width / 6.4,
+                        height: MediaQuery.of(context).size.width / 6.4,
                         decoration: BoxDecoration(
                           image: const DecorationImage(
                             image: AssetImage(
@@ -111,7 +111,7 @@ class SettingScreen extends StatelessWidget {
                         ),
                         SettingsButton(
                           borderRadius: 6,
-                          color: ColorManager.lightTeal,
+                          color: ColorManager.darkPrimary,
                           text: "Edit Profile",
                           width: MediaQuery.of(context).size.width * 0.4,
                           height: MediaQuery.of(context).size.width * 0.074,
@@ -167,7 +167,7 @@ class SettingScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 1,
                 height: MediaQuery.of(context).size.width * 3,
                 decoration: BoxDecoration(
-                  color: ColorManager.lightPrimary,
+                  color: ColorManager.darkPrimary,
                   borderRadius: BorderRadius.circular(
                     AppSize.s18,
                   ),
@@ -185,14 +185,14 @@ class SettingScreen extends StatelessWidget {
                             width: 40,
                             height: 43,
                             decoration: BoxDecoration(
-                              color: const Color(0xff293d44),
+                              color: ColorManager.darkPrimary2,
                               borderRadius: BorderRadius.circular(
                                 AppSize.s8,
                               ),
                             ),
                             child: Icon(
                               Icons.dark_mode_outlined,
-                              color: ColorManager.lightTeal,
+                              color: ColorManager.primary,
                               size: 30,
                             ),
                           ),
@@ -208,10 +208,10 @@ class SettingScreen extends StatelessWidget {
                             left: AppPadding.p87,
                           ),
                           child: Obx(
-                                () => Switch(
+                            () => Switch(
                               value: x.value,
                               onChanged: (value) => {x.value = value},
-                              activeColor: ColorManager.lightTeal,
+                              activeColor: ColorManager.primary,
                             ),
                           ),
                         ),
@@ -226,7 +226,6 @@ class SettingScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     ListView.separated(
                       separatorBuilder: (context, index) => Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -242,7 +241,6 @@ class SettingScreen extends StatelessWidget {
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) => const SittingsList(),
                     ),
-
                   ],
                 ),
               ),

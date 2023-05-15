@@ -12,7 +12,7 @@ ElevatedButton buildElevatedButton(
   return ElevatedButton(
     onPressed: () {},
     style: ElevatedButton.styleFrom(
-      backgroundColor: ColorManager.primary,
+      backgroundColor: ColorManager.lightPrimary,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
           12.0,
@@ -24,13 +24,14 @@ ElevatedButton buildElevatedButton(
         Icon(
           icon,
           size: AppSize.s22,
+          color: ColorManager.darkPrimary,
         ),
         const SizedBox(
           width: 5.0,
         ),
         TextUtils(
           text: text,
-          color: ColorManager.white,
+          color: ColorManager.darkPrimary,
           fontWeight: FontWeightManager.light,
           fontSize: FontSize.s16,
         ),

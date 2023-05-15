@@ -37,7 +37,6 @@ class PropertyCard extends StatelessWidget {
             top: AppSize.s18,
             left: AppSize.s18,
             child: buildTag(
-
               'Featured',
               AppSize.s80,
             ),
@@ -45,9 +44,7 @@ class PropertyCard extends StatelessWidget {
           Positioned(
             top: AppSize.s18,
             right: AppSize.s18,
-            child: circularButton(
-              Icons.location_city_outlined,
-            ),
+            child: circularButton(Icons.favorite),
           ),
           Positioned(
             bottom: AppSize.s18,

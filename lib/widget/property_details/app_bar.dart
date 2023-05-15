@@ -15,10 +15,10 @@ AppBar buildAppBar() {
       },
       icon: Icon(
         Icons.arrow_back,
-        color: ColorManager.primary,
+        color: ColorManager.lightPrimary,
       ),
     ),
-    actionsIconTheme: IconThemeData(color: ColorManager.primary),
+    actionsIconTheme: IconThemeData(color: ColorManager.lightPrimary),
     actions: <Widget>[
       Padding(
           padding: const EdgeInsets.only(right: AppPadding.p20),
@@ -36,6 +36,6 @@ AppBar buildAppBar() {
             child: const Icon(Icons.share),
           )),
     ],
-    backgroundColor: ColorManager.white,
+    backgroundColor: ColorManager.darkPrimary,
   );
 }

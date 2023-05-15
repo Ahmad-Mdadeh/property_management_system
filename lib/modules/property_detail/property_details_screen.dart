@@ -12,6 +12,8 @@ import 'package:property_management_system/widget/property_details/property_card
 import 'package:property_management_system/widget/property_details/property_detail_bottom_bar.dart';
 import 'package:property_management_system/widget/property_details/property_rate.dart';
 
+import '../../widget/property_details/contact_button.dart';
+
 class PropertyDetailsScreen extends StatelessWidget {
   const PropertyDetailsScreen({super.key});
 
@@ -19,7 +21,7 @@ class PropertyDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put<NavigationController>(NavigationController());
     return Scaffold(
-      backgroundColor: ColorManager.white,
+      backgroundColor: ColorManager.darkPrimary,
       appBar: buildAppBar(),
       body: SingleChildScrollView(
           child: Container(
@@ -53,14 +55,14 @@ class PropertyDetailsScreen extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.location_pin,
-                            color: ColorManager.primary,
+                            color: ColorManager.lightPrimary,
                           ), // depends on the type
                           const SizedBox(
                             width: AppSize.s10,
                           ),
                           TextUtils(
                             text: 'Property type',
-                            color: ColorManager.dark,
+                            color: ColorManager.lightGrey,
                             fontSize: FontSize.s15,
                             fontWeight: FontWeightManager.light,
                           )
@@ -73,7 +75,7 @@ class PropertyDetailsScreen extends StatelessWidget {
                         ),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: ColorManager.primary,
+                            color: ColorManager.lightPrimary,
                             width: 1,
                           ),
                           borderRadius: BorderRadius.circular(
@@ -82,7 +84,7 @@ class PropertyDetailsScreen extends StatelessWidget {
                         ),
                         child: TextUtils(
                           text: 'Rent',
-                          color: ColorManager.primary,
+                          color: ColorManager.lightPrimary,
                           fontWeight: FontWeight.w400,
                           fontSize: AppSize.s14,
                         ),
@@ -100,7 +102,7 @@ class PropertyDetailsScreen extends StatelessWidget {
                         children: [
                           TextUtils(
                             text: 'Property Name',
-                            color: ColorManager.black,
+                            color: ColorManager.white,
                             fontWeight: FontWeightManager.regular,
                             fontSize: FontSize.s22,
                           ),
@@ -109,7 +111,7 @@ class PropertyDetailsScreen extends StatelessWidget {
                           ),
                           TextUtils(
                             text: '\$ 500 000',
-                            color: ColorManager.primary,
+                            color: ColorManager.lightPrimary,
                             fontWeight: FontWeightManager.regular,
                             fontSize: FontSize.s22,
                           )
@@ -127,10 +129,10 @@ class PropertyDetailsScreen extends StatelessWidget {
                   ),
                   Divider(
                     height: AppSize.s40,
-                    color: ColorManager.dark,
+                    color: ColorManager.lightPrimary,
                   ),
                   TextUtils(
-                    color: ColorManager.dark,
+                    color: ColorManager.white,
                     fontWeight: FontWeightManager.regular,
                     fontSize: FontSize.s20,
                     text: 'About this property',
@@ -139,8 +141,8 @@ class PropertyDetailsScreen extends StatelessWidget {
                     height: AppSize.s20,
                   ),
                   ExpandableText(
-                    color: ColorManager.dark,
-                    fontWeight: FontWeightManager.regular,
+                    color: ColorManager.lightGrey,
+                    fontWeight: FontWeightManager.light,
                     fontSize: FontSize.s16,
                     text:
                         'About this propertyAbout this propertyAbout this propertyAbout this propertyAbout this propertyAbout this propertyAbout this propertyAbout this propertyAbout this propertyAbout this propertyAbout this propertyAbout this propertyAbout this propertyAbout this property',
@@ -149,7 +151,7 @@ class PropertyDetailsScreen extends StatelessWidget {
                     height: AppSize.s20,
                   ),
                   TextUtils(
-                    color: ColorManager.dark,
+                    color: ColorManager.white,
                     fontWeight: FontWeightManager.regular,
                     fontSize: FontSize.s20,
                     text: 'Listed By',
@@ -164,7 +166,7 @@ class PropertyDetailsScreen extends StatelessWidget {
                           8.0,
                         ),
                         child: Container(
-                          color: ColorManager.testing,
+                          color: ColorManager.iconBackground2,
                           height: AppSize.s60,
                           width: AppSize.s60,
                           child: const Icon(
@@ -180,14 +182,14 @@ class PropertyDetailsScreen extends StatelessWidget {
                         children: [
                           TextUtils(
                             text: 'Komai AlFares',
-                            color: ColorManager.dark,
+                            color: ColorManager.white,
                             fontWeight: FontWeightManager.regular,
                             fontSize: FontSize.s14,
                           ),
                           TextUtils(
                             text: 'komai.fares.ww@gmail.com',
-                            color: ColorManager.black,
-                            fontWeight: FontWeightManager.regular,
+                            color: ColorManager.ofWhite,
+                            fontWeight: FontWeightManager.light,
                             fontSize: FontSize.s16,
                           ),
                         ],
@@ -198,7 +200,7 @@ class PropertyDetailsScreen extends StatelessWidget {
                     height: AppSize.s20,
                   ),
                   TextUtils(
-                    color: ColorManager.dark,
+                    color: ColorManager.white,
                     fontWeight: FontWeightManager.regular,
                     fontSize: FontSize.s20,
                     text: 'Location',
@@ -207,7 +209,7 @@ class PropertyDetailsScreen extends StatelessWidget {
                     height: AppSize.s20,
                   ),
                   TextUtils(
-                    color: ColorManager.dark,
+                    color: ColorManager.white,
                     fontWeight: FontWeightManager.regular,
                     fontSize: FontSize.s18,
                     text: 'Address :',
@@ -219,18 +221,18 @@ class PropertyDetailsScreen extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.edit_location_outlined,
-                        color: ColorManager.primary,
+                        color: ColorManager.lightPrimary,
                       ),
                       TextUtils(
                         text: 'Damascus, Mazzeh, Street 25, floor 5',
-                        color: ColorManager.dark,
+                        color: ColorManager.white,
                         fontWeight: FontWeightManager.regular,
                         fontSize: FontSize.s14,
                       ),
                     ],
                   ),
                   Card(
-                    color: ColorManager.testing,
+                    color: ColorManager.iconBackground,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(
                         25.0,
@@ -240,7 +242,7 @@ class PropertyDetailsScreen extends StatelessWidget {
                       children: const <Widget>[
                         SizedBox(
                           width: double.infinity,
-                          height: AppSize.s225,
+                          height: AppSize.s250,
                           child: ClipRRect(
                             borderRadius: BorderRadius.all(
                               Radius.circular(
@@ -255,6 +257,14 @@ class PropertyDetailsScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      buildElevatedButton(
+                          'Send Enquiry', Icons.manage_search_rounded),
+                      buildElevatedButton('Interest', Icons.interests_rounded),
+                    ],
+                  )
                 ],
               ),
             ),

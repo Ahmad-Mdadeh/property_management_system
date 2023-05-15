@@ -48,13 +48,13 @@ class _ExpandableTextState extends State<ExpandableText> {
           child: _isExpanded
               ? TextUtils(
                   text: 'Read Less',
-                  color: ColorManager.primary,
+                  color: ColorManager.lightPrimary,
                   fontWeight: FontWeight.normal,
                   fontSize: widget.fontSize,
                 )
               : TextUtils(
                   text: 'Read More',
-                  color: ColorManager.primary,
+                  color: ColorManager.lightPrimary,
                   fontWeight: FontWeight.normal,
                   fontSize: widget.fontSize,
                 ),

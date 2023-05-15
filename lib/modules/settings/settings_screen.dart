@@ -185,7 +185,7 @@ class SettingScreen extends StatelessWidget {
                             width: 40,
                             height: 43,
                             decoration: BoxDecoration(
-                              color: ColorManager.darkPrimary2,
+                              color: ColorManager.iconBackground2,
                               borderRadius: BorderRadius.circular(
                                 AppSize.s8,
                               ),
@@ -209,7 +209,7 @@ class SettingScreen extends StatelessWidget {
                           ),
                           child: Obx(
                             () => Switch(
-                              activeTrackColor :ColorManager.lightPrimary,
+                              activeTrackColor: ColorManager.lightPrimary,
                               value: x.value,
                               onChanged: (value) => {x.value = value},
                               thumbColor: MaterialStateProperty.resolveWith(

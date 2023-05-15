@@ -12,7 +12,7 @@ class PropertyDetailBottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      color: ColorManager.white,
+      color: ColorManager.darkPrimary,
       elevation: 8.0,
       height: AppSize.s60,
       shape: const CircularNotchedRectangle(),
@@ -21,7 +21,7 @@ class PropertyDetailBottomBar extends StatelessWidget {
         children: [
           buildElevatedButton('SMS', Icons.chat_outlined),
           buildElevatedButton('Call', Icons.call_outlined),
-          buildElevatedButton('Chat', Icons.chat_bubble),
+          buildElevatedButton('Chat', Icons.wechat_rounded),
         ],
       ),
     );

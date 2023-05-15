@@ -17,8 +17,9 @@ class PropertyDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(() => NavigationController());
+    Get.put<NavigationController>(NavigationController());
     return Scaffold(
+      backgroundColor: ColorManager.white,
       appBar: buildAppBar(),
       body: SingleChildScrollView(
           child: Container(
@@ -65,15 +66,27 @@ class PropertyDetailsScreen extends StatelessWidget {
                           )
                         ],
                       ),
-                      // buildTag(
-                      //   'Rent',
-                      //   AppSize.s50,
-                      // ),
-                      TextUtils(
+                      Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width / 40,
+                          vertical: MediaQuery.of(context).size.height / 200,
+                        ),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: ColorManager.primary,
+                            width: 1,
+                          ),
+                          borderRadius: BorderRadius.circular(
+                            5.0,
+                          ),
+                        ),
+                        child: TextUtils(
                           text: 'Rent',
                           color: ColorManager.primary,
                           fontWeight: FontWeight.w400,
-                          fontSize: AppSize.s16)
+                          fontSize: AppSize.s14,
+                        ),
+                      )
                     ],
                   ),
                   const SizedBox(

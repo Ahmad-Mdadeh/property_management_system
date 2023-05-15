@@ -3,13 +3,7 @@ import 'package:property_management_system/widget/property_details/image_overlay
 
 
 class NavigationController extends GetxController {
-//   void goToImageOverlay(String imagePath) {
-//     Get.to(() => ImageOverlay(
-//           imagePath: imagePath,
-//           onTap: () => Get.back(),
-//         ));
-//   }
-// }
+
   void goToImageOverlay(String imagePath) {
     Get.dialog(
       ImageOverlay(

@@ -22,7 +22,7 @@ class PropertyCard extends StatelessWidget {
         children: <Widget>[
           SizedBox(
             width: double.infinity,
-            height: AppSize.s250,
+            height: AppSize.s225,
             child: ClipRRect(
               borderRadius: const BorderRadius.all(
                 Radius.circular(25),
@@ -37,6 +37,7 @@ class PropertyCard extends StatelessWidget {
             top: AppSize.s18,
             left: AppSize.s18,
             child: buildTag(
+
               'Featured',
               AppSize.s80,
             ),

@@ -6,6 +6,7 @@ import '../../resources/values_manager.dart';
 
 AppBar buildAppBar() {
   return AppBar(
+    elevation: 0,
     leading: IconButton(
       highlightColor: Colors.transparent,
       splashColor: Colors.transparent,

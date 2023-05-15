@@ -97,8 +97,8 @@ class _SplashScreen1SubState extends State<SplashScreen1Sub>
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 3000),
                 curve: Curves.fastLinearToSlowEaseIn,
-                height: MediaQuery.of(context).size.height * 0.6,
-                width: MediaQuery.of(context).size.width *0.6,
+                height: MediaQuery.of(context).size.height * 0.45,
+                width: MediaQuery.of(context).size.width *0.45,
                 alignment: Alignment.center,
                 child: SvgPicture.asset(
                   ImagesAssets.splashLogo,

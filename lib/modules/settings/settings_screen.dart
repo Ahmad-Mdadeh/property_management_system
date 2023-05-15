@@ -111,12 +111,12 @@ class SettingScreen extends StatelessWidget {
                         ),
                         SettingsButton(
                           borderRadius: 6,
-                          color: ColorManager.darkPrimary,
+                          color: ColorManager.lightPrimary,
                           text: "Edit Profile",
                           width: MediaQuery.of(context).size.width * 0.4,
                           height: MediaQuery.of(context).size.width * 0.074,
                           function: () {
-                            Get.to(() => ProfileScreen());
+                            Get.to(() => const ProfileScreen());
                           },
                         ),
                       ],
@@ -125,7 +125,7 @@ class SettingScreen extends StatelessWidget {
                     InkWell(
                       enableFeedback: false,
                       onTap: () {
-                        Get.to(() => ProfileScreen());
+                        Get.to(() => const ProfileScreen());
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(
@@ -137,7 +137,7 @@ class SettingScreen extends StatelessWidget {
                           decoration: BoxDecoration(
                             border: Border.all(
                               color: const Color(0Xff43464d),
-                              width: 2,
+                              width: 1.5,
                             ),
                             borderRadius: BorderRadius.circular(
                               7.0,
@@ -192,8 +192,8 @@ class SettingScreen extends StatelessWidget {
                             ),
                             child: Icon(
                               Icons.dark_mode_outlined,
-                              color: ColorManager.primary,
-                              size: 30,
+                              color: ColorManager.lightPrimary,
+                              size: 35,
                             ),
                           ),
                         ),
@@ -209,9 +209,14 @@ class SettingScreen extends StatelessWidget {
                           ),
                           child: Obx(
                             () => Switch(
+                              activeTrackColor :ColorManager.lightPrimary,
                               value: x.value,
                               onChanged: (value) => {x.value = value},
-                              activeColor: ColorManager.primary,
+                              thumbColor: MaterialStateProperty.resolveWith(
+                                (Set states) {
+                                  return Colors.white;
+                                },
+                              ),
                             ),
                           ),
                         ),

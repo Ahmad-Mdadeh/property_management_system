@@ -51,7 +51,7 @@ class SittingsList extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.all(
                   color: ColorManager.grey1,
-                  width: 2,
+                  width: 1.5,
                 ),
                 borderRadius: BorderRadius.circular(
                   7.0,

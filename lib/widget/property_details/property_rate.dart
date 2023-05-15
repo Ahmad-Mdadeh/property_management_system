@@ -11,7 +11,7 @@ Widget buildPropertyRate(IconData icon, String name, String rate) {
       ClipRRect(
           borderRadius: BorderRadius.circular(8),
           child: Container(
-            color: ColorManager.lightPrimary,
+            color: ColorManager.testing,
             height: AppSize.s40,
             width: AppSize.s40,
             child: Icon(
@@ -31,10 +31,11 @@ Widget buildPropertyRate(IconData icon, String name, String rate) {
               fontWeight: FontWeightManager.regular,
               fontSize: FontSize.s14),
           TextUtils(
-              text: rate,
-              color: ColorManager.black,
-              fontWeight: FontWeightManager.regular,
-              fontSize: FontSize.s16),
+            text: rate,
+            color: ColorManager.black,
+            fontWeight: FontWeightManager.regular,
+            fontSize: FontSize.s16,
+          ),
         ],
       )
     ],

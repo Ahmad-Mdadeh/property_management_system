@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:property_management_system/my_flutter_app_icons.dart';
+import 'package:property_management_system/utils/my_flutter_app_icons.dart';
 import 'package:property_management_system/resources/assets_manager.dart';
 import 'package:property_management_system/resources/values_manager.dart';
 import 'package:property_management_system/widget/property_details/circular_button.dart';

@@ -11,7 +11,6 @@ import 'package:property_management_system/widget/property_details/expandable_te
 import 'package:property_management_system/widget/property_details/property_card.dart';
 import 'package:property_management_system/widget/property_details/property_detail_bottom_bar.dart';
 import 'package:property_management_system/widget/property_details/property_rate.dart';
-import 'package:property_management_system/widget/property_details/text_tag.dart';
 
 class PropertyDetailsScreen extends StatelessWidget {
   const PropertyDetailsScreen({super.key});
@@ -152,7 +151,7 @@ class PropertyDetailsScreen extends StatelessWidget {
                           8.0,
                         ),
                         child: Container(
-                          color: ColorManager.lightPrimary,
+                          color: ColorManager.testing,
                           height: AppSize.s60,
                           width: AppSize.s60,
                           child: const Icon(
@@ -218,7 +217,7 @@ class PropertyDetailsScreen extends StatelessWidget {
                     ],
                   ),
                   Card(
-                    color: ColorManager.lightPrimary,
+                    color: ColorManager.testing,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(
                         25.0,

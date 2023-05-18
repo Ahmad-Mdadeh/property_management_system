@@ -119,7 +119,7 @@ class OtpScreen extends StatelessWidget {
               borderRadius: AppSize.s60,
               text: "Submit",
               width: MediaQuery.of(context).size.width * 0.83,
-              height: MediaQuery.of(context).size.height * 0.073,
+              height: MediaQuery.of(context).size.height * 0.071,
               function: () => Get.off(
                 () => BaseScreen(),
                 transition: Transition.fade,

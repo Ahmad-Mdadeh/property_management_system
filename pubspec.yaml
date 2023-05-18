@@ -44,6 +44,8 @@ dependencies:
   rive: ^0.9.1
   lottie: ^2.3.2
   flutter_pin_code_fields: ^2.1.0
+  shimmer: ^2.0.0
+  searchbar_animation: ^0.0.4
 #  slide_countdown_clock: ^1.0.3
 #  google_maps_flutter: ^2.2.6
 #  panorama: ^0.4.1

@@ -86,7 +86,7 @@ class OtpScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: AppSize.s10,
+              height: AppSize.s32,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -124,7 +124,7 @@ class OtpScreen extends StatelessWidget {
                 () => BaseScreen(),
                 transition: Transition.fade,
                 duration: const Duration(
-                  milliseconds: 1500,
+                  milliseconds: 700,
                 ),
               ),
             ),

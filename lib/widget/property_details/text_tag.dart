@@ -8,11 +8,10 @@ ClipRRect buildTag(String? text, double width) {
   return ClipRRect(
     borderRadius: BorderRadius.circular(5),
     child: Container(
-      height: 31,
+      height: 30,
       width: width,
       color: ColorManager.lightPrimary,
       padding: const EdgeInsets.symmetric(
-        vertical: 8,
         horizontal: 10,
       ),
       child: Center(

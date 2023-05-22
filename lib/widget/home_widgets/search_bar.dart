@@ -11,6 +11,9 @@ class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SearchBarAnimation(
+      buttonElevation: 0,
+      buttonShadowColour: Colors.transparent,
+      buttonBorderColour: ColorManager.lightPrimary,
       buttonColour: ColorManager.lightPrimary,
       cursorColour: ColorManager.lightPrimary,
       searchBoxWidth: MediaQuery.of(context).size.width / 1.075,
@@ -20,18 +23,9 @@ class SearchBar extends StatelessWidget {
       textEditingController: TextEditingController(),
       isOriginalAnimation: true,
       enableKeyboardFocus: true,
-      onExpansionComplete: () {
-        debugPrint('do something just after searchbox is opened.');
-      },
-      onCollapseComplete: () {
-        debugPrint('do something just after searchbox is closed.');
-      },
-      onPressButton: (isSearchBarOpens) {
-        debugPrint(
-            'do something before animation started. It\'s the ${isSearchBarOpens ? 'opening' : 'closing'} animation');
-      },
+      onPressButton: (isSearchBarOpens) {},
       trailingWidget: Icon(
-        Icons.search,
+        Icons.add,
         size: 20,
         color: ColorManager.darkPrimary,
       ),
@@ -41,7 +35,8 @@ class SearchBar extends StatelessWidget {
         color: ColorManager.darkPrimary,
       ),
       // buttonWidget: buildElevatedButton('Search', Icons.search));
-      buttonWidget: Icon(Icons.search, size: 25, color: ColorManager.dark),
+      buttonWidget:
+          Icon(Icons.search, size: 25, color: ColorManager.dark),
     );
   }
 }

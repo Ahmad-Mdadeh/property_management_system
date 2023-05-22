@@ -1,3 +1,4 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:property_management_system/modules/base/base_controller.dart';
@@ -10,13 +11,12 @@ class BaseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorManager.dark,
-      bottomNavigationBar: CustomAnimatedBottomBar(),
-      body: Obx(
-        () => AnimatedSwitcher(
-          duration: const Duration(seconds: 1),
-          child: IndexedStack(
+    return ThemeSwitchingArea(
+      child: Scaffold(
+        // backgroundColor: ColorManager.dark,
+        bottomNavigationBar: CustomAnimatedBottomBar(),
+        body: Obx(
+          () => IndexedStack(
             index: baseController.selectedIndex.value,
             children: baseController.namePages,
           ),

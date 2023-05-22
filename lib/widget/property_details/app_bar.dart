@@ -36,6 +36,5 @@ AppBar buildAppBar() {
             child: const Icon(Icons.share),
           )),
     ],
-    backgroundColor: ColorManager.darkPrimary,
   );
 }

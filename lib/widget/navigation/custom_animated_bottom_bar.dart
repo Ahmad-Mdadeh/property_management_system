@@ -4,6 +4,7 @@ import 'package:property_management_system/modules/base/base_controller.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
+import 'package:property_management_system/widget/navigation/rive_utils.dart';
 import 'package:rive/rive.dart';
 
 class CustomAnimatedBottomBar extends StatelessWidget {
@@ -13,13 +14,12 @@ class CustomAnimatedBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Rx<RiveAssets> select = bottomNav.first.obs;
     StateMachineController? stateMachineController;
 
     return Container(
       height: MediaQuery.of(context).size.height * 0.1,
       decoration: BoxDecoration(
-        color: ColorManager.darkPrimary,
+        color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(
             8,
@@ -43,7 +43,7 @@ class CustomAnimatedBottomBar extends StatelessWidget {
                 select.value = bottomNav[index];
                 bottomNav[index].input?.change(true);
                 await Future.delayed(
-                  const Duration(milliseconds: 700),
+                  const Duration(seconds: 1),
                 );
                 bottomNav[index].input?.change(false);
               },
@@ -70,8 +70,7 @@ class CustomAnimatedBottomBar extends StatelessWidget {
                               return;
                             } else {
                               p0.addController(stateMachineController!);
-                              bottomNav[index].input = stateMachineController
-                                  ?.findSMI("active") as SMIBool;
+                              bottomNav[index].input = stateMachineController?.findSMI("active") as SMIBool;
                             }
                           },
                         ),
@@ -104,48 +103,5 @@ class CustomAnimatedBottomBar extends StatelessWidget {
   }
 }
 
-class RiveAssets {
-  final String artBoard, stateMachineName, title;
-  late SMIBool? input;
 
-  RiveAssets({
-    required this.title,
-    required this.artBoard,
-    required this.stateMachineName,
-    this.input,
-  });
 
-  set setInput(SMIBool status) {
-    input = status;
-  }
-}
-
-List<String> nameIcon = [
-  "HOME",
-  "CHAT",
-  "NOTICE",
-  "PROFILE",
-];
-
-List<RiveAssets> bottomNav = [
-  RiveAssets(
-    artBoard: "HOME",
-    stateMachineName: "HOME_interactivity",
-    title: "HOME",
-  ),
-  RiveAssets(
-    artBoard: "CHAT",
-    stateMachineName: "CHAT_Interactivity",
-    title: "CHAT",
-  ),
-  RiveAssets(
-    artBoard: "BELL",
-    stateMachineName: "BELL_Interactivity",
-    title: "BELL",
-  ),
-  RiveAssets(
-    artBoard: "USER",
-    stateMachineName: "USER_Interactivity",
-    title: "USER",
-  ),
-];

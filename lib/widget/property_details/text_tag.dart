@@ -17,7 +17,6 @@ ClipRRect buildTag(
       width: width,
       color: ColorManager.lightPrimary,
       padding: const EdgeInsets.symmetric(
-        vertical: 8,
         horizontal: 10,
       ),
       child: Center(

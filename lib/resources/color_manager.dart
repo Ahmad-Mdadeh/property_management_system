@@ -6,7 +6,6 @@ class ColorManager {
   static Color lightPrimary = const Color(0xff51a8a9);
   static Color iconBackground2 = const Color(0xff293d44);
   static Color darkPrimary = const Color(0xFF282f39);
-  static Color k2 = const Color(0xFF282f39);
   static Color dark = const Color(0xff3b424c);
   static Color error = Colors.red;
   static Color grey1 = const Color(0x287c7878);
@@ -26,25 +25,5 @@ class ColorManager {
         Color(0xF5061C48),
       ],
     ),
-  );
-  static BoxDecoration gradientBackColorCard = BoxDecoration(
-    borderRadius: BorderRadius.circular(
-      20.0,
-    ),
-    gradient: const LinearGradient(
-      colors: [
-        Color(0xFF21899C),
-        Color(0xFFF56B3F),
-      ],
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-    ),
-    boxShadow: const [
-      BoxShadow(
-        color: Color(0xFFF56B3F),
-        blurRadius: 9,
-        offset: Offset(0, 0.9),
-      ),
-    ],
   );
 }

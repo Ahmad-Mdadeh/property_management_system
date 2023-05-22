@@ -1,4 +1,7 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:property_management_system/modules/property_detail/property_details_screen.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
@@ -178,8 +181,38 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextUtils(
+                            text: 'Featured Properties',
+                            color: ColorManager.white,
+                            fontWeight: FontWeightManager.regular,
+                            fontSize: FontSize.s18,
+                          ),
+                          GestureDetector(
+                              onTap: () {},
+                              child: TextUtils(
+                                  text: 'See All',
+                                  color: ColorManager.lightGrey,
+                                  fontWeight: FontWeightManager.light,
+                                  fontSize: FontSize.s12))
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      Get.to(() => const PropertyDetailsScreen());
+                    },
+                    child: const Text("details"))
+              ],
+            ),
           ),
         ),
       ),

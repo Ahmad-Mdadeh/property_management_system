@@ -40,16 +40,18 @@ dependencies:
   flutter_svg: ^2.0.5
   intl_phone_field: ^3.1.0
   smooth_page_indicator: ^1.1.0
-  animations: ^2.0.7
   rive: ^0.9.1
   lottie: ^2.3.2
   flutter_pin_code_fields: ^2.1.0
   shimmer: ^2.0.0
   searchbar_animation: ^0.0.4
-#  slide_countdown_clock: ^1.0.3
-#  google_maps_flutter: ^2.2.6
+  flutter_staggered_animations: ^1.1.1
+  animated_theme_switcher: ^2.0.8
 #  panorama: ^0.4.1
-#  twilio_flutter: ^0.0.9
+#  shared_preferences: ^2.1.1
+#  equatable: ^2.0.5
+#  animations: ^2.0.7
+#  google_maps_flutter: ^2.2.6
 
 dev_dependencies:
   flutter_test:
@@ -95,6 +97,7 @@ flutter:
       fonts:
         - asset: assets/fonts/Outfit-Regular.ttf
         - asset: assets/fonts/Outfit-Bold.ttf
+        - asset: assets/fonts/Outfit-Light.ttf
 
     - family: MyFlutterApp
       fonts:

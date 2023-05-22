@@ -16,7 +16,7 @@ class SearchBar extends StatelessWidget {
       buttonBorderColour: ColorManager.lightPrimary,
       buttonColour: ColorManager.lightPrimary,
       cursorColour: ColorManager.lightPrimary,
-      searchBoxWidth: MediaQuery.of(context).size.width / 1.075,
+      // searchBoxWidth: MediaQuery.of(context).size.width / 1.075,
       searchBoxColour: ColorManager.darkPrimary,
       enteredTextStyle:
           TextStyle(fontFamily: 'Outfit', color: ColorManager.white),

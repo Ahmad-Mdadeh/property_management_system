@@ -4,11 +4,16 @@ import 'package:property_management_system/resources/font_manager.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/text_manager.dart';
 
-ClipRRect buildTag(String? text, double width) {
+ClipRRect buildTag(
+    {String? text,
+    required double width,
+    required double height,
+    required double fontSize,
+    required Color color}) {
   return ClipRRect(
     borderRadius: BorderRadius.circular(5),
     child: Container(
-      height: 30,
+      height: height,
       width: width,
       color: ColorManager.lightPrimary,
       padding: const EdgeInsets.symmetric(
@@ -17,8 +22,8 @@ ClipRRect buildTag(String? text, double width) {
       child: Center(
         child: TextUtils(
           text: text!,
-          fontSize: 12,
-          color: ColorManager.darkPrimary,
+          fontSize: fontSize,
+          color: color,
           fontWeight: FontWeightManager.light,
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/utils/my_flutter_app_icons.dart';
 import 'package:property_management_system/resources/assets_manager.dart';
 import 'package:property_management_system/resources/values_manager.dart';
@@ -15,7 +16,7 @@ class PropertyCard extends StatelessWidget {
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
-          25.0,
+          10.0,
         ),
       ),
       child: Stack(
@@ -25,7 +26,7 @@ class PropertyCard extends StatelessWidget {
             height: AppSize.s225,
             child: ClipRRect(
               borderRadius: const BorderRadius.all(
-                Radius.circular(25.0,),
+                Radius.circular(10),
               ),
               child: Image.asset(
                 ImagesAssets.building,
@@ -37,21 +38,22 @@ class PropertyCard extends StatelessWidget {
             top: AppSize.s18,
             left: AppSize.s18,
             child: buildTag(
-              'Featured',
-              AppSize.s80,
-            ),
+                text: 'Featured',
+                color: ColorManager.darkPrimary,
+                width: AppSize.s80,
+                height: 31,
+                fontSize: 12),
           ),
           Positioned(
             top: AppSize.s18,
             right: AppSize.s18,
-            child: circularButton(Icons.favorite),
+            child: circularButton(icon: Icons.favorite, size: AppSize.s24),
           ),
           Positioned(
             bottom: AppSize.s18,
             right: AppSize.s18,
             child: circularButton(
-              MyFlutterApp.degrees360,
-            ),
+                icon: MyFlutterApp.degrees360, size: AppSize.s24),
           )
         ],
       ),

@@ -11,7 +11,7 @@ ElevatedButton buildPropertyButton(String text, IconData icon, Color color) {
       backgroundColor: color,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
-          12.0,
+          10.0,
         ),
       ),
     ),

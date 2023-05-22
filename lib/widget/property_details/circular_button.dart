@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/values_manager.dart';
 
-GestureDetector circularButton(IconData icon) {
+GestureDetector circularButton({required IconData icon, required double size}) {
   return GestureDetector(
     onTap: () {},
     child: Container(
@@ -13,7 +13,7 @@ GestureDetector circularButton(IconData icon) {
           child: Icon(
             icon,
             color: ColorManager.lightPrimary,
-            size: AppSize.s24,
+            size: size,
           )),
     ),
   );

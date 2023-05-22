@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final isPlatformDark =
         WidgetsBinding.instance.window.platformBrightness == Brightness.dark;
-    final initTheme = isPlatformDark ? getThemeDataDarkMode() : getThemeDataLightMode() ;
+    final initTheme =
+        isPlatformDark ? getThemeDataDarkMode() : getThemeDataLightMode();
     return ThemeProvider(
       initTheme: initTheme,
       child: GetMaterialApp(

@@ -9,12 +9,13 @@ GestureDetector circularButton({required IconData icon, required double size}) {
       decoration: BoxDecoration(
           color: ColorManager.darkPrimary, shape: BoxShape.circle),
       child: Padding(
-          padding: const EdgeInsets.all(AppPadding.p6),
-          child: Icon(
-            icon,
-            color: ColorManager.lightPrimary,
-            size: size,
-          )),
+        padding: const EdgeInsets.all(AppPadding.p6),
+        child: Icon(
+          icon,
+          color: ColorManager.lightPrimary,
+          size: size,
+        ),
+      ),
     ),
   );
 }

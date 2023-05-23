@@ -51,7 +51,7 @@ class CustomAnimatedBottomBar extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.043,
+                    height: MediaQuery.of(context).size.height * 0.04,
                     width: MediaQuery.of(context).size.height * 0.055,
                     child: Obx(
                       () => Opacity(
@@ -70,7 +70,8 @@ class CustomAnimatedBottomBar extends StatelessWidget {
                               return;
                             } else {
                               p0.addController(stateMachineController!);
-                              bottomNav[index].input = stateMachineController?.findSMI("active") as SMIBool;
+                              bottomNav[index].input = stateMachineController
+                                  ?.findSMI("active") as SMIBool;
                             }
                           },
                         ),
@@ -102,6 +103,3 @@ class CustomAnimatedBottomBar extends StatelessWidget {
     );
   }
 }
-
-
-

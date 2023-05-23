@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
-import '../../resources/assets_manager.dart';
-import '../../resources/values_manager.dart';
 import '../../widget/home_widgets/featured_property_card.dart';
 import '../../widget/home_widgets/most_viewed_property_card.dart';
 import '../../widget/home_widgets/property_type_button.dart';
+
 import '../../widget/home_widgets/slide_show.dart';
-import '../../widget/property_details/circular_button.dart';
-import '../../widget/property_details/text_tag.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -21,17 +19,6 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: ColorManager.dark,
       appBar: AppBar(
         elevation: 0,
-        actions: [
-          Padding(
-              padding: const EdgeInsets.only(right: AppPadding.p20),
-              child: GestureDetector(
-                onTap: () {},
-                child: const Icon(
-                  Icons.filter_alt_outlined,
-                  size: AppSize.s28,
-                ),
-              )),
-        ],
         title: TextUtils(
           text: "HOME",
           color: ColorManager.white,
@@ -49,7 +36,69 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SlideShow(),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          color: ColorManager.darkPrimary,
+                        ),
+                        child: TextField(
+                          style: TextStyle(
+                            color: ColorManager.white,
+                            fontFamily: 'Outfit',
+                          ),
+                          decoration: InputDecoration(
+                            hintStyle: TextStyle(
+                              color: ColorManager.white,
+                              fontFamily: 'Outfit',
+                            ),
+                            hintText: 'Search',
+                            border: InputBorder.none,
+                            prefixIcon: Icon(
+                              Icons.search,
+                              color: ColorManager.lightPrimary,
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                              vertical: 16.0,
+                              horizontal: 16.0,
+                            ),
+                          ),
+                          onChanged: (value) {},
+                          cursorColor: ColorManager.lightPrimary,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.0),
+                        color: ColorManager.darkPrimary,
+                      ),
+                      margin: const EdgeInsets.only(right: 8.0, left: 8.0),
+                      child: IconButton(
+                        icon: const Icon(Icons.filter_list),
+                        onPressed: () {},
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              CarouselSlider(
+                options: CarouselOptions(
+                  height: MediaQuery.of(context).size.height / 7,
+                  autoPlay: true,
+                  aspectRatio: 16 / 9,
+                  viewportFraction: 1,
+                  initialPage: 0,
+                  autoPlayCurve: Curves.fastOutSlowIn,
+                  animateToClosest: true,
+                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                ),
+                items: [SlideShow(), SlideShow(), SlideShow(), SlideShow()],
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 12, left: 8),
                 child: SingleChildScrollView(
@@ -69,6 +118,11 @@ class HomeScreen extends StatelessWidget {
                       ),
                       buildPropertyButton(
                           'House', Icons.home, ColorManager.darkPrimary),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 35,
+                      ),
+                      buildPropertyButton('WareHouse', Icons.warehouse,
+                          ColorManager.darkPrimary),
                       SizedBox(
                         width: MediaQuery.of(context).size.width / 35,
                       ),
@@ -120,6 +174,10 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           HomePropertyCard(),
                           HomePropertyCard(),
+                          HomePropertyCard(),
+                          HomePropertyCard(),
+                          HomePropertyCard(),
+                          HomePropertyCard(),
                         ],
                       ),
                     ),
@@ -164,7 +222,7 @@ class HomeScreen extends StatelessWidget {
                     shrinkWrap: false,
                     physics: const NeverScrollableScrollPhysics(),
                     crossAxisCount: 2,
-                    children: const [
+                    children: [
                       MostViewedPropertyCard(),
                       MostViewedPropertyCard(),
                       MostViewedPropertyCard(),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
@@ -9,9 +11,11 @@ import '../property_details/circular_button.dart';
 import '../property_details/text_tag.dart';
 
 class MostViewedPropertyCard extends StatelessWidget {
-  const MostViewedPropertyCard({
+  MostViewedPropertyCard({
     super.key,
   });
+  final RxBool isHighlighted = true.obs;
+  final RxBool isFavorite = false.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -63,14 +67,60 @@ class MostViewedPropertyCard extends StatelessWidget {
               color: Colors.white),
         ),
         Positioned(
-          top: 148,
-          right: AppSize.s18,
-          child: circularButton(
-              icon: Icons.favorite_border_rounded, size: AppSize.s18),
-        ),
+            top: MediaQuery.of(context).size.height / 5,
+            right: MediaQuery.of(context).size.width / 20,
+            child: InkWell(
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              onHighlightChanged: (value) {
+                isHighlighted(!(isHighlighted.value));
+              },
+              onTap: () {
+                isFavorite(!(isFavorite.value));
+              },
+              child: Obx(
+                () {
+                  return AnimatedContainer(
+                    margin: EdgeInsets.all(isHighlighted.value ? 0 : 3),
+                    height: isHighlighted.value ? 35 : 23,
+                    width: isHighlighted.value ? 35 : 23,
+                    curve: Curves.fastLinearToSlowEaseIn,
+                    duration: const Duration(milliseconds: 300),
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: ColorManager.darkPrimary.withOpacity(0.6),
+                          blurRadius: 15,
+                          offset: const Offset(
+                            -4,
+                            6,
+                          ),
+                        ),
+                      ],
+                      color: ColorManager.darkPrimary.withOpacity(
+                        0.85,
+                      ),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      isFavorite.value
+                          ? Icons.favorite
+                          : Icons.favorite_outline,
+                      color: ColorManager.lightPrimary,
+                      size: isHighlighted.value ? 22 : 19,
+                    ),
+                  );
+                },
+              ),
+            )
+            // child: circularButton(
+            //   icon: Icons.favorite_border_rounded,
+            //   size: AppSize.s18,
+            // ),
+            ),
         Positioned(
-          top: 170,
-          left: 14,
+          top: MediaQuery.of(context).size.height / 4.2,
+          left: MediaQuery.of(context).size.width / 25,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

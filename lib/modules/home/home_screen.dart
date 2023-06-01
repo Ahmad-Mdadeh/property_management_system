@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:property_management_system/modules/filters/filters_screen.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
@@ -7,7 +9,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import '../../widget/home_widgets/featured_property_card.dart';
 import '../../widget/home_widgets/most_viewed_property_card.dart';
 import '../../widget/home_widgets/property_type_button.dart';
-
 import '../../widget/home_widgets/slide_show.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -60,7 +61,7 @@ class HomeScreen extends StatelessWidget {
                             border: InputBorder.none,
                             prefixIcon: Icon(
                               Icons.search,
-                              color: ColorManager.lightPrimary,
+                              color: ColorManager.primary,
                             ),
                             contentPadding: const EdgeInsets.symmetric(
                               vertical: 16.0,
@@ -68,7 +69,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           onChanged: (value) {},
-                          cursorColor: ColorManager.lightPrimary,
+                          cursorColor: ColorManager.primary,
                         ),
                       ),
                     ),
@@ -80,7 +81,11 @@ class HomeScreen extends StatelessWidget {
                       margin: const EdgeInsets.only(right: 8.0, left: 8.0),
                       child: IconButton(
                         icon: const Icon(Icons.filter_list),
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(
+                            FiltersScreen(),
+                          );
+                        },
                       ),
                     ),
                   ],
@@ -97,7 +102,12 @@ class HomeScreen extends StatelessWidget {
                   animateToClosest: true,
                   autoPlayAnimationDuration: const Duration(milliseconds: 800),
                 ),
-                items: [SlideShow(), SlideShow(), SlideShow(), SlideShow()],
+                items: const [
+                  SlideShow(),
+                  SlideShow(),
+                  SlideShow(),
+                  SlideShow(),
+                ],
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 12, left: 8),

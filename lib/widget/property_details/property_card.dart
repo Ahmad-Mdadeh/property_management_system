@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/utils/my_flutter_app_icons.dart';
 import 'package:property_management_system/resources/assets_manager.dart';
@@ -7,9 +8,12 @@ import 'package:property_management_system/widget/property_details/circular_butt
 import 'package:property_management_system/widget/property_details/text_tag.dart';
 
 class PropertyCard extends StatelessWidget {
-  const PropertyCard({
+  PropertyCard({
     super.key,
   });
+
+  final RxBool isHighlighted = true.obs;
+  final RxBool isFavorite = false.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +51,50 @@ class PropertyCard extends StatelessWidget {
           Positioned(
             top: AppSize.s18,
             right: AppSize.s18,
-            child: circularButton(icon: Icons.favorite, size: AppSize.s24),
+            child: InkWell(
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              onHighlightChanged: (value) {
+                isHighlighted(!(isHighlighted.value));
+              },
+              onTap: () {
+                isFavorite(!(isFavorite.value));
+              },
+              child: Obx(
+                () {
+                  return AnimatedContainer(
+                    margin: EdgeInsets.all(isHighlighted.value ? 0 : 3),
+                    height: isHighlighted.value ? 35 : 23,
+                    width: isHighlighted.value ? 35 : 23,
+                    curve: Curves.fastLinearToSlowEaseIn,
+                    duration: const Duration(milliseconds: 300),
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: ColorManager.darkPrimary.withOpacity(0.6),
+                          blurRadius: 15,
+                          offset: const Offset(
+                            -4,
+                            6,
+                          ),
+                        ),
+                      ],
+                      color: ColorManager.darkPrimary.withOpacity(
+                        0.85,
+                      ),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      isFavorite.value
+                          ? Icons.favorite
+                          : Icons.favorite_outline,
+                      color: ColorManager.primary,
+                      size: isHighlighted.value ? 22 : 19,
+                    ),
+                  );
+                },
+              ),
+            ),
           ),
           Positioned(
             bottom: AppSize.s18,

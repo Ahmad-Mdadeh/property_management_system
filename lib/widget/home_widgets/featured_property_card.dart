@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:property_management_system/modules/property_detail/property_details_screen.dart';
 
 import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
@@ -21,34 +22,39 @@ class HomePropertyCard extends StatelessWidget {
   Stack buildHomePropertyCard(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-          height: MediaQuery.of(context).size.height / 2.8,
-          width: MediaQuery.of(context).size.width / 1.5,
-          child: Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                10.0,
+        InkWell(
+          onTap: () {
+            Get.to(PropertyDetailsScreen());
+          },
+          child: Container(
+            margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+            height: MediaQuery.of(context).size.height / 2.8,
+            width: MediaQuery.of(context).size.width / 1.5,
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                  10.0,
+                ),
               ),
-            ),
-            color: ColorManager.darkPrimary,
-            child: Column(
-              children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 5,
-                  width: MediaQuery.of(context).size.width / 1.5,
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                    // child: Container(color: Colors.white),
-                    child: Image.asset(
-                      ImagesAssets.building,
-                      fit: BoxFit.fill,
+              color: ColorManager.darkPrimary,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 5,
+                    width: MediaQuery.of(context).size.width / 1.5,
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                      // child: Container(color: Colors.white),
+                      child: Image.asset(
+                        ImagesAssets.building,
+                        fit: BoxFit.fill,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -100,7 +106,7 @@ class HomePropertyCard extends StatelessWidget {
                   ),
                   child: Icon(
                     isFavorite.value ? Icons.favorite : Icons.favorite_outline,
-                    color: ColorManager.lightPrimary,
+                    color: ColorManager.primary,
                     size: isHighlighted.value ? 22 : 19,
                   ),
                 );
@@ -116,7 +122,7 @@ class HomePropertyCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(Icons.location_pin, color: ColorManager.lightPrimary),
+                  Icon(Icons.location_pin, color: ColorManager.primary),
                   TextUtils(
                       text: 'Property type',
                       color: ColorManager.lightGrey,
@@ -129,7 +135,7 @@ class HomePropertyCard extends StatelessWidget {
               ),
               TextUtils(
                   text: '\$100000',
-                  color: ColorManager.lightPrimary,
+                  color: ColorManager.primary,
                   fontWeight: FontWeightManager.regular,
                   fontSize: FontSize.s14),
               SizedBox(

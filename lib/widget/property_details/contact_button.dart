@@ -12,7 +12,7 @@ ElevatedButton buildElevatedButton(
   return ElevatedButton(
     onPressed: () {},
     style: ElevatedButton.styleFrom(
-      backgroundColor: ColorManager.lightPrimary,
+      backgroundColor: ColorManager.primary,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
           12.0,

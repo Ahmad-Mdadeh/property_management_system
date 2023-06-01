@@ -47,6 +47,8 @@ dependencies:
   flutter_staggered_animations: ^1.1.1
   animated_theme_switcher: ^2.0.8
   carousel_slider: ^4.2.1
+  google_maps_flutter: 2.1.1
+
 #  panorama: ^0.4.1
 #  shared_preferences: ^2.1.1
 #  equatable: ^2.0.5

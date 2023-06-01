@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../modules/property_detail/property_details_screen.dart';
 import '../../resources/assets_manager.dart';
 import '../../resources/color_manager.dart';
 import '../../resources/font_manager.dart';
@@ -21,38 +22,45 @@ class MostViewedPropertyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(
-          margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-          height: MediaQuery.of(context).size.height / 2.8,
-          width: MediaQuery.of(context).size.width / 2.2,
-          child: Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                10.0,
+        InkWell(
+          onTap: () {
+            Get.to(
+              PropertyDetailsScreen(),
+            );
+          },
+          child: Container(
+            margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+            height: MediaQuery.of(context).size.height / 2.8,
+            width: MediaQuery.of(context).size.width / 2.2,
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                  10.0,
+                ),
               ),
-            ),
-            color: ColorManager.darkPrimary,
-            child: Column(
-              children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 5,
-                  width: MediaQuery.of(context).size.width / 2.2,
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                    // child: Container(color: Colors.white),
-                    // child: Shimmer.fromColors(
-                    //   highlightColor: ColorManager.lightPrimary,
-                    //   baseColor: ColorManager.darkPrimary,
-                    //   period: const Duration(seconds: 1),
-                    child: Image.asset(
-                      ImagesAssets.building,
-                      fit: BoxFit.fill,
+              color: ColorManager.darkPrimary,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 5,
+                    width: MediaQuery.of(context).size.width / 2.2,
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                      // child: Container(color: Colors.white),
+                      // child: Shimmer.fromColors(
+                      //   highlightColor: ColorManager.primary,
+                      //   baseColor: ColorManager.darkPrimary,
+                      //   period: const Duration(seconds: 1),
+                      child: Image.asset(
+                        ImagesAssets.building,
+                        fit: BoxFit.fill,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -106,7 +114,7 @@ class MostViewedPropertyCard extends StatelessWidget {
                       isFavorite.value
                           ? Icons.favorite
                           : Icons.favorite_outline,
-                      color: ColorManager.lightPrimary,
+                      color: ColorManager.primary,
                       size: isHighlighted.value ? 22 : 19,
                     ),
                   );
@@ -126,7 +134,7 @@ class MostViewedPropertyCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(Icons.location_pin, color: ColorManager.lightPrimary),
+                  Icon(Icons.location_pin, color: ColorManager.primary),
                   TextUtils(
                       text: 'Property type',
                       color: ColorManager.lightGrey,
@@ -135,15 +143,15 @@ class MostViewedPropertyCard extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 150,
+                height: MediaQuery.of(context).size.height / 155,
               ),
               TextUtils(
                   text: '\$100000',
-                  color: ColorManager.lightPrimary,
+                  color: ColorManager.primary,
                   fontWeight: FontWeightManager.regular,
                   fontSize: FontSize.s14),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 150,
+                height: MediaQuery.of(context).size.height / 155,
               ),
               TextUtils(
                   text: 'Property Name',
@@ -151,7 +159,7 @@ class MostViewedPropertyCard extends StatelessWidget {
                   fontWeight: FontWeightManager.regular,
                   fontSize: FontSize.s14),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 150,
+                height: MediaQuery.of(context).size.height / 155,
               ),
               Row(
                 children: [

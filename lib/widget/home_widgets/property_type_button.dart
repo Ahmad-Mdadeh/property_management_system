@@ -20,7 +20,7 @@ ElevatedButton buildPropertyButton(String text, IconData icon, Color color) {
         Icon(
           icon,
           size: AppSize.s22,
-          color: ColorManager.lightPrimary,
+          color: ColorManager.primary,
         ),
         const SizedBox(
           width: 5.0,

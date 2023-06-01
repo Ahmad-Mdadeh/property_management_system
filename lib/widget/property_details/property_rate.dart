@@ -16,7 +16,7 @@ Widget buildPropertyRate(IconData icon, String name, String rate) {
             width: AppSize.s40,
             child: Icon(
               icon,
-              color: ColorManager.lightPrimary,
+              color: ColorManager.primary,
             ),
           )),
       const SizedBox(

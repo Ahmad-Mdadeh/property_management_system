@@ -10,7 +10,7 @@ import 'package:property_management_system/utils/theme.dart';
 
 class Chat extends StatelessWidget {
   Chat({Key? key}) : super(key: key);
-  RxBool isDarkMode = false.obs;
+  RxBool isDarkMode = true.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,6 @@ class Chat extends StatelessWidget {
               icon: Icon(
                 isDarkMode.value ? Icons.mode_night_outlined : Icons.sunny,
                 color: Theme.of(context).iconTheme.color,
-
               ),
             ),
           ),
@@ -48,7 +47,7 @@ class Chat extends StatelessWidget {
             ),
           ),
         ),
-        title:  const TextUtils2(
+        title: const TextUtils2(
           text: 'Chat',
           fontWeight: FontWeightManager.bold,
           fontSize: FontSize.s16,
@@ -69,4 +68,3 @@ class Chat extends StatelessWidget {
     );
   }
 }
-

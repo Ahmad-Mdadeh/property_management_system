@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 
 ThemeData getThemeDataDarkMode() => ThemeData(
-  primaryColor:ColorManager.lightPrimary,
-  primaryColorDark: ColorManager.white,
+      primaryColor: ColorManager.primary,
+      primaryColorDark: ColorManager.white,
       scaffoldBackgroundColor: ColorManager.dark,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: ColorManager.darkPrimary,
@@ -20,12 +20,12 @@ ThemeData getThemeDataDarkMode() => ThemeData(
         ),
       ),
       iconTheme: IconThemeData(
-        color: ColorManager.lightPrimary,
+        color: ColorManager.primary,
       ),
     );
 
 ThemeData getThemeDataLightMode() => ThemeData(
-  primaryColor:ColorManager.primary,
+      primaryColor: ColorManager.primary,
       primaryColorLight: ColorManager.black,
       scaffoldBackgroundColor: ColorManager.ofWhite,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(

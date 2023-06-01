@@ -49,8 +49,8 @@ class PropertiesCard extends StatelessWidget {
                 ),
                 child: BackdropFilter(
                   filter: ImageFilter.blur(
-                    sigmaX:1,
-                    sigmaY:1,
+                    sigmaX: 1,
+                    sigmaY: 1,
                   ),
                   child: Container(
                     color: Colors.transparent,
@@ -83,7 +83,7 @@ class PropertiesCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                        color: ColorManager.darkPrimary.withOpacity(0.6 ),
+                        color: ColorManager.darkPrimary.withOpacity(0.6),
                         blurRadius: 15,
                         offset: const Offset(
                           -4,
@@ -98,7 +98,7 @@ class PropertiesCard extends StatelessWidget {
                   ),
                   child: Icon(
                     isFavorite.value ? Icons.favorite : Icons.favorite_outline,
-                    color: ColorManager.lightPrimary,
+                    color: ColorManager.primary,
                     size: isHighlighted.value ? 22 : 19,
                   ),
                 );
@@ -131,7 +131,7 @@ class PropertiesCard extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.house_outlined,
-                      color: ColorManager.lightPrimary,
+                      color: ColorManager.primary,
                       size: AppSize.s16,
                     ),
                     TextUtils(

@@ -12,7 +12,7 @@ GestureDetector circularButton({required IconData icon, required double size}) {
         padding: const EdgeInsets.all(AppPadding.p6),
         child: Icon(
           icon,
-          color: ColorManager.lightPrimary,
+          color: ColorManager.primary,
           size: size,
         ),
       ),

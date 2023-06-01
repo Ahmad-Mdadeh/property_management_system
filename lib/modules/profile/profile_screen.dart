@@ -24,7 +24,7 @@ class ProfileScreen extends StatelessWidget {
           },
           icon: Icon(
             Icons.arrow_back,
-            color: ColorManager.lightPrimary,
+            color: ColorManager.primary,
           ),
         ),
         backgroundColor: ColorManager.dark,
@@ -128,7 +128,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   ProfileButton(
                     borderRadius: 16,
-                    color: ColorManager.lightPrimary,
+                    color: ColorManager.primary,
                     text: "Update Profile",
                     height: MediaQuery.of(context).size.height / 17,
                     function: () {},

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
 
 class SettingsButton extends StatelessWidget {
@@ -46,8 +47,9 @@ class SettingsButton extends StatelessWidget {
             const SizedBox(
               width: 4,
             ),
-            const Icon(
+             Icon(
               Icons.edit_note_outlined,
+              color: ColorManager.white,
             ),
           ],
         ),

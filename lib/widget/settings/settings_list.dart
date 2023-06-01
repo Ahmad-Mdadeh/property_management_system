@@ -23,21 +23,17 @@ class SittingsList extends StatelessWidget {
               width: 40,
               height: 43,
               decoration: BoxDecoration(
-                color: const Color(0xff293d44),
-                image: const DecorationImage(
-                  image: AssetImage(
-                    ImagesAssets.searching,
-                  ),
-                ),
+                color: ColorManager.iconBackground,
                 borderRadius: BorderRadius.circular(
                   AppSize.s8,
                 ),
               ),
+              child: const Icon(Icons.telegram_sharp),
             ),
           ),
           TextUtils(
             text: "My Enquiry",
-            color: ColorManager.white,
+            color: Theme.of(context).textTheme.bodyMedium!.color,
             fontWeight: FontWeightManager.medium,
             fontSize: FontSize.s15,
           ),
@@ -50,7 +46,9 @@ class SittingsList extends StatelessWidget {
               height: 33,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: ColorManager.grey1,
+                  color: Theme.of(context)
+                      .colorScheme
+                      .primaryContainer,
                   width: 1.5,
                 ),
                 borderRadius: BorderRadius.circular(
@@ -59,7 +57,7 @@ class SittingsList extends StatelessWidget {
               ),
               child: Icon(
                 Icons.arrow_forward_ios_outlined,
-                color: ColorManager.ofWhite,
+                color: Theme.of(context).colorScheme.onPrimaryContainer,
               ),
             ),
           ),

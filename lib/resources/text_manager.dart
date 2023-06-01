@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class TextUtils extends StatelessWidget {
   final String text;
   final String fontFamily;
-  final Color color;
+  final Color? color;
   final Color? backgroundColor;
   final FontWeight fontWeight;
   final double fontSize;
@@ -16,7 +16,7 @@ class TextUtils extends StatelessWidget {
   const TextUtils({
     Key? key,
     required this.text,
-    required this.color,
+    this.color,
     required this.fontWeight,
     required this.fontSize,
     this.fontFamily = 'Outfit',
@@ -47,6 +47,7 @@ class TextUtils extends StatelessWidget {
     );
   }
 }
+
 class TextUtils2 extends StatelessWidget {
   final String text;
   final String fontFamily;

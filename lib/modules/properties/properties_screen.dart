@@ -36,51 +36,49 @@ class PropertiesScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        physics: const NeverScrollableScrollPhysics(),
-        child: Column(
-          children: [
-            PropertiesRentSellButton(),
-            Obx(
-              () {
+      body: Column(
+        children: [
+          PropertiesRentSellButton(),
+          Expanded(
+            child: Obx(
+                  () {
                 if (x.value) {
-                  return SizedBox(
-                    height: MediaQuery.of(context).size.height / 1.4,
-                    child: AnimationLimiter(
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: 10,
-                        itemBuilder: (BuildContext context, int index) {
-                          return AnimationConfiguration.staggeredList(
-                            position: index,
-                            delay: const Duration(milliseconds: 200),
-                            child: SlideAnimation(
-                              duration: const Duration(milliseconds: 2500),
+                  return AnimationLimiter(
+                    child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: 8,
+                      itemBuilder: (BuildContext context, int index) {
+                        return AnimationConfiguration.staggeredList(
+                          position: index,
+                          delay: const Duration(milliseconds: 150),
+                          child: SlideAnimation(
+                            duration: const Duration(milliseconds: 1500),
+                            curve: Curves.fastLinearToSlowEaseIn,
+                            child: FadeInAnimation(
                               curve: Curves.fastLinearToSlowEaseIn,
-                              child: FadeInAnimation(
-                                curve: Curves.fastLinearToSlowEaseIn,
-                                duration: const Duration(milliseconds: 2500),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 8.0,
-                                  ),
-                                  child: PropertiesCard(),
+                              duration: const Duration(milliseconds: 1500),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 8.0,
                                 ),
+                                child: PropertiesCard(),
                               ),
                             ),
-                          );
-                        },
-                      ),
+                          ),
+                        );
+                      },
                     ),
                   );
                 } else {
                   Timer(
                     const Duration(seconds: 4),
-                    () {
+                        () {
                       x.value = true;
                     },
                   );
                   return Shimmer.fromColors(
+                    period: const Duration(milliseconds: 350),
                     highlightColor: ColorManager.ofWhite.withOpacity(0.2),
                     baseColor: ColorManager.darkPrimary,
                     child: SizedBox(
@@ -90,6 +88,8 @@ class PropertiesScreen extends StatelessWidget {
                           horizontal: AppPadding.p10,
                         ),
                         child: ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
                           itemCount: 10,
                           itemBuilder: (context, index) => Padding(
                             padding: const EdgeInsets.symmetric(
@@ -108,7 +108,7 @@ class PropertiesScreen extends StatelessWidget {
                               child: Container(
                                 width: double.infinity,
                                 height:
-                                    MediaQuery.of(context).size.height / 5.5,
+                                MediaQuery.of(context).size.height / 5.5,
                                 decoration: BoxDecoration(
                                   image: const DecorationImage(
                                     image: AssetImage(
@@ -130,8 +130,8 @@ class PropertiesScreen extends StatelessWidget {
                 }
               },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

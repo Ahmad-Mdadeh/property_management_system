@@ -1,6 +1,7 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:property_management_system/modules/base/base_screen.dart';
 import 'package:property_management_system/modules/property_detail/property_details_controller.dart';
 import 'package:property_management_system/resources/assets_manager.dart';
 import 'package:property_management_system/resources/color_manager.dart';
@@ -15,6 +16,7 @@ import 'package:property_management_system/widget/property_details/property_rate
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../widget/property_details/contact_button.dart';
+import '../map/map_screen.dart';
 
 class PropertyDetailsScreen extends StatelessWidget {
   PropertyDetailsScreen({super.key});
@@ -259,12 +261,24 @@ class PropertyDetailsScreen extends StatelessWidget {
                                 ),
                                 child: Obx(
                                   () => GoogleMap(
+                                    buildingsEnabled: false,
+                                    liteModeEnabled: true,
+                                    compassEnabled: true,
+                                    myLocationEnabled: true,
+                                    scrollGesturesEnabled: true,
+                                    myLocationButtonEnabled: true,
+                                    trafficEnabled: true,
+                                    onTap: (argument) {
+                                      Get.to(
+                                        MapScreen(),
+                                      );
+                                    },
                                     onMapCreated: mapController.onMapCreated,
                                     markers: mapController.markers.toSet(),
                                     initialCameraPosition: CameraPosition(
                                       target:
                                           mapController.initialPosition.value,
-                                      zoom: 11.0,
+                                      zoom: 16.0,
                                     ),
                                   ),
                                 ),

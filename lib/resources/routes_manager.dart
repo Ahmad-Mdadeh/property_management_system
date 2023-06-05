@@ -12,6 +12,8 @@ import 'package:property_management_system/modules/onBoarding/on_boarding_screen
 import 'package:property_management_system/modules/property_detail/property_details_screen.dart';
 import 'package:property_management_system/modules/splash/splash_screen.dart';
 
+import '../modules/map/map_screen.dart';
+
 class AppRoutes {
   static const splash = Routes.splash;
   static const onBoarding = Routes.onBoarding;
@@ -20,6 +22,7 @@ class AppRoutes {
   static const propertyDetails = Routes.propertyDetails;
   static const home = Routes.home;
   static const filters = Routes.filters;
+  static const map = Routes.map;
 
   static final getPages = [
     GetPage(name: Routes.splash, page: () => BaseScreen()),
@@ -39,7 +42,7 @@ class AppRoutes {
         name: Routes.login, page: () => LoginScreen(), binding: LoginBinding()),
     GetPage(name: Routes.propertyDetails, page: () => PropertyDetailsScreen()),
     GetPage(name: Routes.filters, page: () => FiltersScreen()),
-
+    GetPage(name: Routes.map, page: () => MapScreen()),
     // GetPage(name: Routes.register, page: () => const Register(),binding: RegisterBinding()),
     // GetPage(name: Routes.warehouse, page: () =>  WareHouse(),binding: WareHouseBinding()),
     // GetPage(name: Routes.warehouseDetails, page: () =>  WareHouseDetails(),binding: WareHouseBinding()),
@@ -54,4 +57,5 @@ class Routes {
   static const propertyDetails = '/property_details';
   static const home = '/home';
   static const filters = '/filters';
+  static const map = '/map';
 }

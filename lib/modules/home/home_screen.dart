@@ -5,6 +5,7 @@ import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:property_management_system/resources/values_manager.dart';
 
 import '../../widget/home_widgets/featured_property_card.dart';
 import '../../widget/home_widgets/most_viewed_property_card.dart';
@@ -17,21 +18,27 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorManager.dark,
       appBar: AppBar(
-        elevation: 0,
-        title: TextUtils(
-          text: "HOME",
-          color: ColorManager.white,
-          fontWeight: FontWeightManager.medium,
-          fontSize: FontSize.s17,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(
+              AppSize.s24,
+            ),
+            bottomLeft: Radius.circular(
+              AppSize.s24,
+            ),
+          ),
         ),
-        centerTitle: true,
-        backgroundColor: ColorManager.dark,
+        title: const TextUtils(
+          text: "HOME",
+          fontWeight: FontWeightManager.regular,
+          fontSize: FontSize.s20,
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(
+            top: 8,
             left: 8,
           ),
           child: Column(
@@ -44,24 +51,33 @@ class HomeScreen extends StatelessWidget {
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          color: ColorManager.darkPrimary,
+                          borderRadius: BorderRadius.circular(
+                            15.0,
+                          ),
+                          border: settingController.isLightMode.value
+                              ? Border.all(
+                                  color: ColorManager.black.withOpacity(0.05),
+                                )
+                              : null,
+                          color: Theme.of(context).appBarTheme.backgroundColor,
                         ),
                         child: TextField(
                           style: TextStyle(
-                            color: ColorManager.white,
+                            color:
+                                Theme.of(context).textTheme.bodyMedium!.color,
                             fontFamily: 'Outfit',
                           ),
                           decoration: InputDecoration(
                             hintStyle: TextStyle(
-                              color: ColorManager.white,
+                              color:
+                                  Theme.of(context).textTheme.bodyMedium!.color,
                               fontFamily: 'Outfit',
                             ),
                             hintText: 'Search',
                             border: InputBorder.none,
                             prefixIcon: Icon(
                               Icons.search,
-                              color: ColorManager.primary,
+                              color: Theme.of(context).iconTheme.color,
                             ),
                             contentPadding: const EdgeInsets.symmetric(
                               vertical: 16.0,
@@ -75,12 +91,22 @@ class HomeScreen extends StatelessWidget {
                     ),
                     Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
-                        color: ColorManager.darkPrimary,
+                        border: settingController.isLightMode.value
+                            ? Border.all(
+                                color: ColorManager.black.withOpacity(0.05),
+                              )
+                            : null,
+                        borderRadius: BorderRadius.circular(
+                          15.0,
+                        ),
+                        color: Theme.of(context).appBarTheme.backgroundColor,
                       ),
                       margin: const EdgeInsets.only(right: 8.0, left: 8.0),
                       child: IconButton(
-                        icon: const Icon(Icons.filter_list),
+                        icon: Icon(
+                          Icons.filter_list,
+                          color: Theme.of(context).iconTheme.color,
+                        ),
                         onPressed: () {
                           Get.to(
                             FiltersScreen(),
@@ -93,12 +119,13 @@ class HomeScreen extends StatelessWidget {
               ),
               CarouselSlider(
                 options: CarouselOptions(
-                  height: MediaQuery.of(context).size.height / 7,
+                  height: MediaQuery.of(context).size.height / 5.5,
                   autoPlay: true,
                   aspectRatio: 16 / 9,
+                  enableInfiniteScroll: true,
                   viewportFraction: 1,
                   initialPage: 0,
-                  autoPlayCurve: Curves.fastOutSlowIn,
+                  autoPlayCurve: Curves.easeInOutCubicEmphasized,
                   animateToClosest: true,
                   autoPlayAnimationDuration: const Duration(milliseconds: 800),
                 ),
@@ -116,28 +143,53 @@ class HomeScreen extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      buildPropertyButton('Villa', Icons.villa_rounded,
-                          ColorManager.darkPrimary),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 35,
+                      buildPropertyButton(
+                        'Villa',
+                        Icons.villa_rounded,
+                        Theme.of(context).appBarTheme.backgroundColor!,
+                        Theme.of(context).iconTheme.color!,
+                        Theme.of(context).textTheme.bodyMedium!.color!,
                       ),
-                      buildPropertyButton('Land', Icons.landscape_rounded,
-                          ColorManager.darkPrimary),
                       SizedBox(
                         width: MediaQuery.of(context).size.width / 35,
                       ),
                       buildPropertyButton(
-                          'House', Icons.home, ColorManager.darkPrimary),
+                        'Land',
+                        Icons.landscape_rounded,
+                        Theme.of(context).appBarTheme.backgroundColor!,
+                        Theme.of(context).iconTheme.color!,
+                        Theme.of(context).textTheme.bodyMedium!.color!,
+                      ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width / 35,
                       ),
-                      buildPropertyButton('WareHouse', Icons.warehouse,
-                          ColorManager.darkPrimary),
+                      buildPropertyButton(
+                        'House',
+                        Icons.home,
+                        Theme.of(context).appBarTheme.backgroundColor!,
+                        Theme.of(context).iconTheme.color!,
+                        Theme.of(context).textTheme.bodyMedium!.color!,
+                      ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width / 35,
                       ),
-                      buildPropertyButton('More', Icons.more_horiz_rounded,
-                          ColorManager.darkPrimary),
+                      buildPropertyButton(
+                        'WareHouse',
+                        Icons.warehouse,
+                        Theme.of(context).appBarTheme.backgroundColor!,
+                        Theme.of(context).iconTheme.color!,
+                        Theme.of(context).textTheme.bodyMedium!.color!,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 35,
+                      ),
+                      buildPropertyButton(
+                        'More',
+                        Icons.more_horiz_rounded,
+                        Theme.of(context).appBarTheme.backgroundColor!,
+                        Theme.of(context).iconTheme.color!,
+                        Theme.of(context).textTheme.bodyMedium!.color!,
+                      ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width / 35,
                       ),
@@ -151,15 +203,15 @@ class HomeScreen extends StatelessWidget {
                   top: 12,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 8, 10, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 14, 15, 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       TextUtils(
                         text: 'Featured Properties',
-                        color: ColorManager.white,
+                        color: Theme.of(context).textTheme.bodyMedium!.color,
                         fontWeight: FontWeightManager.regular,
-                        fontSize: FontSize.s16,
+                        fontSize: FontSize.s18,
                       ),
                       GestureDetector(
                         onTap: () {},
@@ -177,7 +229,7 @@ class HomeScreen extends StatelessWidget {
               Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(8, 8, 0, 0),
+                    padding: const EdgeInsets.fromLTRB(8, 4, 0, 0),
                     child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
@@ -200,13 +252,13 @@ class HomeScreen extends StatelessWidget {
                   top: 12,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 0, 10, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 14, 15, 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       TextUtils(
                         text: 'Most Viewed',
-                        color: ColorManager.white,
+                        color: Theme.of(context).textTheme.bodyMedium!.color,
                         fontWeight: FontWeightManager.regular,
                         fontSize: FontSize.s16,
                       ),
@@ -226,9 +278,9 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 1.9,
+                  height: MediaQuery.of(context).size.height * 1.92,
                   child: GridView.count(
-                    childAspectRatio: 0.6,
+                    childAspectRatio: 0.57,
                     shrinkWrap: false,
                     physics: const NeverScrollableScrollPhysics(),
                     crossAxisCount: 2,

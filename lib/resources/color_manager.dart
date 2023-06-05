@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 
 class ColorManager {
   static Color background = const Color(0xfff8f8f8);
-
   static Color iconBackground = const Color(0xffcee8e9);
   // static Color primary = const Color.fromARGB(255, 62, 147, 149);
   static Color primary = const Color.fromARGB(255, 10, 141, 144);
   static Color lightPrimary = const Color(0xff51a8a9);
-  static Color iconBackground2 = const Color(0xff293d44);
+  static Color iconBackgroundDark = const Color(0xff293d44);
   static Color darkPrimary = const Color(0xFF282f39);
   static Color dark = const Color(0xff3b424c);
   static Color error = Colors.red;

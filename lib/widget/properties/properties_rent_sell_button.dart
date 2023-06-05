@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:property_management_system/modules/properties/properties_controller.dart';
+import 'package:property_management_system/modules/settings/settings_controller.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
 
 class PropertiesRentSellButton extends StatelessWidget {
   PropertiesRentSellButton({Key? key}) : super(key: key);
-  final propertiesController = PropertiesController();
+  final propertiesController = Get.put(PropertiesController());
+  final settingController = Get.put(SettingController());
 
   @override
   Widget build(BuildContext context) {
@@ -21,36 +23,41 @@ class PropertiesRentSellButton extends StatelessWidget {
               highlightColor: Colors.transparent,
               enableFeedback: false,
               onTap: () {
-                if (propertiesController.isSelectedSell.value) {
-                  propertiesController.isSelectedSell.value = false;
-                } else {
-                  propertiesController.isSelectedSell.value = true;
-                  propertiesController.isSelectedRent.value = false;
-                }
-                print(propertiesController.isSelectedSell.value);
+                propertiesController.isSelectedSell(
+                    !(propertiesController.isSelectedSell.value));
+
+                propertiesController.isSelectedRent.value = false;
               },
               child: Container(
                 width: 110,
                 height: 40,
                 decoration: BoxDecoration(
-                  color: ColorManager.grey2.withOpacity(
-                    0.15,
-                  ),
-                  borderRadius: BorderRadius.circular(
-                    10.0,
-                  ),
-                  border: Border.all(
                     color: !propertiesController.isSelectedSell.value
-                        ? ColorManager.ofWhite.withOpacity(0.4)
-                        : ColorManager.primary,
-                  ),
-                ),
+                        ? ColorManager.grey2.withOpacity(
+                            0.15,
+                          )
+                        : ColorManager.lightPrimary.withOpacity(0.13),
+                    borderRadius: BorderRadius.circular(
+                      10.0,
+                    ),
+                    border: settingController.isLightMode.value
+                        ? Border.all(
+                            color: !propertiesController.isSelectedSell.value
+                                ? ColorManager.black.withOpacity(0.4)
+                                : ColorManager.primary,
+                            width: 0.8,
+                          )
+                        : Border.all(
+                            color: !propertiesController.isSelectedSell.value
+                                ? ColorManager.ofWhite.withOpacity(0.4)
+                                : ColorManager.primary,
+                          )),
                 child: Center(
                   child: TextUtils(
                     fontFamily: '',
                     text: "Sell",
-                    color: ColorManager.white,
-                    fontWeight: FontWeightManager.light,
+                    color: Theme.of(context).textTheme.bodyLarge!.color,
+                    fontWeight: FontWeightManager.semilight,
                     fontSize: FontSize.s20,
                   ),
                 ),
@@ -64,36 +71,40 @@ class PropertiesRentSellButton extends StatelessWidget {
               highlightColor: Colors.transparent,
               enableFeedback: false,
               onTap: () {
-                if (propertiesController.isSelectedRent.value) {
-                  propertiesController.isSelectedRent.value = false;
-                } else {
-                  propertiesController.isSelectedRent.value = true;
-                  propertiesController.isSelectedSell.value = false;
-                }
-                print(propertiesController.isSelectedRent.value);
+                propertiesController.isSelectedRent(
+                    !(propertiesController.isSelectedRent.value));
+                propertiesController.isSelectedSell.value = false;
               },
               child: Container(
                 width: 110,
                 height: 40,
                 decoration: BoxDecoration(
-                  color: ColorManager.grey2.withOpacity(
-                    0.15,
-                  ),
-                  borderRadius: BorderRadius.circular(
-                    10.0,
-                  ),
-                  border: Border.all(
                     color: !propertiesController.isSelectedRent.value
-                        ? ColorManager.ofWhite.withOpacity(0.4)
-                        : ColorManager.primary,
-                  ),
-                ),
+                        ? ColorManager.grey2.withOpacity(
+                            0.15,
+                          )
+                        : ColorManager.lightPrimary.withOpacity(0.13),
+                    borderRadius: BorderRadius.circular(
+                      10.0,
+                    ),
+                    border: settingController.isLightMode.value
+                        ? Border.all(
+                            color: !propertiesController.isSelectedRent.value
+                                ? ColorManager.black.withOpacity(0.4)
+                                : ColorManager.primary,
+                            width: 0.8,
+                          )
+                        : Border.all(
+                            color: !propertiesController.isSelectedRent.value
+                                ? ColorManager.ofWhite.withOpacity(0.4)
+                                : ColorManager.primary,
+                          )),
                 child: Center(
                   child: TextUtils(
                     fontFamily: '',
                     text: "Rent",
-                    color: ColorManager.white,
-                    fontWeight: FontWeightManager.light,
+                    color: Theme.of(context).textTheme.bodyLarge!.color,
+                    fontWeight: FontWeightManager.semilight,
                     fontSize: FontSize.s20,
                   ),
                 ),

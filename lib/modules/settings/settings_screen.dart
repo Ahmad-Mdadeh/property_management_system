@@ -9,6 +9,7 @@ import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
 import 'package:property_management_system/resources/values_manager.dart';
 import 'package:property_management_system/utils/theme.dart';
+import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:property_management_system/widget/settings/settings_elevated_button.dart';
 import 'package:property_management_system/widget/settings/settings_list.dart';
 import 'package:rive/rive.dart';
@@ -21,6 +22,7 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    timeDilation = 1.5;
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -29,7 +31,7 @@ class SettingScreen extends StatelessWidget {
             builder: (context) => InkWell(
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
-              onTap: () {
+              onTap: () async {
                 settingController.remove();
                 settingController.riveArtBoard?.addController(
                   settingController.isLightMode.value
@@ -40,13 +42,14 @@ class SettingScreen extends StatelessWidget {
                   theme: settingController.isLightMode.value
                       ? getThemeDataDarkMode()
                       : getThemeDataLightMode(),
+
                 );
 
                 settingController
                     .isLightMode(!(settingController.isLightMode.value));
               },
               child: Obx(
-                    () => Padding(
+                () => Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Container(
                     height: MediaQuery.of(context).size.height / 12,
@@ -57,8 +60,8 @@ class SettingScreen extends StatelessWidget {
                     ),
                     child: settingController.timer.value
                         ? Rive(
-                      artboard: settingController.riveArtBoard!,
-                    )
+                            artboard: settingController.riveArtBoard!,
+                          )
                         : const SizedBox(),
                   ),
                 ),
@@ -66,11 +69,10 @@ class SettingScreen extends StatelessWidget {
             ),
           ),
         ],
-        title: TextUtils(
+        title: const TextUtils(
           text: "My Profile",
-          color: Theme.of(context).appBarTheme.titleTextStyle!.backgroundColor,
-          fontWeight: FontWeightManager.semiBold,
-          fontSize: FontSize.s18,
+          fontWeight: FontWeightManager.regular,
+          fontSize: FontSize.s20,
         ),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -107,7 +109,7 @@ class SettingScreen extends StatelessWidget {
                     color: Theme.of(context).colorScheme.primaryContainer,
                     width: 2,
                   ),
-                  color: Theme.of(context).appBarTheme.backgroundColor,
+                    color: Theme.of(context).appBarTheme.backgroundColor,
                   borderRadius: BorderRadius.circular(
                     AppSize.s18,
                   ),
@@ -140,7 +142,7 @@ class SettingScreen extends StatelessWidget {
                       children: [
                         TextUtils(
                           text: "Ahmad Mdadeh",
-                          color: Theme.of(context).textTheme.bodyMedium!.color,
+                              color: Theme.of(context).textTheme.bodyMedium!.color,
                           fontWeight: FontWeightManager.bold,
                           fontSize: FontSize.s18,
                         ),
@@ -259,21 +261,3 @@ class SettingScreen extends StatelessWidget {
     );
   }
 }
-// ThemeSwitcher(
-//   builder: (context) => IconButton(
-//     highlightColor: Colors.transparent,
-//     splashColor: Colors.transparent,
-//     onPressed: () {
-//       ThemeSwitcher.of(context).changeTheme(
-//         theme: isDarkMode.value
-//             ? getThemeDataDarkMode()
-//             : getThemeDataLightMode(),
-//       );
-//       isDarkMode(!(isDarkMode.value));
-//     },
-//     icon: Icon(
-//       isDarkMode.value ? Icons.mode_night_outlined : Icons.sunny,
-//       color: Theme.of(context).iconTheme.color,
-//     ),
-//   ),
-// ),

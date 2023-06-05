@@ -17,26 +17,22 @@ class SlideShow extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 8.0),
       child: InkWell(
-        onTap: () => Get.to(PropertyDetailsScreen()),
+        onTap: () => Get.to(PropertyDetailsScreen(contextPropertyDetailsScreen: context,)),
         child: Container(
           height: MediaQuery.of(context).size.height / 3,
           width: double.infinity,
           margin: const EdgeInsets.fromLTRB(10, 10, 10, 0),
           decoration: BoxDecoration(
+            image: const DecorationImage(
+              image: AssetImage(
+                ImagesAssets.building,
+              ),
+              fit: BoxFit.cover,
+            ),
             color: ColorManager.primary,
             borderRadius: const BorderRadius.all(
-              Radius.circular(10),
-            ),
-          ),
-          child: ClipRRect(
-            borderRadius: const BorderRadius.all(
-              Radius.circular(10),
-            ),
-            child: AspectRatio(
-              aspectRatio: 16 / 9,
-              child: Image.asset(
-                ImagesAssets.building,
-                fit: BoxFit.fill,
+              Radius.circular(
+                15,
               ),
             ),
           ),

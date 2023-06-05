@@ -23,7 +23,7 @@ class SittingsList extends StatelessWidget {
               width: 40,
               height: 43,
               decoration: BoxDecoration(
-                color: ColorManager.iconBackground,
+                color: Theme.of(context).colorScheme.onSecondaryContainer,
                 borderRadius: BorderRadius.circular(
                   AppSize.s8,
                 ),
@@ -46,9 +46,7 @@ class SittingsList extends StatelessWidget {
               height: 33,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Theme.of(context)
-                      .colorScheme
-                      .primaryContainer,
+                  color: Theme.of(context).colorScheme.primaryContainer,
                   width: 1.5,
                 ),
                 borderRadius: BorderRadius.circular(

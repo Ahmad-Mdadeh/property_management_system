@@ -19,7 +19,7 @@ class ProfileImagePicker extends StatelessWidget {
                 height: 127,
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: ColorManager.primary,
+                    color: Theme.of(context).iconTheme.color!,
                     width: 2,
                   ),
                   shape: BoxShape.circle,
@@ -42,7 +42,7 @@ class ProfileImagePicker extends StatelessWidget {
               width: 30,
               height: 30,
               decoration: BoxDecoration(
-                color: ColorManager.primary,
+                color: Theme.of(context).iconTheme.color!,
                 shape: BoxShape.circle,
               ),
               child: IconButton(

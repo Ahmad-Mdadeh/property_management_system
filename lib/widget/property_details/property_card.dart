@@ -42,11 +42,12 @@ class PropertyCard extends StatelessWidget {
             top: AppSize.s18,
             left: AppSize.s18,
             child: buildTag(
-                text: 'Featured',
-                color: ColorManager.darkPrimary,
-                width: AppSize.s80,
-                height: 31,
-                fontSize: 12),
+              text: 'Featured',
+              color: Theme.of(context).iconTheme.color!,
+              width: AppSize.s80,
+              height: 31,
+              fontSize: 12,
+            ),
           ),
           Positioned(
             top: AppSize.s18,
@@ -71,7 +72,7 @@ class PropertyCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                          color: ColorManager.darkPrimary.withOpacity(0.6),
+                          color: Colors.black.withOpacity(0.2),
                           blurRadius: 15,
                           offset: const Offset(
                             -4,
@@ -79,16 +80,14 @@ class PropertyCard extends StatelessWidget {
                           ),
                         ),
                       ],
-                      color: ColorManager.darkPrimary.withOpacity(
-                        0.85,
-                      ),
+                      color: Theme.of(context).appBarTheme.backgroundColor,
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
                       isFavorite.value
                           ? Icons.favorite
                           : Icons.favorite_outline,
-                      color: ColorManager.primary,
+                      color: Theme.of(context).iconTheme.color,
                       size: isHighlighted.value ? 22 : 19,
                     ),
                   );
@@ -100,7 +99,11 @@ class PropertyCard extends StatelessWidget {
             bottom: AppSize.s18,
             right: AppSize.s18,
             child: circularButton(
-                icon: MyFlutterApp.degrees360, size: AppSize.s24),
+              colorIcon: Theme.of(context).iconTheme.color!,
+              color: Theme.of(context).appBarTheme.backgroundColor!,
+              icon: MyFlutterApp.degrees360,
+              size: AppSize.s24,
+            ),
           )
         ],
       ),

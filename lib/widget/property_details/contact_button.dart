@@ -8,11 +8,12 @@ import '../../resources/values_manager.dart';
 ElevatedButton buildElevatedButton(
   String text,
   IconData icon,
+  BuildContext context,
 ) {
   return ElevatedButton(
     onPressed: () {},
     style: ElevatedButton.styleFrom(
-      backgroundColor: ColorManager.primary,
+      backgroundColor: Theme.of(context).iconTheme.color,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
           12.0,
@@ -20,18 +21,19 @@ ElevatedButton buildElevatedButton(
       ),
     ),
     child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(
           icon,
           size: AppSize.s22,
-          color: ColorManager.darkPrimary,
+          color: ColorManager.white,
         ),
         const SizedBox(
           width: 5.0,
         ),
         TextUtils(
           text: text,
-          color: ColorManager.darkPrimary,
+          color: ColorManager.white,
           fontWeight: FontWeightManager.light,
           fontSize: FontSize.s16,
         ),

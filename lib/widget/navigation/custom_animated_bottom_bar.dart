@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:property_management_system/modules/base/base_controller.dart';
+import 'package:property_management_system/modules/settings/settings_controller.dart';
 import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
 import 'package:property_management_system/widget/navigation/rive_utils.dart';
@@ -10,6 +11,7 @@ class CustomAnimatedBottomBar extends StatelessWidget {
   CustomAnimatedBottomBar({super.key});
 
   final baseController = Get.put(BaseController());
+  final settingController = Get.put(SettingController());
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,12 @@ class CustomAnimatedBottomBar extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height * 0.1,
       decoration: BoxDecoration(
-        color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+        border: settingController.isLightMode.value
+            ? Border.all(
+                color: Theme.of(context).colorScheme.primaryContainer,
+              )
+            : null,
+          color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(
             8,
@@ -37,6 +44,8 @@ class CustomAnimatedBottomBar extends StatelessWidget {
           ...List.generate(
             bottomNav.length,
             (index) => InkWell(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
               onTap: () async {
                 baseController.selectedIndex.value = index;
                 select.value = bottomNav[index];

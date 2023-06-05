@@ -19,9 +19,8 @@ class PropertiesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TextUtils(
+        title: const TextUtils(
           text: "My Properties",
-          color: ColorManager.white,
           fontWeight: FontWeightManager.regular,
           fontSize: FontSize.s20,
         ),
@@ -47,7 +46,7 @@ class PropertiesScreen extends StatelessWidget {
                     child: ListView.builder(
                       physics: const BouncingScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: 8,
+                      itemCount: 10,
                       itemBuilder: (BuildContext context, int index) {
                         return AnimationConfiguration.staggeredList(
                           position: index,
@@ -61,6 +60,7 @@ class PropertiesScreen extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                   vertical: 8.0,
+                                  horizontal: 10.0,
                                 ),
                                 child: PropertiesCard(),
                               ),

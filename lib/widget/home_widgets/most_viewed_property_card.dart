@@ -15,6 +15,7 @@ class MostViewedPropertyCard extends StatelessWidget {
   MostViewedPropertyCard({
     super.key,
   });
+
   final RxBool isHighlighted = true.obs;
   final RxBool isFavorite = false.obs;
 
@@ -25,12 +26,11 @@ class MostViewedPropertyCard extends StatelessWidget {
         InkWell(
           onTap: () {
             Get.to(
-              PropertyDetailsScreen(),
+              PropertyDetailsScreen(contextPropertyDetailsScreen: context,),
             );
           },
           child: Container(
             margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-            height: MediaQuery.of(context).size.height / 2.8,
             width: MediaQuery.of(context).size.width / 2.2,
             child: Card(
               shape: RoundedRectangleBorder(
@@ -38,7 +38,7 @@ class MostViewedPropertyCard extends StatelessWidget {
                   10.0,
                 ),
               ),
-              color: ColorManager.darkPrimary,
+              color: Theme.of(context).appBarTheme.backgroundColor,
               child: Column(
                 children: [
                   SizedBox(
@@ -48,11 +48,6 @@ class MostViewedPropertyCard extends StatelessWidget {
                       borderRadius: const BorderRadius.all(
                         Radius.circular(10),
                       ),
-                      // child: Container(color: Colors.white),
-                      // child: Shimmer.fromColors(
-                      //   highlightColor: ColorManager.primary,
-                      //   baseColor: ColorManager.darkPrimary,
-                      //   period: const Duration(seconds: 1),
                       child: Image.asset(
                         ImagesAssets.building,
                         fit: BoxFit.fill,
@@ -72,60 +67,53 @@ class MostViewedPropertyCard extends StatelessWidget {
               width: 53,
               height: 25,
               fontSize: 8,
-              color: Colors.white),
+            color: Theme.of(context).iconTheme.color!,
+          ),
         ),
         Positioned(
-            top: MediaQuery.of(context).size.height / 5,
-            right: MediaQuery.of(context).size.width / 20,
-            child: InkWell(
-              highlightColor: Colors.transparent,
-              splashColor: Colors.transparent,
-              onHighlightChanged: (value) {
-                isHighlighted(!(isHighlighted.value));
-              },
-              onTap: () {
-                isFavorite(!(isFavorite.value));
-              },
-              child: Obx(
-                () {
-                  return AnimatedContainer(
-                    margin: EdgeInsets.all(isHighlighted.value ? 0 : 3),
-                    height: isHighlighted.value ? 35 : 23,
-                    width: isHighlighted.value ? 35 : 23,
-                    curve: Curves.fastLinearToSlowEaseIn,
-                    duration: const Duration(milliseconds: 300),
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: ColorManager.darkPrimary.withOpacity(0.6),
-                          blurRadius: 15,
-                          offset: const Offset(
-                            -4,
-                            6,
-                          ),
+          top: MediaQuery.of(context).size.height / 5,
+          right: MediaQuery.of(context).size.width / 20,
+          child: InkWell(
+            highlightColor: Colors.transparent,
+            splashColor: Colors.transparent,
+            onHighlightChanged: (value) {
+              isHighlighted(!(isHighlighted.value));
+            },
+            onTap: () {
+              isFavorite(!(isFavorite.value));
+            },
+            child: Obx(
+              () {
+                return AnimatedContainer(
+                  margin: EdgeInsets.all(isHighlighted.value ? 0 : 3),
+                  height: isHighlighted.value ? 35 : 23,
+                  width: isHighlighted.value ? 35 : 23,
+                  curve: Curves.fastLinearToSlowEaseIn,
+                  duration: const Duration(milliseconds: 300),
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        blurRadius: 15,
+                        offset: const Offset(
+                          -4,
+                          6,
                         ),
-                      ],
-                      color: ColorManager.darkPrimary.withOpacity(
-                        0.85,
                       ),
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(
-                      isFavorite.value
-                          ? Icons.favorite
-                          : Icons.favorite_outline,
-                      color: ColorManager.primary,
-                      size: isHighlighted.value ? 22 : 19,
-                    ),
-                  );
-                },
-              ),
-            )
-            // child: circularButton(
-            //   icon: Icons.favorite_border_rounded,
-            //   size: AppSize.s18,
-            // ),
+                    ],
+                    color: Theme.of(context).appBarTheme.backgroundColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    isFavorite.value ? Icons.favorite : Icons.favorite_outline,
+                    color: Theme.of(context).iconTheme.color,
+                    size: isHighlighted.value ? 22 : 19,
+                  ),
+                );
+              },
             ),
+          ),
+        ),
         Positioned(
           top: MediaQuery.of(context).size.height / 4.2,
           left: MediaQuery.of(context).size.width / 25,
@@ -134,40 +122,56 @@ class MostViewedPropertyCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(Icons.location_pin, color: ColorManager.primary),
+                  Icon(
+                    Icons.house_outlined,
+                    color: Theme.of(context).iconTheme.color,
+                    size: AppSize.s18,
+                  ),
                   TextUtils(
-                      text: 'Property type',
-                      color: ColorManager.lightGrey,
-                      fontWeight: FontWeightManager.regular,
-                      fontSize: FontSize.s14)
+                    text: 'House',
+                    color: Theme.of(context).textTheme.bodySmall!.color,
+                    fontWeight: FontWeightManager.semilight,
+                    fontSize: FontSize.s12,
+                  )
                 ],
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height / 155,
               ),
-              TextUtils(
+              Padding(
+                padding: const EdgeInsets.only(left: 3),
+                child: TextUtils(
                   text: '\$100000',
-                  color: ColorManager.primary,
+                  color: Theme.of(context).iconTheme.color,
                   fontWeight: FontWeightManager.regular,
-                  fontSize: FontSize.s14),
+                  fontSize: FontSize.s16,
+                ),
+              ),
               SizedBox(
                 height: MediaQuery.of(context).size.height / 155,
               ),
-              TextUtils(
+              Padding(
+                padding: const EdgeInsets.only(left: 3),
+                child: TextUtils(
                   text: 'Property Name',
-                  color: ColorManager.white,
+                  color: Theme.of(context).textTheme.bodyMedium!.color,
                   fontWeight: FontWeightManager.regular,
-                  fontSize: FontSize.s14),
+                  fontSize: FontSize.s14,
+                ),
+              ),
               SizedBox(
                 height: MediaQuery.of(context).size.height / 155,
               ),
               Row(
                 children: [
-                  Icon(Icons.not_listed_location_outlined,
-                      color: Colors.grey.withOpacity(0.7), size: 18),
+                  Icon(
+                    Icons.not_listed_location_outlined,
+                    color: Theme.of(context).textTheme.bodySmall!.color,
+                    size: 18,
+                  ),
                   TextUtils(
                       text: 'Location',
-                      color: Colors.grey.withOpacity(0.7),
+                      color: Theme.of(context).textTheme.bodySmall!.color,
                       fontWeight: FontWeightManager.semilight,
                       fontSize: FontSize.s12)
                 ],

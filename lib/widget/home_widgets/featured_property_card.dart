@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:property_management_system/modules/property_detail/property_details_screen.dart';
-
-import '../../resources/assets_manager.dart';
-import '../../resources/color_manager.dart';
-import '../../resources/font_manager.dart';
-import '../../resources/text_manager.dart';
-import '../../resources/values_manager.dart';
-import '../property_details/text_tag.dart';
+import 'package:property_management_system/resources/assets_manager.dart';
+import 'package:property_management_system/resources/font_manager.dart';
+import 'package:property_management_system/resources/text_manager.dart';
+import 'package:property_management_system/resources/values_manager.dart';
+import 'package:property_management_system/widget/property_details/text_tag.dart';
 
 class HomePropertyCard extends StatelessWidget {
   HomePropertyCard({super.key});
+
   final RxBool isHighlighted = true.obs;
   final RxBool isFavorite = false.obs;
 
@@ -24,7 +23,11 @@ class HomePropertyCard extends StatelessWidget {
       children: [
         InkWell(
           onTap: () {
-            Get.to(PropertyDetailsScreen());
+            Get.to(
+              PropertyDetailsScreen(
+                contextPropertyDetailsScreen: context,
+              ),
+            );
           },
           child: Container(
             margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
@@ -36,7 +39,7 @@ class HomePropertyCard extends StatelessWidget {
                   10.0,
                 ),
               ),
-              color: ColorManager.darkPrimary,
+              color: Theme.of(context).appBarTheme.backgroundColor,
               child: Column(
                 children: [
                   SizedBox(
@@ -46,7 +49,6 @@ class HomePropertyCard extends StatelessWidget {
                       borderRadius: const BorderRadius.all(
                         Radius.circular(10),
                       ),
-                      // child: Container(color: Colors.white),
                       child: Image.asset(
                         ImagesAssets.building,
                         fit: BoxFit.fill,
@@ -62,11 +64,12 @@ class HomePropertyCard extends StatelessWidget {
           top: AppSize.s20,
           left: AppSize.s10,
           child: buildTag(
-              text: 'Featured',
-              width: 65,
-              height: 27,
-              fontSize: 10,
-              color: Colors.white),
+            text: 'Featured',
+            width: 65,
+            height: 27,
+            fontSize: 10,
+            color: Theme.of(context).iconTheme.color!,
+          ),
         ),
         Positioned(
           top: MediaQuery.of(context).size.height / 5,
@@ -89,9 +92,11 @@ class HomePropertyCard extends StatelessWidget {
                   curve: Curves.fastLinearToSlowEaseIn,
                   duration: const Duration(milliseconds: 300),
                   decoration: BoxDecoration(
+                    color: Theme.of(context).appBarTheme.backgroundColor,
+                    shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: ColorManager.darkPrimary.withOpacity(0.6),
+                        color: Colors.black.withOpacity(0.2),
                         blurRadius: 15,
                         offset: const Offset(
                           -4,
@@ -99,14 +104,10 @@ class HomePropertyCard extends StatelessWidget {
                         ),
                       ),
                     ],
-                    color: ColorManager.darkPrimary.withOpacity(
-                      0.85,
-                    ),
-                    shape: BoxShape.circle,
                   ),
                   child: Icon(
                     isFavorite.value ? Icons.favorite : Icons.favorite_outline,
-                    color: ColorManager.primary,
+                    color: Theme.of(context).iconTheme.color,
                     size: isHighlighted.value ? 22 : 19,
                   ),
                 );
@@ -122,40 +123,55 @@ class HomePropertyCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(Icons.location_pin, color: ColorManager.primary),
+                  Icon(
+                    Icons.house_outlined,
+                    color: Theme.of(context).iconTheme.color,
+                    size: AppSize.s18,
+                  ),
                   TextUtils(
-                      text: 'Property type',
-                      color: ColorManager.lightGrey,
-                      fontWeight: FontWeightManager.regular,
-                      fontSize: FontSize.s14)
+                    text: 'House',
+                    color: Theme.of(context).textTheme.bodySmall!.color,
+                    fontWeight: FontWeightManager.semilight,
+                    fontSize: FontSize.s12,
+                  )
                 ],
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height / 150,
               ),
-              TextUtils(
+              Padding(
+                padding: const EdgeInsets.only(left: 3),
+                child: TextUtils(
                   text: '\$100000',
-                  color: ColorManager.primary,
+                  color: Theme.of(context).iconTheme.color,
                   fontWeight: FontWeightManager.regular,
-                  fontSize: FontSize.s14),
+                  fontSize: FontSize.s18,
+                ),
+              ),
               SizedBox(
                 height: MediaQuery.of(context).size.height / 150,
               ),
-              TextUtils(
-                  text: 'Property Name',
-                  color: ColorManager.white,
-                  fontWeight: FontWeightManager.regular,
-                  fontSize: FontSize.s14),
+              Padding(
+                padding: const EdgeInsets.only(left: 3),
+                child: TextUtils(
+                    text: 'Property Name',
+                    color: Theme.of(context).textTheme.bodyMedium!.color,
+                    fontWeight: FontWeightManager.regular,
+                    fontSize: FontSize.s14),
+              ),
               SizedBox(
                 height: MediaQuery.of(context).size.height / 150,
               ),
               Row(
                 children: [
-                  Icon(Icons.not_listed_location_outlined,
-                      color: Colors.grey.withOpacity(0.7), size: 18),
+                  Icon(
+                    Icons.not_listed_location_outlined,
+                    color: Theme.of(context).textTheme.bodySmall!.color,
+                    size: 18,
+                  ),
                   TextUtils(
                       text: 'Location',
-                      color: Colors.grey.withOpacity(0.7),
+                      color: Theme.of(context).textTheme.bodySmall!.color,
                       fontWeight: FontWeightManager.semilight,
                       fontSize: FontSize.s12)
                 ],

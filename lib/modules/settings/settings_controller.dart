@@ -6,9 +6,7 @@ import 'package:rive/rive.dart';
 class SettingController extends GetxController {
   Artboard? riveArtBoard;
   RxBool timer = false.obs;
-  RxBool isLightMode =
-      (WidgetsBinding.instance.window.platformBrightness == Brightness.light)
-          .obs;
+  RxBool isLightMode = (WidgetsBinding.instance.window.platformBrightness == Brightness.light).obs;
   late RiveAnimationController controllerToDark;
   late RiveAnimationController controllerToLight;
 

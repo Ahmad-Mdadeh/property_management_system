@@ -18,9 +18,9 @@ class ProfileTextFromFiled extends StatelessWidget {
       onChanged: (value) => function,
       validator: (value) => validator(value),
       keyboardType: textInputType,
-      style: const TextStyle(
+      style:  TextStyle(
         fontFamily: 'Outfit',
-        color: Colors.white,
+        color: Theme.of(context).textTheme.bodyLarge!.color,
         fontSize: 17.0,
       ),
       decoration: InputDecoration(

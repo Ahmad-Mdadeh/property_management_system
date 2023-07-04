@@ -20,7 +20,7 @@ class RiveAssets {
 
 List<String> nameIcon = [
   "HOME",
-  "CHAT",
+  "Favorite",
   "Properties",
   "PROFILE",
 ];
@@ -32,9 +32,9 @@ List<RiveAssets> bottomNav = [
     title: "HOME",
   ),
   RiveAssets(
-    artBoard: "CHAT",
-    stateMachineName: "CHAT_Interactivity",
-    title: "CHAT",
+    artBoard: "HEART",
+    stateMachineName: "HEART_Interactivity",
+    title: "HEART",
   ),
   RiveAssets(
     artBoard: "RULES",

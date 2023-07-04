@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:property_management_system/modules/onBoarding/on_boarding_screen.dart';
 import 'package:property_management_system/resources/assets_manager.dart';
+import 'package:property_management_system/resources/color_manager.dart';
 
 class SplashScreen1 extends StatefulWidget {
   const SplashScreen1({Key? key}) : super(key: key);
@@ -82,31 +84,20 @@ class _SplashScreen1SubState extends State<SplashScreen1Sub>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          const SizedBox(
-            width: double.infinity,
-            height: double.infinity,
-            // decoration: ColorManager.gradientBackColor,
+      body: Center(
+        child: AnimatedOpacity(
+          duration: const Duration(milliseconds: 4000),
+          curve: Curves.fastLinearToSlowEaseIn,
+          opacity: _containerOpacity,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 3000),
+            curve: Curves.fastLinearToSlowEaseIn,
+            height: MediaQuery.of(context).size.height * 0.45,
+            width: MediaQuery.of(context).size.width * 0.45,
+            alignment: Alignment.center,
+            child: Image.asset("assets/images/splash-logo.png",fit: BoxFit.cover,),
           ),
-          Center(
-            child: AnimatedOpacity(
-              duration: const Duration(milliseconds: 4000),
-              curve: Curves.fastLinearToSlowEaseIn,
-              opacity: _containerOpacity,
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 3000),
-                curve: Curves.fastLinearToSlowEaseIn,
-                height: MediaQuery.of(context).size.height * 0.45,
-                width: MediaQuery.of(context).size.width * 0.45,
-                alignment: Alignment.center,
-                child: SvgPicture.asset(
-                  ImagesAssets.splashLogo,
-                ),
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

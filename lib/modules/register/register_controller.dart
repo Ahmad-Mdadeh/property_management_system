@@ -1,12 +1,14 @@
 import 'package:get/get.dart';
 
-class LoginController extends GetxController {
+class RegisterController extends GetxController {
   String phoneNumber = '';
 
   String numericPhoneNumber = '';
 
   RxString userName = ''.obs;
+
   Rx password = ''.obs;
+
   RxBool isObscured = true.obs;
 
   void initializeNumericPhoneNumber() {

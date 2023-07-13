@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:property_management_system/resources/assets_manager.dart';
-import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
 import 'package:property_management_system/resources/values_manager.dart';

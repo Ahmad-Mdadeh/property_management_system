@@ -1,3 +1,4 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:property_management_system/resources/color_manager.dart';
@@ -15,78 +16,77 @@ class AuthIntlPhoneField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IntlPhoneField(
-      onChanged: (value) => function(value),
-      validator: (value) => validator(value),
-      dropdownTextStyle: const TextStyle(
-        fontWeight: FontWeightManager.medium,
-      ),
-      initialCountryCode: 'SY',
-      cursorColor: ColorManager.primary,
-      style: TextStyle(
-        height:  MediaQuery.of(context).size.height *0.0013,
-        color: ColorManager.black,
-      ),
-      cursorHeight: 20,
-      disableLengthCheck: true,
-      dropdownIcon: Icon(
-        Icons.arrow_drop_down,
-        color: ColorManager.primary,
-      ),
-      decoration: InputDecoration(
-        fillColor: Colors.grey.shade200,
-        filled: true,
-        label: const Text(
-          'phone number',
-          style: TextStyle(
-            fontFamily: 'Outfit',
+    return ThemeSwitchingArea(
+      child: Container(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        child: IntlPhoneField(
+          onChanged: (value) => function(value),
+          validator: (value) => validator(value),
+          dropdownTextStyle: const TextStyle(
             fontWeight: FontWeightManager.medium,
-            fontSize: FontSize.s14,
           ),
-        ),
-        labelStyle: const TextStyle(
-          color: Colors.black54,
-          fontSize: FontSize.s14,
-          fontWeight: FontWeightManager.medium,
-        ),
-        hintStyle: const TextStyle(color: Colors.grey),
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Color(0xFF097C7D),
+          initialCountryCode: 'SY',
+          cursorColor: ColorManager.primary,
+          style: TextStyle(
+            height: MediaQuery.of(context).size.height * 0.0013,
           ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(
-              10,
+          cursorHeight: 20,
+          disableLengthCheck: true,
+          dropdownIcon: Icon(
+            Icons.arrow_drop_down,
+            color: Theme.of(context).iconTheme.color,
+          ),
+          decoration:  InputDecoration(
+            filled: true,
+            label: const Text(
+              'phone number',
             ),
-          ),
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Color(0xFF097C7D),
-          ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(
-              10,
+            labelStyle: TextStyle(
+              color: Theme.of(context).textTheme.bodyMedium!.color,
+              fontFamily: 'Outfit',
+              fontSize: FontSize.s14,
+              fontWeight: FontWeightManager.medium,
             ),
-          ),
-        ),
-        errorBorder: const OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.red,
-          ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(
-              10,
+            // hintText:  'phone number',
+            enabledBorder:  OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Theme.of(context).iconTheme.color!,
+              ),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(
+                  10,
+                ),
+              ),
             ),
-          ),
-        ),
-        focusedErrorBorder: const OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.red,
-          ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(
-              10,
+            focusedBorder:  OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Theme.of(context).iconTheme.color!,
+              ),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(
+                  10,
+                ),
+              ),
+            ),
+            errorBorder: const OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.red,
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  10,
+                ),
+              ),
+            ),
+            focusedErrorBorder: const OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.red,
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(
+                  10,
+                ),
+              ),
             ),
           ),
         ),

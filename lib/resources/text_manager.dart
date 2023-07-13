@@ -1,3 +1,4 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 
 class TextUtils extends StatelessWidget {
@@ -47,5 +48,3 @@ class TextUtils extends StatelessWidget {
     );
   }
 }
-
-

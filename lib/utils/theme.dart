@@ -3,7 +3,7 @@ import 'package:property_management_system/resources/color_manager.dart';
 
 ThemeData getThemeDataDarkMode() => ThemeData(
       primaryColor: ColorManager.lightPrimary,
-      primaryColorDark: ColorManager.white,
+      primaryColorDark: ColorManager.darkPrimary,
       scaffoldBackgroundColor: ColorManager.dark,
       appBarTheme: AppBarTheme(
         backgroundColor: ColorManager.darkPrimary,
@@ -38,7 +38,7 @@ ThemeData getThemeDataDarkMode() => ThemeData(
 
 ThemeData getThemeDataLightMode() => ThemeData(
       primaryColor: ColorManager.primary,
-      primaryColorLight: ColorManager.black,
+      primaryColorDark: ColorManager.white,
       scaffoldBackgroundColor: ColorManager.background,
       appBarTheme: AppBarTheme(
         backgroundColor: ColorManager.white,

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../resources/color_manager.dart';
 
-
 class AuthOTPField extends StatelessWidget {
   const AuthOTPField({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return PinCodeTextField(
+      textStyle: TextStyle(color: ColorManager.black,),
       appContext: context,
       pastedTextStyle: TextStyle(
         color: Colors.green.shade600,
@@ -25,14 +25,16 @@ class AuthOTPField extends StatelessWidget {
       },
       pinTheme: PinTheme(
         shape: PinCodeFieldShape.box,
-        disabledColor: ColorManager.primary,
-        activeColor: ColorManager.primary,
+        disabledColor:Theme.of(context).iconTheme.color,
+        activeColor:Theme.of(context).iconTheme.color,
         errorBorderColor: ColorManager.error,
-        inactiveColor: ColorManager.primary,
-        selectedColor: ColorManager.primary,
+        inactiveColor: Theme.of(context).iconTheme.color,
+        selectedColor:Theme.of(context).iconTheme.color,
         inactiveFillColor: ColorManager.white,
         selectedFillColor: ColorManager.ofWhite,
-        borderRadius: BorderRadius.circular(5,),
+        borderRadius: BorderRadius.circular(
+          5,
+        ),
         fieldHeight: 47,
         fieldWidth: 45,
         activeFillColor: Colors.white,

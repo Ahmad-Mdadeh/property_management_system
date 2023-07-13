@@ -1,3 +1,4 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -13,97 +14,101 @@ class OnBoardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BuildContext x = context;
     final onBoardingController = Get.put(OnBoardingController());
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            PageView.builder(
-              controller: onBoardingController.pageController,
-              onPageChanged: onBoardingController.selectedPageIndex,
-              itemCount: onBoardingController.onBoardingPages.length,
-              itemBuilder: (context, index) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      onBoardingController.onBoardingPages[index].imageAsset,
-                      height: MediaQuery.of(context).size.height * 0.4,
-                    ),
-                    const SizedBox(height: AppSize.s20),
-                    TextUtils(
-                      textAlign: TextAlign.center,
-                      text: onBoardingController.onBoardingPages[index].title,
-                      color: ColorManager.black,
-                      fontWeight: FontWeightManager.medium,
-                      fontSize: FontSize.s22,
-                    ),
-                    const SizedBox(height: AppSize.s24),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 64.0,
+    return ThemeSwitchingArea(
+      child: Scaffold(
+        body: SafeArea(
+          child: Stack(
+            children: [
+              PageView.builder(
+                controller: onBoardingController.pageController,
+                onPageChanged: onBoardingController.selectedPageIndex,
+                itemCount: onBoardingController.onBoardingPages.length,
+                itemBuilder: (context, index) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        onBoardingController.onBoardingPages[index].imageAsset,
+                        height: MediaQuery.of(context).size.height * 0.4,
                       ),
-                      child: TextUtils(
+                      const SizedBox(height: AppSize.s20),
+                      TextUtils(
                         textAlign: TextAlign.center,
-                        text: onBoardingController
-                            .onBoardingPages[index].description,
-                        color: ColorManager.grey2,
-                        fontWeight: FontWeightManager.regular,
-                        fontSize: FontSize.s14,
+                        text: onBoardingController.onBoardingPages[index].title,
+                        color: Theme.of(context).textTheme.bodyMedium!.color,
+                        fontWeight: FontWeightManager.medium,
+                        fontSize: FontSize.s22,
+                      ),
+                      const SizedBox(height: AppSize.s22),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 64.0,
+                        ),
+                        child: TextUtils(
+                          textAlign: TextAlign.center,
+                          text: onBoardingController
+                              .onBoardingPages[index].description,
+                          color: Theme.of(context).textTheme.bodySmall!.color,
+                          fontWeight: FontWeightManager.regular,
+                          fontSize: FontSize.s14,
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+              Positioned(
+                bottom: 35,
+                left: 20,
+                child: Row(
+                  children: [
+                    Obx(
+                      () => AnimatedSmoothIndicator(
+                        activeIndex:
+                            onBoardingController.selectedPageIndex.value,
+                        count: 3,
+                        effect: ExpandingDotsEffect(
+                          dotColor: ColorManager.lightGrey,
+                          dotHeight: AppSize.s10,
+                          dotWidth: AppSize.s10,
+                          activeDotColor: ColorManager.primary,
+                        ),
                       ),
                     ),
                   ],
-                );
-              },
-            ),
-            Positioned(
-              bottom: 35,
-              left: 20,
-              child: Row(
-                children: [
-                  Obx(
-                    () => AnimatedSmoothIndicator(
-                      activeIndex: onBoardingController.selectedPageIndex.value,
-                      count: 3,
-                      effect: ExpandingDotsEffect(
-                        dotColor: ColorManager.lightGrey,
-                        dotHeight: AppSize.s10,
-                        dotWidth: AppSize.s10,
-                        activeDotColor: ColorManager.primary,
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-            Positioned(
-              right: 20,
-              bottom: 20,
-              child: FloatingActionButton(
-                backgroundColor: ColorManager.primary,
-                elevation: 0,
-                onPressed: onBoardingController.forwardAction,
-                child: Obx(() {
-                  return onBoardingController.isLastPage
-                      ? const Text(
-                          'Start',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        )
-                      : Padding(
-                          padding: const EdgeInsets.only(
-                            right: AppPadding.p2,
-                          ),
-                          child: SvgPicture.asset(
-                            "assets/images/right_arrow_ic.svg",
-                            width: AppSize.s16,
-                          ),
-                        );
-                }),
+              Positioned(
+                right: 20,
+                bottom: 20,
+                child: FloatingActionButton(
+                  backgroundColor: ColorManager.primary,
+                  elevation: 0,
+                  onPressed: onBoardingController.forwardAction,
+                  child: Obx(() {
+                    return onBoardingController.isLastPage
+                        ? const Text(
+                            'Start',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.only(
+                              right: AppPadding.p2,
+                            ),
+                            child: SvgPicture.asset(
+                              "assets/images/right_arrow_ic.svg",
+                              width: AppSize.s16,
+                            ),
+                          );
+                  }),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

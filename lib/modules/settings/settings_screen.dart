@@ -10,6 +10,7 @@ import 'package:property_management_system/resources/text_manager.dart';
 import 'package:property_management_system/resources/values_manager.dart';
 import 'package:property_management_system/utils/theme.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
+import 'package:property_management_system/utils/theme_service.dart';
 import 'package:property_management_system/widget/settings/settings_elevated_button.dart';
 import 'package:property_management_system/widget/settings/settings_list.dart';
 import 'package:rive/rive.dart';
@@ -42,11 +43,14 @@ class SettingScreen extends StatelessWidget {
                   theme: settingController.isLightMode.value
                       ? getThemeDataDarkMode()
                       : getThemeDataLightMode(),
-
                 );
 
                 settingController
                     .isLightMode(!(settingController.isLightMode.value));
+                final themeName =
+                    settingController.isLightMode.value ? 'light' : 'dark';
+                final service = await ThemeService.instance
+                  ..save(themeName);
               },
               child: Obx(
                 () => Padding(
@@ -109,7 +113,7 @@ class SettingScreen extends StatelessWidget {
                     color: Theme.of(context).colorScheme.primaryContainer,
                     width: 2,
                   ),
-                    color: Theme.of(context).appBarTheme.backgroundColor,
+                  color: Theme.of(context).appBarTheme.backgroundColor,
                   borderRadius: BorderRadius.circular(
                     AppSize.s18,
                   ),
@@ -142,7 +146,7 @@ class SettingScreen extends StatelessWidget {
                       children: [
                         TextUtils(
                           text: "Ahmad Mdadeh",
-                              color: Theme.of(context).textTheme.bodyMedium!.color,
+                          color: Theme.of(context).textTheme.bodyMedium!.color,
                           fontWeight: FontWeightManager.bold,
                           fontSize: FontSize.s18,
                         ),

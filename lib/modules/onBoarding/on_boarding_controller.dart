@@ -11,9 +11,9 @@ class OnBoardingController extends GetxController {
   bool get isLastPage => selectedPageIndex.value == onBoardingPages.length - 1;
 
   forwardAction() {
-    if (isLastPage)  {
+    if (isLastPage) {
       Get.off(
-         LoginScreen(),
+        LoginScreen(),
         transition: Transition.circularReveal,
         duration: const Duration(
           seconds: 3,

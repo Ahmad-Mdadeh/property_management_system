@@ -83,19 +83,24 @@ class _SplashScreen1SubState extends State<SplashScreen1Sub>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: AnimatedOpacity(
-          duration: const Duration(milliseconds: 4000),
-          curve: Curves.fastLinearToSlowEaseIn,
-          opacity: _containerOpacity,
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 3000),
+    return ThemeSwitchingArea(
+      child: Scaffold(
+        body: Center(
+          child: AnimatedOpacity(
+            duration: const Duration(milliseconds: 4000),
             curve: Curves.fastLinearToSlowEaseIn,
-            height: MediaQuery.of(context).size.height * 0.45,
-            width: MediaQuery.of(context).size.width * 0.45,
-            alignment: Alignment.center,
-            child: Image.asset("assets/images/splash-logo.png",fit: BoxFit.cover,),
+            opacity: _containerOpacity,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 3000),
+              curve: Curves.fastLinearToSlowEaseIn,
+              height: MediaQuery.of(context).size.height * 0.45,
+              width: MediaQuery.of(context).size.width * 0.45,
+              alignment: Alignment.center,
+              child: Image.asset(
+                "assets/images/splash-logo.png",
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
         ),
       ),

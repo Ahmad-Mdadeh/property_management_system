@@ -2,27 +2,30 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:property_management_system/resources/routes_manager.dart';
-import 'package:property_management_system/utils/theme.dart';
+import 'package:property_management_system/utils/theme_service.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  final themeService = await ThemeService.instance;
+  var initTheme = themeService.initial;
+  runApp(MyApp(
+    themeData: initTheme,
+  ));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({
     super.key,
+    required this.themeData,
   });
+
+  final ThemeData themeData;
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final isPlatformDark =
-        WidgetsBinding.instance.window.platformBrightness == Brightness.dark;
-    final initTheme =
-        isPlatformDark ? getThemeDataDarkMode() : getThemeDataLightMode();
     return ThemeProvider(
-      initTheme: initTheme,
+      initTheme: themeData,
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: AppRoutes.splash,

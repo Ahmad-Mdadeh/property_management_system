@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:property_management_system/utils/theme_service.dart';
 import 'package:rive/rive.dart';
 
 class SettingController extends GetxController {
   Artboard? riveArtBoard;
   RxBool timer = false.obs;
-  RxBool isLightMode = (WidgetsBinding.instance.window.platformBrightness == Brightness.light).obs;
+  RxBool isLightMode = ThemeService.sunOrMoon;
   late RiveAnimationController controllerToDark;
   late RiveAnimationController controllerToLight;
 

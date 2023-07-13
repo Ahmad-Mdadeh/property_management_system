@@ -18,7 +18,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class PropertyDetailsScreen extends StatelessWidget {
   final BuildContext contextPropertyDetailsScreen;
 
-  PropertyDetailsScreen({super.key, context, required this.contextPropertyDetailsScreen});
+  PropertyDetailsScreen(
+      {super.key, context, required this.contextPropertyDetailsScreen});
 
   final PropertyDetailsController mapController =
       Get.put(PropertyDetailsController());
@@ -48,7 +49,8 @@ class PropertyDetailsScreen extends StatelessWidget {
                   child: Icon(
                     Icons.stacked_bar_chart_rounded,
                     size: AppSize.s28,
-                    color: Theme.of(contextPropertyDetailsScreen).iconTheme.color,
+                    color:
+                        Theme.of(contextPropertyDetailsScreen).iconTheme.color,
                   ),
                 )),
             Padding(
@@ -99,7 +101,9 @@ class PropertyDetailsScreen extends StatelessWidget {
                               children: [
                                 Icon(
                                   Icons.location_pin,
-                                  color: Theme.of(contextPropertyDetailsScreen).iconTheme.color,
+                                  color: Theme.of(contextPropertyDetailsScreen)
+                                      .iconTheme
+                                      .color,
                                 ), // depends on the type
                                 const SizedBox(
                                   width: AppSize.s10,
@@ -124,7 +128,9 @@ class PropertyDetailsScreen extends StatelessWidget {
                               ),
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                  color: Theme.of(contextPropertyDetailsScreen).iconTheme.color!,
+                                  color: Theme.of(contextPropertyDetailsScreen)
+                                      .iconTheme
+                                      .color!,
                                   width: 1,
                                 ),
                                 borderRadius: BorderRadius.circular(
@@ -133,7 +139,9 @@ class PropertyDetailsScreen extends StatelessWidget {
                               ),
                               child: TextUtils(
                                 text: 'Rent',
-                                color: Theme.of(contextPropertyDetailsScreen).iconTheme.color,
+                                color: Theme.of(contextPropertyDetailsScreen)
+                                    .iconTheme
+                                    .color,
                                 fontWeight: FontWeight.w400,
                                 fontSize: AppSize.s14,
                               ),
@@ -163,7 +171,9 @@ class PropertyDetailsScreen extends StatelessWidget {
                                 ),
                                 TextUtils(
                                   text: '\$ 500 000',
-                                  color: Theme.of(contextPropertyDetailsScreen).iconTheme.color,
+                                  color: Theme.of(contextPropertyDetailsScreen)
+                                      .iconTheme
+                                      .color,
                                   fontWeight: FontWeightManager.regular,
                                   fontSize: FontSize.s22,
                                 )
@@ -185,7 +195,10 @@ class PropertyDetailsScreen extends StatelessWidget {
                           color: ColorManager.primary,
                         ),
                         TextUtils(
-                          color: Theme.of(contextPropertyDetailsScreen).textTheme.bodyMedium!.color,
+                          color: Theme.of(contextPropertyDetailsScreen)
+                              .textTheme
+                              .bodyMedium!
+                              .color,
                           fontWeight: FontWeightManager.regular,
                           fontSize: FontSize.s20,
                           text: 'About this property',
@@ -204,7 +217,10 @@ class PropertyDetailsScreen extends StatelessWidget {
                           height: AppSize.s32,
                         ),
                         TextUtils(
-                          color: Theme.of(contextPropertyDetailsScreen).textTheme.bodyMedium!.color,
+                          color: Theme.of(contextPropertyDetailsScreen)
+                              .textTheme
+                              .bodyMedium!
+                              .color,
                           fontWeight: FontWeightManager.regular,
                           fontSize: FontSize.s20,
                           text: 'Listed By',
@@ -219,7 +235,9 @@ class PropertyDetailsScreen extends StatelessWidget {
                                 8.0,
                               ),
                               child: Container(
-                                color: Theme.of(contextPropertyDetailsScreen).colorScheme.onSecondaryContainer,
+                                color: Theme.of(contextPropertyDetailsScreen)
+                                    .colorScheme
+                                    .onSecondaryContainer,
                                 height: AppSize.s60,
                                 width: AppSize.s60,
                                 child: const Icon(
@@ -259,7 +277,10 @@ class PropertyDetailsScreen extends StatelessWidget {
                           height: AppSize.s20,
                         ),
                         TextUtils(
-                          color: Theme.of(contextPropertyDetailsScreen).textTheme.bodyMedium!.color,
+                          color: Theme.of(contextPropertyDetailsScreen)
+                              .textTheme
+                              .bodyMedium!
+                              .color,
                           fontWeight: FontWeightManager.regular,
                           fontSize: FontSize.s19,
                           text: 'Location',
@@ -268,8 +289,10 @@ class PropertyDetailsScreen extends StatelessWidget {
                           height: AppSize.s20,
                         ),
                         TextUtils(
-                          color:
-                              Theme.of(contextPropertyDetailsScreen).textTheme.bodyMedium!.color,
+                          color: Theme.of(contextPropertyDetailsScreen)
+                              .textTheme
+                              .bodyMedium!
+                              .color,
                           fontWeight: FontWeightManager.regular,
                           fontSize: FontSize.s16,
                           text: 'Address :',
@@ -281,7 +304,9 @@ class PropertyDetailsScreen extends StatelessWidget {
                           children: [
                             Icon(
                               Icons.edit_location_outlined,
-                              color: Theme.of(contextPropertyDetailsScreen).iconTheme.color,
+                              color: Theme.of(contextPropertyDetailsScreen)
+                                  .iconTheme
+                                  .color,
                               size: AppSize.s16,
                             ),
                             const SizedBox(
@@ -302,7 +327,9 @@ class PropertyDetailsScreen extends StatelessWidget {
                           height: AppSize.s8,
                         ),
                         Card(
-                          color: Theme.of(contextPropertyDetailsScreen).colorScheme.onSecondaryContainer,
+                          color: Theme.of(contextPropertyDetailsScreen)
+                              .colorScheme
+                              .onSecondaryContainer,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(
                               10.0,
@@ -322,22 +349,24 @@ class PropertyDetailsScreen extends StatelessWidget {
                                   child: Obx(
                                     () => GoogleMap(
                                       buildingsEnabled: false,
-                                      liteModeEnabled: true,
                                       compassEnabled: true,
                                       myLocationEnabled: true,
                                       scrollGesturesEnabled: true,
                                       myLocationButtonEnabled: true,
                                       trafficEnabled: true,
                                       onTap: (argument) {
-                                        Get.to( ()=>
-                                          MapScreen(contextMapScreen:contextPropertyDetailsScreen,),
+                                        Get.to(
+                                          () => MapScreen(
+                                            contextMapScreen:
+                                                contextPropertyDetailsScreen,
+                                          ),
                                         );
                                       },
                                       onMapCreated: mapController.onMapCreated,
                                       markers: mapController.markers.toSet(),
                                       initialCameraPosition: CameraPosition(
                                         target:
-                                        mapController.initialPosition.value,
+                                            mapController.initialPosition.value,
                                         zoom: 16.0,
                                       ),
                                     ),
@@ -383,7 +412,7 @@ class PropertyDetailsScreen extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar:  const PropertyDetailBottomBar(),
+        bottomNavigationBar: const PropertyDetailBottomBar(),
       ),
     );
   }

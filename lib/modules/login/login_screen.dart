@@ -1,4 +1,3 @@
-import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:property_management_system/modules/base/base_screen.dart';
@@ -6,6 +5,7 @@ import 'package:property_management_system/modules/login/login_controller.dart';
 import 'package:property_management_system/modules/otp/otp_screen.dart';
 import 'package:property_management_system/modules/register/register_screen.dart';
 import 'package:property_management_system/resources/assets_manager.dart';
+import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/strings_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
@@ -21,9 +21,9 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loginController = Get.put(LoginController());
+
     return Form(
       key: formKey,
-
       child: Scaffold(
         body: SingleChildScrollView(
           child: Column(
@@ -53,74 +53,36 @@ class LoginScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                   horizontal: MediaQuery.of(context).size.height / 80,
                 ),
-                 const TextUtils(
-                  text: "Sign in to use our app",
-                  fontWeight: FontWeightManager.bold,
-                  fontSize: FontSize.s22,
+                child: TextUtils(
+                  textAlign: TextAlign.center,
+                  text:
+                      "Please enter your full name & phone number, We will send you the OTP for verification.",
+                  color: ColorManager.grey2,
+                  fontWeight: FontWeightManager.regular,
+                  fontSize: FontSize.s14,
                 ),
-
               ),
               Padding(
                 padding: EdgeInsets.only(
                   top: MediaQuery.of(context).size.height / 40,
                   left: MediaQuery.of(context).size.width / 12,
                   right: MediaQuery.of(context).size.width / 12,
-
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: AppPadding.p12,
-                    left: AppPadding.p32,
-                    right: AppPadding.p32,
-                  ),
-                  child: AuthTextFromField(
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.07,
+                  child: AuthIntlPhoneField(
                     function: (value) {
-                      loginController.userName.value = value;
+                      loginController.phoneNumber = value.toString();
+                      loginController.initializeNumericPhoneNumber();
                     },
-                    color: Theme.of(context).textTheme.bodyMedium!.color,
-                    labelFontWeight: FontWeightManager.medium,
-                    labelFontSize: FontSize.s14,
-                    filled: true,
-                    labelText: "Enter your name",
-                    obscureText: false,
-                    prefixIcon: const Icon(
-                      Icons.person,
-                    ),
                     validator: (value) {
-                      if (!RegExp(validationName).hasMatch(value)) {
-                        return "invalid name";
+                      if (!RegExp(validationPhone)
+                          .hasMatch(loginController.numericPhoneNumber)) {
+                        return "invalid phone number";
                       } else {
                         return null;
                       }
                     },
-                    suffixIcon: null,
-                    textInputType: TextInputType.name,
-                  ),
-                ),
-                const SizedBox(
-                  height: AppSize.s14,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: AppPadding.p32,
-                    right: AppPadding.p32,
-                  ),
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.07,
-                    child: AuthIntlPhoneField(
-                      function: (value) {
-                        loginController.phoneNumber = value.toString();
-                        loginController.initializeNumericPhoneNumber();
-                      },
-                      validator: (value) {
-                        if (!RegExp(validationPhone)
-                            .hasMatch(loginController.numericPhoneNumber)) {
-                          return "invalid phone number";
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
                   ),
                 ),
               ),
@@ -138,7 +100,7 @@ class LoginScreen extends StatelessWidget {
                   labelFontSize: FontSize.s14,
                   filled: true,
                   labelText: "Enter your password",
-                  obscureText: loginController.isObscured.value,
+                  obscureText: loginController.isObsecured.value,
                   prefixIcon: const Icon(
                     Icons.key,
                   ),
@@ -166,13 +128,13 @@ class LoginScreen extends StatelessWidget {
                   suffixIcon: Obx(
                     () => IconButton(
                       icon: Icon(
-                        loginController.isObscured.value
+                        loginController.isObsecured.value
                             ? Icons.visibility_off
                             : Icons.visibility,
                       ),
                       onPressed: () {
-                        loginController.isObscured.value =
-                            !loginController.isObscured.value;
+                        loginController.isObsecured.value =
+                            !loginController.isObsecured.value;
                       },
                     ),
                   ),

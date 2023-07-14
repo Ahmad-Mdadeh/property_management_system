@@ -5,9 +5,13 @@ class LoginController extends GetxController {
 
   String numericPhoneNumber = '';
 
+  RxString password = ''.obs;
+
   RxString userName = ''.obs;
   Rx password = ''.obs;
   RxBool isObscured = true.obs;
+
+  RxBool isObsecured = true.obs;
 
   void initializeNumericPhoneNumber() {
     phoneNumber = phoneNumber.replaceAll(

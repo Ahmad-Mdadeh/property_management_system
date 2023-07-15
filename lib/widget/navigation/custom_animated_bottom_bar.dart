@@ -16,7 +16,6 @@ class CustomAnimatedBottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     StateMachineController? stateMachineController;
-
     return Container(
       height: MediaQuery.of(context).size.height * 0.1,
       decoration: BoxDecoration(

@@ -10,7 +10,6 @@ class LoginController extends GetxController {
   RxString userName = ''.obs;
   RxBool isObscured = true.obs;
 
-  RxBool isObsecured = true.obs;
 
   void initializeNumericPhoneNumber() {
     phoneNumber = phoneNumber.replaceAll(

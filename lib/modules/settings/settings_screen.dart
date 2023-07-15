@@ -23,7 +23,7 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    timeDilation = 1.5;
+    timeDilation = 1.8;
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -33,6 +33,8 @@ class SettingScreen extends StatelessWidget {
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               onTap: () async {
+                final themeService = await ThemeService.instance;
+
                 settingController.remove();
                 settingController.riveArtBoard?.addController(
                   settingController.isLightMode.value
@@ -43,14 +45,14 @@ class SettingScreen extends StatelessWidget {
                   theme: settingController.isLightMode.value
                       ? getThemeDataDarkMode()
                       : getThemeDataLightMode(),
+                  isReversed: settingController.isLightMode.value ,
                 );
 
                 settingController
                     .isLightMode(!(settingController.isLightMode.value));
                 final themeName =
                     settingController.isLightMode.value ? 'light' : 'dark';
-                final service = await ThemeService.instance
-                  ..save(themeName);
+                themeService.save(themeName);
               },
               child: Obx(
                 () => Padding(

@@ -1,5 +1,9 @@
 class ServerSet {
-  static const domainNameServer = 'http://192.168.43.106:8000';
+  static const String domainNameServer = 'http://127.0.0.1:8000/';
+  static _AuthEndPoints authEndPoints = _AuthEndPoints();
+}
 
-
+class _AuthEndPoints {
+  final String registerPhoneNumber = '/api/register?';
+  final String loginPhoneNumber = '/api/login?';
 }

@@ -68,20 +68,23 @@ class LoginScreen extends StatelessWidget {
                   ),
                   child: SizedBox(
                     height: MediaQuery.of(context).size.height * 0.07,
-                    child: AuthIntlPhoneField(
-                      function: (value) {
-                        loginController.phoneNumber = value.toString();
-                        loginController.initializeNumericPhoneNumber();
-                      },
-                      validator: (value) {
-                        if (!RegExp(validationPhone)
-                            .hasMatch(loginController.numericPhoneNumber)) {
-                          return "invalid phone number";
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
+                    child: AuthIntlPhoneField(function: (value) {
+                      loginController.phoneNumber = value.toString();
+                      loginController.initializeNumericPhoneNumber();
+                    }, validator: (value) {
+                      if (!RegExp(validationPhone)
+                          .hasMatch(loginController.numericPhoneNumber)) {
+                        return "invalid phone number";
+                      } else {
+                        return null;
+                      }
+                    }
+                        // validator: (String value) {
+                        //   if (value.isEmpty) {
+                        //     return 'PhoneNumber is required';
+                        //   }
+                        // },
+                        ),
                   ),
                 ),
                 SizedBox(
@@ -92,46 +95,49 @@ class LoginScreen extends StatelessWidget {
                     left: MediaQuery.of(context).size.width / 12,
                     right: MediaQuery.of(context).size.width / 12,
                   ),
-                  child: Obx(() => AuthTextFromField(
-                    labelFontWeight: FontWeightManager.medium,
-                    labelFontSize: FontSize.s14,
-                    filled: true,
-                    labelText: "Enter your password",
-                    obscureText: loginController.isObscured.value,
-                    prefixIcon: const Icon(
-                      Icons.key,
-                    ),
-                    textInputType: TextInputType.visiblePassword,
-                    function: (value) {
-                      loginController.password.value = value;
-                    },
-                    validator: (String value) {
-                      if (value.isEmpty) {
-                        return 'Password is required';
-                      }
-
-                      if (value.length < 8) {
-                        return 'Password must be at least 8 characters long';
-                      }
-
-                      if (!RegExp(validationPassword).hasMatch(value)) {
-                        return 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
-                      }
-
-                      return null;
-                    },
-                    suffixIcon:  IconButton(
-                      color: ColorManager.lightPrimary,
-                      icon: Icon(
-                        loginController.isObscured.value
-                            ? Icons.visibility_off
-                            : Icons.visibility,
+                  child: Obx(
+                    () => AuthTextFromField(
+                      labelFontWeight: FontWeightManager.medium,
+                      labelFontSize: FontSize.s14,
+                      filled: true,
+                      labelText: "Enter your password",
+                      obscureText: loginController.isObscured.value,
+                      prefixIcon: const Icon(
+                        Icons.key,
                       ),
-                      onPressed: () {
-                        loginController.isObscured(!(loginController.isObscured.value));
+                      textInputType: TextInputType.visiblePassword,
+                      function: (value) {
+                        loginController.password.value = value;
                       },
+                      validator: (String value) {
+                        if (value.isEmpty) {
+                          return 'Password is required';
+                        }
+
+                        // if (value.length < 8) {
+                        //   return 'Password must be at least 8 characters long';
+                        // }
+
+                        // if (!RegExp(validationPassword).hasMatch(value)) {
+                        //   return 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
+                        // }
+
+                        return null;
+                      },
+                      suffixIcon: IconButton(
+                        color: ColorManager.lightPrimary,
+                        icon: Icon(
+                          loginController.isObscured.value
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                        ),
+                        onPressed: () {
+                          loginController
+                              .isObscured(!(loginController.isObscured.value));
+                        },
+                      ),
                     ),
-                  ),),
+                  ),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 25,
@@ -143,7 +149,9 @@ class LoginScreen extends StatelessWidget {
                         text: 'Don\'t have an account ?',
                         fontWeight: FontWeight.normal,
                         fontSize: 16),
-                    const SizedBox(width: 5.0,),
+                    const SizedBox(
+                      width: 5.0,
+                    ),
                     GestureDetector(
                       onTap: () {
                         Get.off(RegisterScreen());
@@ -168,6 +176,7 @@ class LoginScreen extends StatelessWidget {
                   function: () {
                     if (formKey.currentState!.validate() &&
                         loginController.numericPhoneNumber.isNotEmpty) {
+                      loginController.logInWithPhoneNumber();
                       Get.off(
                         () => BaseScreen(),
                         arguments: loginController.numericPhoneNumber,

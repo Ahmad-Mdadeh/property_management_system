@@ -35,7 +35,7 @@ class LoginController extends GetxController {
 
   Future<void> logInWithPhoneNumber() async {
     try {
-      var headers = {'Content-Type': 'application/json'};
+      var headers = {'': ''};
       var url = Uri.parse(ServerSet.domainNameServer +
           ServerSet.authEndPoints.loginPhoneNumber);
 
@@ -61,6 +61,7 @@ class LoginController extends GetxController {
           throw jsonDecode(response.body)["Message"] ?? "Unknown Error Occured";
         }
       }
+      print(response);
     } catch (e) {
       Get.back();
       showDialog(

@@ -106,14 +106,10 @@ class LoginScreen extends StatelessWidget {
                         Icons.key,
                       ),
                       textInputType: TextInputType.visiblePassword,
-                      function: (value) {
-                        loginController.password.value = value;
-                      },
                       validator: (String value) {
                         if (value.isEmpty) {
                           return 'Password is required';
                         }
-
                         // if (value.length < 8) {
                         //   return 'Password must be at least 8 characters long';
                         // }
@@ -121,8 +117,10 @@ class LoginScreen extends StatelessWidget {
                         // if (!RegExp(validationPassword).hasMatch(value)) {
                         //   return 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
                         // }
-
                         return null;
+                      },
+                      function: (value) {
+                        loginController.password.value = value;
                       },
                       suffixIcon: IconButton(
                         color: ColorManager.lightPrimary,
@@ -174,17 +172,18 @@ class LoginScreen extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.83,
                   height: MediaQuery.of(context).size.height * 0.071,
                   function: () {
+                    print(loginController.numericPhoneNumber);
                     if (formKey.currentState!.validate() &&
                         loginController.numericPhoneNumber.isNotEmpty) {
                       loginController.logInWithPhoneNumber();
-                      Get.off(
-                        () => BaseScreen(),
-                        arguments: loginController.numericPhoneNumber,
-                        transition: Transition.fade,
-                        duration: const Duration(
-                          milliseconds: 1000,
-                        ),
-                      );
+                      // Get.off(
+                      //   () => BaseScreen(),
+                      //   arguments: loginController.numericPhoneNumber,
+                      //   transition: Transition.fade,
+                      //   duration: const Duration(
+                      //     milliseconds: 1000,
+                      //   ),
+                      // );
                     } else if (loginController.userName.value.isNotEmpty) {
                       Get.snackbar(
                         "Error",

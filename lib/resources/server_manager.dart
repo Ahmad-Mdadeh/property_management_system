@@ -4,6 +4,6 @@ class ServerSet {
 }
 
 class _AuthEndPoints {
-  final String registerPhoneNumber = '/api/register?';
-  final String loginPhoneNumber = '/api/login?';
+  final String registerPhoneNumber = '/api/register';
+  final String loginPhoneNumber = '/api/login';
 }

@@ -73,7 +73,7 @@ class LoginScreen extends StatelessWidget {
                       loginController.initializeNumericPhoneNumber();
                     }, validator: (value) {
                       if (!RegExp(validationPhone)
-                          .hasMatch(loginController.numericPhoneNumber)) {
+                          .hasMatch(loginController.phoneNumber)) {
                         return "invalid phone number";
                       } else {
                         return null;
@@ -172,10 +172,11 @@ class LoginScreen extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.83,
                   height: MediaQuery.of(context).size.height * 0.071,
                   function: () {
-                    print(loginController.numericPhoneNumber);
+                    print(loginController.phoneNumber);
                     if (formKey.currentState!.validate() &&
-                        loginController.numericPhoneNumber.isNotEmpty) {
-                      loginController.logInWithPhoneNumber();
+                        loginController.phoneNumber.isNotEmpty) {
+                      loginController.logIn(loginController.phoneNumber,
+                          loginController.password.value);
                       // Get.off(
                       //   () => BaseScreen(),
                       //   arguments: loginController.numericPhoneNumber,

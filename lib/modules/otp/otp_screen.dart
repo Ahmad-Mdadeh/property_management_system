@@ -2,7 +2,9 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:property_management_system/modules/base/base_screen.dart';
+import 'package:property_management_system/modules/otp/otp_service.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
@@ -14,6 +16,7 @@ import 'otp_controller.dart';
 class OtpScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final _otpController = Get.put(OtpController());
+  final otpService = OtpService();
 
   OtpScreen({super.key});
 
@@ -50,7 +53,7 @@ class OtpScreen extends StatelessWidget {
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children:  [
+                  children: [
                     const TextUtils(
                       textAlign: TextAlign.center,
                       text: "Please enter sent OTP to",
@@ -77,12 +80,16 @@ class OtpScreen extends StatelessWidget {
                 ),
                 child: Form(
                   key: _formKey,
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
                       vertical: AppPadding.p8,
                       horizontal: AppPadding.p28,
                     ),
-                    child: AuthOTPField(),
+                    child: AuthOTPField(
+                      function: (value) {
+                        _otpController.otp = value;
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -119,13 +126,10 @@ class OtpScreen extends StatelessWidget {
                 text: "Submit",
                 width: MediaQuery.of(context).size.width * 0.83,
                 height: MediaQuery.of(context).size.height * 0.071,
-                function: () => Get.off(
-                  () => BaseScreen(),
-                  transition: Transition.fade,
-                  duration: const Duration(
-                    milliseconds: 700,
-                  ),
-                ),
+                function: ()  {
+
+                 _otpController.checkSubmit();
+                },
               ),
             ],
           ),

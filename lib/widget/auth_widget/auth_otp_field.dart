@@ -3,33 +3,38 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../resources/color_manager.dart';
 
 class AuthOTPField extends StatelessWidget {
-  const AuthOTPField({Key? key}) : super(key: key);
+  final Function function;
+
+  const AuthOTPField({required this.function, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return PinCodeTextField(
-      textStyle: TextStyle(color: ColorManager.black,),
+      onChanged: (value) => function(value) ,
+      textStyle: TextStyle(
+        color: ColorManager.black,
+      ),
       appContext: context,
       pastedTextStyle: TextStyle(
         color: Colors.green.shade600,
         fontWeight: FontWeight.bold,
       ),
-      length: 5,
+      length: 6,
       animationType: AnimationType.fade,
       validator: (v) {
-        if (v!.length < 5) {
-          return "Enter full OTP";
+        if (v!.length < 6) {
+          return "Please Enter Full OTP";
         } else {
           return null;
         }
       },
       pinTheme: PinTheme(
         shape: PinCodeFieldShape.box,
-        disabledColor:Theme.of(context).iconTheme.color,
-        activeColor:Theme.of(context).iconTheme.color,
+        disabledColor: Theme.of(context).iconTheme.color,
+        activeColor: Theme.of(context).iconTheme.color,
         errorBorderColor: ColorManager.error,
         inactiveColor: Theme.of(context).iconTheme.color,
-        selectedColor:Theme.of(context).iconTheme.color,
+        selectedColor: Theme.of(context).iconTheme.color,
         inactiveFillColor: ColorManager.white,
         selectedFillColor: ColorManager.ofWhite,
         borderRadius: BorderRadius.circular(
@@ -50,7 +55,6 @@ class AuthOTPField extends StatelessWidget {
           blurRadius: 10,
         )
       ],
-      onChanged: (String value) {},
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:property_management_system/modules/otp/otp_service.dart';
 
 class LoginController extends GetxController {
   String phoneNumber = '';
@@ -10,7 +11,6 @@ class LoginController extends GetxController {
   RxString userName = ''.obs;
   RxBool isObscured = true.obs;
 
-
   void initializeNumericPhoneNumber() {
     phoneNumber = phoneNumber.replaceAll(
       'PhoneNumber(countryISOCode: SY, countryCode: +963, number: ',
@@ -21,4 +21,6 @@ class LoginController extends GetxController {
       '',
     );
   }
+
+
 }

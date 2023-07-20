@@ -5,6 +5,7 @@ import 'package:property_management_system/bindings/register_binding.dart';
 import 'package:property_management_system/modules/base/base_screen.dart';
 import 'package:property_management_system/modules/filters/filters_screen.dart';
 import 'package:property_management_system/modules/home/home_screen.dart';
+import 'package:property_management_system/modules/otp/otp_screen.dart';
 import 'package:property_management_system/modules/register/register_screen.dart';
 import 'package:property_management_system/modules/onBoarding/on_boarding_screen.dart';
 import 'package:property_management_system/modules/register/register_screen.dart';
@@ -25,17 +26,10 @@ class AppRoutes {
   static const map = Routes.map;
 
   static final getPages = [
-    GetPage(name: Routes.splash, page: () => const SplashScreen1()),
-    GetPage(
-        name: Routes.onBoarding,
-        page: () => const OnBoardingScreen(),
-        binding: OnBoardingBinding()),
-    GetPage(
-        name: Routes.login, page: () => LoginScreen(), binding: LoginBinding()),
-    GetPage(
-        name: Routes.register,
-        page: () => RegisterScreen(),
-        binding: RegisterBinding()),
+    GetPage(name: Routes.splash, page: () => OtpScreen()),
+    GetPage(name: Routes.onBoarding, page: () => const OnBoardingScreen(), binding: OnBoardingBinding()),
+    GetPage(name: Routes.login, page: () => LoginScreen(), binding: LoginBinding()),
+    GetPage(name: Routes.register, page: () => RegisterScreen(), binding: RegisterBinding()),
     GetPage(name: Routes.baseScreen, page: () => BaseScreen()),
     GetPage(name: Routes.home, page: () => const HomeScreen()),
     GetPage(name: Routes.filters, page: () => FiltersScreen()),

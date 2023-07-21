@@ -116,13 +116,13 @@ class RegisterScreen extends StatelessWidget {
                           return 'Password is required';
                         }
 
-                        if (value.length < 8) {
-                          return 'Password must be at least 8 characters long';
-                        }
+                        // if (value.length < 8) {
+                        //   return 'Password must be at least 8 characters long';
+                        // }
 
-                        if (!RegExp(validationPassword).hasMatch(value)) {
-                          return 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
-                        }
+                        // if (!RegExp(validationPassword).hasMatch(value)) {
+                        //   return 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
+                        // }
 
                         return null;
                       },
@@ -205,14 +205,14 @@ class RegisterScreen extends StatelessWidget {
                     if (formKey.currentState!.validate() &&
                         registerController.numericPhoneNumber.isNotEmpty) {
                       registerController.registerWithPhoneNumber(); //
-                      Get.off(
-                        () => OtpScreen(),
-                        arguments: registerController.numericPhoneNumber,
-                        transition: Transition.fade,
-                        duration: const Duration(
-                          milliseconds: 1000,
-                        ),
-                      );
+                      // Get.off(
+                      //   () => OtpScreen(),
+                      //   arguments: registerController.numericPhoneNumber,
+                      //   transition: Transition.fade,
+                      //   duration: const Duration(
+                      //     milliseconds: 1000,
+                      //   ),
+                      // );
                     } else if (registerController.password.value.isEmpty) {
                       Get.snackbar(
                         "Error",

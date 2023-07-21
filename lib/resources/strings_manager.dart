@@ -4,7 +4,8 @@ const String validationName = r"^[a-z A-Z]+$";
 const String validationPassword =
     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*()_+{}|:;<>,.?/~]).{8,}$';
 // const String validationPhone = r"^[0-9]{9}$";
-const String validationPhone = r"^[0-9]{8,9}$";
+// const String validationPhone = r"^[0-9]{8,9}$";
+const String validationPhone = r"^[0-9]{8,12}$";
 
 class AppStrings {
   static const String onBoardingTitle1 = "Manage Your Properties";

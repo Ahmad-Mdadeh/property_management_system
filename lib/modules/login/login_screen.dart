@@ -175,16 +175,9 @@ class LoginScreen extends StatelessWidget {
                     print(loginController.phoneNumber);
                     if (formKey.currentState!.validate() &&
                         loginController.phoneNumber.isNotEmpty) {
-                      loginController.logIn(loginController.phoneNumber,
-                          loginController.password.value);
-                      // Get.off(
-                      //   () => BaseScreen(),
-                      //   arguments: loginController.numericPhoneNumber,
-                      //   transition: Transition.fade,
-                      //   duration: const Duration(
-                      //     milliseconds: 1000,
-                      //   ),
-                      // );
+                      // loginController.logIn(loginController.phoneNumber,
+                      // loginController.password.value);
+                      loginController.logInWithPhoneNumber();
                     } else if (loginController.userName.value.isNotEmpty) {
                       Get.snackbar(
                         "Error",

@@ -97,47 +97,49 @@ class RegisterScreen extends StatelessWidget {
                     left: MediaQuery.of(context).size.width / 12,
                     right: MediaQuery.of(context).size.width / 12,
                   ),
-                  child: Obx(() => AuthTextFromField(
-                    labelFontWeight: FontWeightManager.medium,
-                    labelFontSize: FontSize.s14,
-                    filled: true,
-                    labelText: "Enter your password",
-                    obscureText: registerController.isObscured.value,
-                    prefixIcon: const Icon(
-                      Icons.key,
-                    ),
-                    textInputType: TextInputType.visiblePassword,
-                    function: (value) {
-                      registerController.password.value = value;
-                    },
-                    validator: (String value) {
-                      if (value.isEmpty) {
-                        return 'Password is required';
-                      }
-
-                      if (value.length < 8) {
-                        return 'Password must be at least 8 characters long';
-                      }
-
-                      if (!RegExp(validationPassword).hasMatch(value)){
-                        return 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
-                      }
-
-                      return null;
-                    },
-                    suffixIcon: IconButton(
-                      color: ColorManager.lightPrimary,
-
-                      icon: Icon(
-                        registerController.isObscured.value
-                            ? Icons.visibility_off
-                            : Icons.visibility,
+                  child: Obx(
+                    () => AuthTextFromField(
+                      labelFontWeight: FontWeightManager.medium,
+                      labelFontSize: FontSize.s14,
+                      filled: true,
+                      labelText: "Enter your password",
+                      obscureText: registerController.isObscured.value,
+                      prefixIcon: const Icon(
+                        Icons.key,
                       ),
-                      onPressed: () {
-                        registerController.isObscured(!(registerController.isObscured.value));
+                      textInputType: TextInputType.visiblePassword,
+                      function: (value) {
+                        registerController.password.value = value;
                       },
+                      validator: (String value) {
+                        if (value.isEmpty) {
+                          return 'Password is required';
+                        }
+
+                        // if (value.length < 8) {
+                        //   return 'Password must be at least 8 characters long';
+                        // }
+
+                        // if (!RegExp(validationPassword).hasMatch(value)) {
+                        //   return 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
+                        // }
+
+                        return null;
+                      },
+                      suffixIcon: IconButton(
+                        color: ColorManager.lightPrimary,
+                        icon: Icon(
+                          registerController.isObscured.value
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                        ),
+                        onPressed: () {
+                          registerController.isObscured(
+                              !(registerController.isObscured.value));
+                        },
+                      ),
                     ),
-                  ),),
+                  ),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 80,
@@ -175,7 +177,9 @@ class RegisterScreen extends StatelessWidget {
                         text: 'Already have account?',
                         fontWeight: FontWeight.normal,
                         fontSize: 16),
-                    SizedBox(width: 5.0,),
+                    SizedBox(
+                      width: 5.0,
+                    ),
                     GestureDetector(
                       onTap: () {
                         Get.off(LoginScreen());
@@ -200,14 +204,15 @@ class RegisterScreen extends StatelessWidget {
                   function: () {
                     if (formKey.currentState!.validate() &&
                         registerController.numericPhoneNumber.isNotEmpty) {
-                      Get.off(
-                        () => OtpScreen(),
-                        arguments: registerController.numericPhoneNumber,
-                        transition: Transition.fade,
-                        duration: const Duration(
-                          milliseconds: 1000,
-                        ),
-                      );
+                      registerController.registerWithPhoneNumber(); //
+                      // Get.off(
+                      //   () => OtpScreen(),
+                      //   arguments: registerController.numericPhoneNumber,
+                      //   transition: Transition.fade,
+                      //   duration: const Duration(
+                      //     milliseconds: 1000,
+                      //   ),
+                      // );
                     } else if (registerController.password.value.isEmpty) {
                       Get.snackbar(
                         "Error",

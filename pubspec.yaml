@@ -51,7 +51,7 @@ dependencies:
   panorama: ^0.4.1
   get_storage: ^2.0.3
   shared_preferences: ^2.0.11
-  http: ^0.13.5
+  http: ^0.13.6
 #  equatable: ^2.0.5
 #  animations: ^2.0.7
 #  google_maps_flutter: ^2.2.6

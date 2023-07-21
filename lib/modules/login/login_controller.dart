@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:property_management_system/modules/base/base_screen.dart';
 import 'package:property_management_system/resources/server_manager.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
   String phoneNumber = '';
@@ -32,7 +31,6 @@ class LoginController extends GetxController {
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   Future<void> logInWithPhoneNumber() async {
     try {
@@ -66,8 +64,8 @@ class LoginController extends GetxController {
           context: Get.context!,
           builder: (context) {
             return SimpleDialog(
-              title: Text('Error'),
-              contentPadding: EdgeInsets.all(20),
+              title: const Text('Error'),
+              contentPadding: const EdgeInsets.all(20),
               children: [Text('${jsonDecode(response.body)["Message"]}')],
             );
           },
@@ -90,29 +88,3 @@ class LoginController extends GetxController {
     }
   }
 }
-// Future logIn(String phoneNumber, String password) async {
-  //   try {
-  //     Map data = {
-  //       "phoneNumber": phoneNumber,
-  //       "password": password,
-  //     };
-
-  //     var body = jsonEncode(data);
-  //     var response = await http.post(
-  //       Uri.parse(ServerSet.domainNameServer +
-  //           ServerSet.authEndPoints.loginPhoneNumber),
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         "Charset": "utf8_bin",
-  //         "Accept": "application/json"
-  //       },
-  //       body: body,
-  //     );
-
-  //     //print(response.statusCode);
-  //     //print(response.body);
-  //     return response.body;
-  //   } catch (e) {
-  //     Future.error(e);
-  //   }
-  // }

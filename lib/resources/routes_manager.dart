@@ -26,7 +26,7 @@ class AppRoutes {
   static const map = Routes.map;
 
   static final getPages = [
-    GetPage(name: Routes.splash, page: () => OtpScreen()),
+    GetPage(name: Routes.splash, page: () => const SplashScreen()),
     GetPage(name: Routes.onBoarding, page: () => const OnBoardingScreen(), binding: OnBoardingBinding()),
     GetPage(name: Routes.login, page: () => LoginScreen(), binding: LoginBinding()),
     GetPage(name: Routes.register, page: () => RegisterScreen(), binding: RegisterBinding()),

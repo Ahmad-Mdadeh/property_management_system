@@ -7,28 +7,28 @@ import 'package:property_management_system/modules/onBoarding/on_boarding_screen
 import 'package:property_management_system/resources/assets_manager.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 
-class SplashScreen1 extends StatefulWidget {
-  const SplashScreen1({Key? key}) : super(key: key);
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  _SplashScreen1State createState() => _SplashScreen1State();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashScreen1State extends State<SplashScreen1> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
-    return const SplashScreen1Sub();
+    return const SplashScreenSub();
   }
 }
 
-class SplashScreen1Sub extends StatefulWidget {
-  const SplashScreen1Sub({Key? key}) : super(key: key);
+class SplashScreenSub extends StatefulWidget {
+  const SplashScreenSub({Key? key}) : super(key: key);
 
   @override
-  _SplashScreen1SubState createState() => _SplashScreen1SubState();
+  _SplashScreenSubState createState() => _SplashScreenSubState();
 }
 
-class _SplashScreen1SubState extends State<SplashScreen1Sub>
+class _SplashScreenSubState extends State<SplashScreenSub>
     with TickerProviderStateMixin {
   double _containerSize = 1.5;
   double _containerOpacity = 0.0;

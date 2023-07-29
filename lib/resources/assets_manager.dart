@@ -3,7 +3,8 @@ const String jsonPath = "assets/json";
 
 class ImagesAssets {
   // static const String splashLogo = '$imagePath/splash-logo.svg';
-  static const String logInPic = '$imagePath/log-in-pic.png';
+  static const String registerPic = '$imagePath/log-in-pic.png';
+  static const String logInWelcome = '$imagePath/welcoming_login.svg';
   static const String photo = '$imagePath/IMG.jpg';
   static const String searching = '$imagePath/searching.jpg';
   static const String splashLogo = '$imagePath/splash-logo.svg';

@@ -1,36 +1,44 @@
 import 'package:get/get.dart';
-import 'package:property_management_system/models/otp.dart';
+import 'package:property_management_system/models/auth.dart';
 import 'package:property_management_system/models/user.dart';
 import 'package:property_management_system/resources/server_manager.dart';
 import 'package:http/http.dart' as http;
 
 class OtpService {
-  dynamic message ;
+  String message = "";
 
-  Future<RxBool> userVerification(
-      String otp, String name, String password) async {
+  Future<bool> userVerification(
+      String phone, String name, String password, String otp) async {
     var url = Uri.parse(
-        "${ServerSet.domainNameServer}${ServerSet.userVerificationServer}phone=+48459434536&name=$name&password=$password&otp=$otp");
-    var response = await http.get(
-      url,
-      headers: {
-        'Accept': 'application/json',
-      },
-    );
-
-    if (response.statusCode == 200) {
-      var verification = testFromJson(response.body);
-      if (verification.status == "Your OTP has been expired") {
-        message = verification.status!;
-        return false.obs;
-      } else if (verification.status == "Your OTP is not correct") {
-        message = verification.status!;
-        return false.obs;
-      } else if (verification.status == true) {
-        User.token = verification.accessToken!;
-        return true.obs;
+        ServerSet.domainNameServer + ServerSet.userVerificationEndPoints);
+    try {
+      var response = await http.post(
+        url,
+        headers: {
+          'Accept': 'application/json',
+        },
+        body: {
+          "phone": phone,
+          "name": name,
+          "password": password,
+          "otp": otp,
+        },
+      );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        var status = authFromJson(response.body).status;
+        User.token = authFromJson(response.body).accessToken!;
+        return status;
+      } else if (response.statusCode == 401) {
+        message = authFromJson(response.body).message;
+        var status = authFromJson(response.body).status;
+        return status;
       }
+    } catch (e) {
+      Get.snackbar(
+        "Error !",
+        e.toString(),
+      );
     }
-    return true.obs;
+    return false;
   }
 }

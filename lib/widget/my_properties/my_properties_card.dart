@@ -1,6 +1,6 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:property_management_system/modules/my_properties/my_properties_controller.dart';
 import 'package:property_management_system/modules/settings/settings_controller.dart';
 import 'package:property_management_system/resources/assets_manager.dart';
 import 'package:property_management_system/resources/color_manager.dart';
@@ -8,11 +8,14 @@ import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
 import 'package:property_management_system/resources/values_manager.dart';
 
-class PropertiesCard extends StatelessWidget {
-  PropertiesCard({Key? key}) : super(key: key);
+class MyPropertiesCard extends StatelessWidget {
+  final int index;
+
+  MyPropertiesCard({required this.index, Key? key}) : super(key: key);
   final RxBool isHighlighted = true.obs;
   final RxBool isFavorite = false.obs;
   final settingController = Get.put(SettingController());
+  final _propertiesController = Get.put(MyPropertiesController());
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +56,11 @@ class PropertiesCard extends StatelessWidget {
                 height: MediaQuery.of(context).size.height / 35,
                 width: MediaQuery.of(context).size.width / 3.5,
                 decoration: BoxDecoration(
-                  color: Colors.orange,
+                  color: _propertiesController
+                              .myPropertiesRent[index].visibility ==
+                          0
+                      ? Colors.orange
+                      : Colors.green,
                   borderRadius: BorderRadius.circular(
                     7,
                   ),
@@ -61,7 +68,11 @@ class PropertiesCard extends StatelessWidget {
                 child: Center(
                   child: TextUtils(
                     color: ColorManager.white,
-                    text: "Deactive",
+                    text: _propertiesController
+                                .myPropertiesRent[index].visibility ==
+                            0
+                        ? "Deactivate"
+                        : "Active",
                     fontWeight: FontWeightManager.medium,
                     fontSize: FontSize.s14,
                   ),
@@ -72,67 +83,78 @@ class PropertiesCard extends StatelessWidget {
           const SizedBox(
             width: AppSize.s10,
           ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Icon(
-                    Icons.house_outlined,
-                    color: Theme.of(context).iconTheme.color,
-                    size: AppSize.s18,
-                  ),
-                  TextUtils(
-                    text: 'House',
-                    color: Theme.of(context).textTheme.bodySmall!.color,
-                    fontWeight: FontWeightManager.semilight,
-                    fontSize: FontSize.s12,
-                  )
-                ],
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 155,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 3),
-                child: TextUtils(
-                  text: '\$100000',
-                  color: Theme.of(context).iconTheme.color,
-                  fontWeight: FontWeightManager.regular,
-                  fontSize: FontSize.s16,
-                ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 155,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 3),
-                child: TextUtils(
-                  text: 'Property Name',
-                  color: Theme.of(context).textTheme.bodyMedium!.color,
-                  fontWeight: FontWeightManager.regular,
-                  fontSize: FontSize.s18,
-                ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height / 155,
-              ),
-              Row(
-                children: [
-                  Icon(
-                    Icons.not_listed_location_outlined,
-                    color: Theme.of(context).textTheme.bodySmall!.color,
-                    size: 18,
-                  ),
-                  TextUtils(
-                      text: 'Location',
+          Expanded(
+            flex: 5,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.house_outlined,
+                      color: Theme.of(context).iconTheme.color,
+                      size: AppSize.s18,
+                    ),
+                    TextUtils(
+                      text: _propertiesController
+                          .myPropertiesRent[index].propertyType,
                       color: Theme.of(context).textTheme.bodySmall!.color,
                       fontWeight: FontWeightManager.semilight,
-                      fontSize: FontSize.s12)
-                ],
-              ),
-            ],
+                      fontSize: FontSize.s12,
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 155,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 3),
+                  child: TextUtils(
+                    text:
+                        '\$${_propertiesController.myPropertiesRent[index].monthlyRent}',
+                    color: Theme.of(context).iconTheme.color,
+                    fontWeight: FontWeightManager.regular,
+                    fontSize: FontSize.s16,
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 155,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 3),
+                  child: TextUtils(
+                    textOverflow: TextOverflow.ellipsis,
+                    text: _propertiesController
+                        .myPropertiesRent[index].property.name,
+                    color: Theme.of(context).textTheme.bodyMedium!.color,
+                    fontWeight: FontWeightManager.regular,
+                    fontSize: FontSize.s18,
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 155,
+                ),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.not_listed_location_outlined,
+                      color: Theme.of(context).textTheme.bodySmall!.color,
+                      size: 18,
+                    ),
+                    Expanded(
+                      child: TextUtils(
+                          textOverflow: TextOverflow.ellipsis,
+                          text: _propertiesController
+                              .myPropertiesRent[index].property.address,
+                          color: Theme.of(context).textTheme.bodySmall!.color,
+                          fontWeight: FontWeightManager.semilight,
+                          fontSize: FontSize.s12),
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
           const Spacer(),
           Padding(

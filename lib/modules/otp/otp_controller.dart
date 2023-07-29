@@ -12,32 +12,35 @@ import 'package:property_management_system/resources/values_manager.dart';
 
 class OtpController extends GetxController {
   final OtpService _otpService = OtpService();
-  late RxBool isVerification;
+  late bool isVerification;
 
   String otp = "";
 
   var argument = Get.arguments;
   late String phoneNumber;
+  late String userName;
+  late String password;
 
   @override
   void onInit() {
-    phoneNumber = "argument";
+    phoneNumber = argument[0];
+    userName = argument[1];
+    password = argument[2];
     super.onInit();
   }
 
   Future checkVerification() async {
-    isVerification =
-        await _otpService.userVerification(otp, "Ahmad", "12345678");
+    isVerification = await _otpService.userVerification(
+      phoneNumber,
+      userName,
+      password,
+      otp,
+    );
   }
 
-  void checkSubmit() async {
+  void checkSubmitOtp() async {
     Get.dialog(
       Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            AppSize.s14,
-          ),
-        ),
         elevation: 0,
         backgroundColor: Colors.transparent,
         child: Column(
@@ -54,15 +57,10 @@ class OtpController extends GetxController {
       ),
     );
     await checkVerification();
-    if (isVerification.value) {
+    if (isVerification) {
       Get.back(closeOverlays: true);
       Get.dialog(
         Dialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-              AppSize.s14,
-            ),
-          ),
           elevation: 0,
           backgroundColor: Colors.transparent,
           child: Column(
@@ -100,11 +98,6 @@ class OtpController extends GetxController {
       Get.back(closeOverlays: true);
       Get.dialog(
         Dialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(
-              AppSize.s14,
-            ),
-          ),
           elevation: 0,
           backgroundColor: Colors.transparent,
           child: Column(
@@ -116,26 +109,23 @@ class OtpController extends GetxController {
                 width: double.infinity,
                 height: AppSize.s150,
               ),
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white10,
-                  borderRadius: BorderRadius.circular(
-                    7.0,
-                  ),
-                ),
-                child: Center(
-                  child: TextUtils(
-                    color: ColorManager.error,
-                    text: _otpService.message,
-                    fontWeight: FontWeightManager.medium,
-                    fontSize: FontSize.s20,
-                  ),
+              Center(
+                child: TextUtils(
+                  color: ColorManager.error,
+                  text: _otpService.message,
+                  fontWeight: FontWeightManager.medium,
+                  fontSize: FontSize.s20,
                 ),
               ),
             ],
           ),
         ),
+      );
+      Timer(
+        const Duration(seconds: 3),
+            () {
+          Get.back(closeOverlays: true);
+        },
       );
     }
   }

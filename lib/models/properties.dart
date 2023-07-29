@@ -13,11 +13,12 @@ String myPropertiesToJson(List<MyProperties> data) =>
 class MyProperties {
   int id;
   int userId;
-  int viewPlanId;
-  PropertyType propertyType;
+  int? viewPlanId;
+  String propertyType;
   int propertyId;
-  int monthlyRent;
-  int maxDuration;
+  int? price;
+  int? monthlyRent;
+  int? maxDuration;
   int visibility;
   DateTime createdAt;
   DateTime updatedAt;
@@ -26,11 +27,12 @@ class MyProperties {
   MyProperties({
     required this.id,
     required this.userId,
-    required this.viewPlanId,
+    this.viewPlanId,
     required this.propertyType,
     required this.propertyId,
-    required this.monthlyRent,
-    required this.maxDuration,
+    this.price,
+    this.monthlyRent,
+    this.maxDuration,
     required this.visibility,
     required this.createdAt,
     required this.updatedAt,
@@ -41,8 +43,9 @@ class MyProperties {
         id: json["id"],
         userId: json["user_id"],
         viewPlanId: json["view_plan_id"],
-        propertyType: propertyTypeValues.map[json["property_type"]]!,
+        propertyType: json["property_type"],
         propertyId: json["property_id"],
+        price: json["price"],
         monthlyRent: json["monthly_rent"],
         maxDuration: json["max_duration"],
         visibility: json["visibility"],
@@ -55,8 +58,9 @@ class MyProperties {
         "id": id,
         "user_id": userId,
         "view_plan_id": viewPlanId,
-        "property_type": propertyTypeValues.reverse[propertyType],
+        "property_type": propertyType,
         "property_id": propertyId,
+        "price": price,
         "monthly_rent": monthlyRent,
         "max_duration": maxDuration,
         "visibility": visibility,
@@ -72,14 +76,16 @@ class Property {
   String name;
   String address;
   String about;
-  String the360View;
-  String imageLibrary;
+  String ?the360View;
+  String? imageLibrary;
   int? roomCount;
   int? bathroomCount;
   int? kitchenCount;
   int? storey;
   int area;
   int? balkony;
+  int? gym;
+  int? pool;
   int? parking;
   int? securityCameras;
   int? elevator;
@@ -87,8 +93,6 @@ class Property {
   int? securityGard;
   DateTime createdAt;
   DateTime updatedAt;
-  int? gym;
-  int? pool;
   int? garden;
 
   Property({
@@ -97,23 +101,23 @@ class Property {
     required this.name,
     required this.address,
     required this.about,
-    required this.the360View,
-    required this.imageLibrary,
+     this.the360View,
+     this.imageLibrary,
     this.roomCount,
     this.bathroomCount,
     this.kitchenCount,
     this.storey,
     required this.area,
     this.balkony,
+    this.gym,
+    this.pool,
     this.parking,
     this.securityCameras,
     this.elevator,
     this.wiFi,
     this.securityGard,
-    required this.createdAt,
+     required this.createdAt,
     required this.updatedAt,
-    this.gym,
-    this.pool,
     this.garden,
   });
 
@@ -131,6 +135,8 @@ class Property {
         storey: json["storey"],
         area: json["area"],
         balkony: json["balkony"],
+        gym: json["gym"],
+        pool: json["pool"],
         parking: json["parking"],
         securityCameras: json["security_cameras"],
         elevator: json["elevator"],
@@ -138,8 +144,6 @@ class Property {
         securityGard: json["security_gard"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
-        gym: json["gym"],
-        pool: json["pool"],
         garden: json["garden"],
       );
 
@@ -157,6 +161,8 @@ class Property {
         "storey": storey,
         "area": area,
         "balkony": balkony,
+        "gym": gym,
+        "pool": pool,
         "parking": parking,
         "security_cameras": securityCameras,
         "elevator": elevator,
@@ -164,31 +170,6 @@ class Property {
         "security_gard": securityGard,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
-        "gym": gym,
-        "pool": pool,
         "garden": garden,
       };
-}
-
-enum PropertyType { COMMERCIAL, LAND, OFFICE, APARTMENT, VILLA, HOUSE }
-
-final propertyTypeValues = EnumValues({
-  "Apartment": PropertyType.APARTMENT,
-  "Commercial": PropertyType.COMMERCIAL,
-  "House": PropertyType.HOUSE,
-  "Land": PropertyType.LAND,
-  "Office": PropertyType.OFFICE,
-  "Villa": PropertyType.VILLA
-});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
-  }
 }

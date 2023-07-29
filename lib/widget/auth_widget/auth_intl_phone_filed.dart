@@ -25,7 +25,7 @@ class AuthIntlPhoneField extends StatelessWidget {
           dropdownTextStyle: const TextStyle(
             fontWeight: FontWeightManager.medium,
           ),
-          initialCountryCode: 'SY',
+          initialCountryCode: 'PO',
           cursorColor: ColorManager.primary,
           style: TextStyle(
             height: MediaQuery.of(context).size.height * 0.0013,

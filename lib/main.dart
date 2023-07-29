@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       initTheme: themeData,
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.splash,
+        initialRoute: AppRoutes.login,
         getPages: AppRoutes.getPages,
       ),
     );

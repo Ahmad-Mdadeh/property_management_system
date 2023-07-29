@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:property_management_system/modules/properties/properties_controller.dart';
+import 'package:property_management_system/modules/my_properties/my_properties_controller.dart';
 import 'package:property_management_system/modules/settings/settings_controller.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
 
-class PropertiesRentSellButton extends StatelessWidget {
-  PropertiesRentSellButton({Key? key}) : super(key: key);
-  final propertiesController = Get.put(PropertiesController());
+class MyPropertiesRentSellButton extends StatelessWidget {
+  MyPropertiesRentSellButton({Key? key}) : super(key: key);
+  final _propertiesController = Get.put(MyPropertiesController());
   final settingController = Get.put(SettingController());
-
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -18,21 +17,20 @@ class PropertiesRentSellButton extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            InkWell(
+            InkWell (
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               enableFeedback: false,
-              onTap: () {
-                propertiesController.isSelectedSell(
-                    !(propertiesController.isSelectedSell.value));
-
-                propertiesController.isSelectedRent.value = false;
+              onTap: () async{
+                _propertiesController.isSelectedSell(
+                    !(_propertiesController.isSelectedSell.value));
+                _propertiesController.isSelectedRent.value = false;
               },
               child: Container(
                 width: 110,
                 height: 40,
                 decoration: BoxDecoration(
-                    color: !propertiesController.isSelectedSell.value
+                    color: !_propertiesController.isSelectedSell.value
                         ? ColorManager.grey2.withOpacity(
                             0.15,
                           )
@@ -42,13 +40,13 @@ class PropertiesRentSellButton extends StatelessWidget {
                     ),
                     border: settingController.isLightMode.value
                         ? Border.all(
-                            color: !propertiesController.isSelectedSell.value
+                            color: !_propertiesController.isSelectedSell.value
                                 ? ColorManager.black.withOpacity(0.4)
                                 : ColorManager.primary,
                             width: 0.8,
                           )
                         : Border.all(
-                            color: !propertiesController.isSelectedSell.value
+                            color: !_propertiesController.isSelectedSell.value
                                 ? ColorManager.ofWhite.withOpacity(0.4)
                                 : ColorManager.primary,
                           )),
@@ -71,15 +69,15 @@ class PropertiesRentSellButton extends StatelessWidget {
               highlightColor: Colors.transparent,
               enableFeedback: false,
               onTap: () {
-                propertiesController.isSelectedRent(
-                    !(propertiesController.isSelectedRent.value));
-                propertiesController.isSelectedSell.value = false;
+                _propertiesController.isSelectedRent(
+                    !(_propertiesController.isSelectedRent.value));
+                _propertiesController.isSelectedSell.value = false;
               },
               child: Container(
                 width: 110,
                 height: 40,
                 decoration: BoxDecoration(
-                    color: !propertiesController.isSelectedRent.value
+                    color: !_propertiesController.isSelectedRent.value
                         ? ColorManager.grey2.withOpacity(
                             0.15,
                           )
@@ -89,13 +87,13 @@ class PropertiesRentSellButton extends StatelessWidget {
                     ),
                     border: settingController.isLightMode.value
                         ? Border.all(
-                            color: !propertiesController.isSelectedRent.value
+                            color: !_propertiesController.isSelectedRent.value
                                 ? ColorManager.black.withOpacity(0.4)
                                 : ColorManager.primary,
                             width: 0.8,
                           )
                         : Border.all(
-                            color: !propertiesController.isSelectedRent.value
+                            color: !_propertiesController.isSelectedRent.value
                                 ? ColorManager.ofWhite.withOpacity(0.4)
                                 : ColorManager.primary,
                           )),

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:property_management_system/modules/login/login_screen.dart';
 import 'package:property_management_system/modules/register/register_controller.dart';
-import 'package:property_management_system/modules/otp/otp_screen.dart';
 import 'package:property_management_system/resources/assets_manager.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
@@ -17,10 +16,10 @@ import 'package:property_management_system/widget/auth_widget/auth_text_from_fil
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);
   final formKey = GlobalKey<FormState>();
+  final _registerController = Get.put(RegisterController());
 
   @override
   Widget build(BuildContext context) {
-    final registerController = Get.put(RegisterController());
     return ThemeSwitchingArea(
       child: Form(
         key: formKey,
@@ -30,11 +29,12 @@ class RegisterScreen extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height / 20,
+                    top: MediaQuery.of(context).size.height / 15,
                     left: MediaQuery.of(context).size.width / 20,
                   ),
                   child: Image.asset(
-                    ImagesAssets.logInPic,
+                    ImagesAssets.registerPic,
+                    height: MediaQuery.of(context).size.height * 0.4,
                   ),
                 ),
                 SizedBox(
@@ -68,7 +68,7 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   child: AuthTextFromField(
                     function: (value) {
-                      registerController.userName.value = value;
+                      _registerController.userName = value;
                     },
                     labelFontWeight: FontWeightManager.medium,
                     labelFontSize: FontSize.s14,
@@ -103,39 +103,33 @@ class RegisterScreen extends StatelessWidget {
                       labelFontSize: FontSize.s14,
                       filled: true,
                       labelText: "Enter your password",
-                      obscureText: registerController.isObscured.value,
+                      obscureText: _registerController.isObscured.value,
                       prefixIcon: const Icon(
                         Icons.key,
                       ),
                       textInputType: TextInputType.visiblePassword,
                       function: (value) {
-                        registerController.password.value = value;
+                        _registerController.password = value;
                       },
                       validator: (String value) {
                         if (value.isEmpty) {
                           return 'Password is required';
                         }
-
-                        // if (value.length < 8) {
-                        //   return 'Password must be at least 8 characters long';
-                        // }
-
-                        // if (!RegExp(validationPassword).hasMatch(value)) {
-                        //   return 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
-                        // }
-
+                        if (value.length < 6) {
+                          return 'Password must be at least 8 characters long';
+                        }
                         return null;
                       },
                       suffixIcon: IconButton(
                         color: ColorManager.lightPrimary,
                         icon: Icon(
-                          registerController.isObscured.value
+                          _registerController.isObscured.value
                               ? Icons.visibility_off
                               : Icons.visibility,
                         ),
                         onPressed: () {
-                          registerController.isObscured(
-                              !(registerController.isObscured.value));
+                          _registerController.isObscured(
+                              !(_registerController.isObscured.value));
                         },
                       ),
                     ),
@@ -153,12 +147,12 @@ class RegisterScreen extends StatelessWidget {
                     height: MediaQuery.of(context).size.height * 0.07,
                     child: AuthIntlPhoneField(
                       function: (value) {
-                        registerController.phoneNumber = value.toString();
-                        registerController.initializeNumericPhoneNumber();
+                        _registerController.phoneNumber = value.toString();
+                        _registerController.initializeNumericPhoneNumber();
                       },
                       validator: (value) {
                         if (!RegExp(validationPhone)
-                            .hasMatch(registerController.numericPhoneNumber)) {
+                            .hasMatch(_registerController.numericPhoneNumber)) {
                           return "invalid phone number";
                         } else {
                           return null;
@@ -168,27 +162,32 @@ class RegisterScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 50.0,
+                  height: MediaQuery.of(context).size.height / 30.0,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const TextUtils(
-                        text: 'Already have account?',
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16),
-                    SizedBox(
+                      text: 'Already have account?',
+                      fontWeight: FontWeight.normal,
+                      fontSize: AppSize.s14,
+                    ),
+                    const SizedBox(
                       width: 5.0,
                     ),
                     GestureDetector(
                       onTap: () {
-                        Get.off(LoginScreen());
+                        Get.off(
+                          LoginScreen(),
+                          transition: Transition.fadeIn,
+                          duration: const Duration(milliseconds: 700),
+                        );
                       },
                       child: TextUtils(
                         text: 'Log In',
                         color: ColorManager.primary,
                         fontWeight: FontWeightManager.semiBold,
-                        fontSize: FontSize.s16,
+                        fontSize: FontSize.s14,
                       ),
                     ),
                   ],
@@ -200,26 +199,18 @@ class RegisterScreen extends StatelessWidget {
                   borderRadius: AppSize.s60,
                   text: "Continue",
                   width: MediaQuery.of(context).size.width * 0.83,
-                  height: MediaQuery.of(context).size.height * 0.071,
-                  function: () {
+                  height: MediaQuery.of(context).size.height * 0.065,
+                  function: () async {
                     if (formKey.currentState!.validate() &&
-                        registerController.numericPhoneNumber.isNotEmpty) {
-                      registerController.registerWithPhoneNumber(); //
-                      // Get.off(
-                      //   () => OtpScreen(),
-                      //   arguments: registerController.numericPhoneNumber,
-                      //   transition: Transition.fade,
-                      //   duration: const Duration(
-                      //     milliseconds: 1000,
-                      //   ),
-                      // );
-                    } else if (registerController.password.value.isEmpty) {
+                        _registerController.numericPhoneNumber.isNotEmpty) {
+                      _registerController.isContinueToOtp();
+                    } else if (_registerController.password.isEmpty) {
                       Get.snackbar(
                         "Error",
                         "Please Enter Password",
                         snackPosition: SnackPosition.BOTTOM,
                       );
-                    } else if (registerController.phoneNumber.isEmpty) {
+                    } else if (_registerController.phoneNumber.isEmpty) {
                       Get.snackbar(
                         "Error",
                         "Please Enter Your Phone Number",

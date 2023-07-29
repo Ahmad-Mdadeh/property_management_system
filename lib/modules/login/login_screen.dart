@@ -1,7 +1,7 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:property_management_system/modules/base/base_screen.dart';
 import 'package:property_management_system/modules/login/login_controller.dart';
 import 'package:property_management_system/modules/register/register_screen.dart';
 import 'package:property_management_system/resources/assets_manager.dart';
@@ -17,10 +17,10 @@ import 'package:property_management_system/widget/auth_widget/auth_text_from_fil
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
   final formKey = GlobalKey<FormState>();
+  final _loginController = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
-    final loginController = Get.put(LoginController());
     return ThemeSwitchingArea(
       child: Form(
         key: formKey,
@@ -33,8 +33,9 @@ class LoginScreen extends StatelessWidget {
                     top: MediaQuery.of(context).size.height / 20,
                     left: MediaQuery.of(context).size.width / 20,
                   ),
-                  child: Image.asset(
-                    ImagesAssets.logInPic,
+                  child: SvgPicture.asset(
+                    ImagesAssets.logInWelcome,
+                    height: MediaQuery.of(context).size.height * 0.46,
                   ),
                 ),
                 SizedBox(
@@ -68,23 +69,20 @@ class LoginScreen extends StatelessWidget {
                   ),
                   child: SizedBox(
                     height: MediaQuery.of(context).size.height * 0.07,
-                    child: AuthIntlPhoneField(function: (value) {
-                      loginController.phoneNumber = value.toString();
-                      loginController.initializeNumericPhoneNumber();
-                    }, validator: (value) {
-                      if (!RegExp(validationPhone)
-                          .hasMatch(loginController.phoneNumber)) {
-                        return "invalid phone number";
-                      } else {
-                        return null;
-                      }
-                    }
-                        // validator: (String value) {
-                        //   if (value.isEmpty) {
-                        //     return 'PhoneNumber is required';
-                        //   }
-                        // },
-                        ),
+                    child: AuthIntlPhoneField(
+                      function: (value) {
+                        _loginController.phoneNumber = value.toString();
+                        _loginController.initializeNumericPhoneNumber();
+                      },
+                      validator: (value) {
+                        if (!RegExp(validationPhone)
+                            .hasMatch(_loginController.numericPhoneNumber)) {
+                          return "invalid phone number";
+                        } else {
+                          return null;
+                        }
+                      },
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -101,37 +99,34 @@ class LoginScreen extends StatelessWidget {
                       labelFontSize: FontSize.s14,
                       filled: true,
                       labelText: "Enter your password",
-                      obscureText: loginController.isObscured.value,
+                      obscureText: _loginController.isObscured.value,
                       prefixIcon: const Icon(
                         Icons.key,
                       ),
                       textInputType: TextInputType.visiblePassword,
-                      validator: (String value) {
+                      validator: (value) {
                         if (value.isEmpty) {
                           return 'Password is required';
                         }
-                        // if (value.length < 8) {
-                        //   return 'Password must be at least 8 characters long';
-                        // }
+                        if (value.length < 6) {
+                          return 'Password must be at least 8 characters long';
+                        }
 
-                        // if (!RegExp(validationPassword).hasMatch(value)) {
-                        //   return 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
-                        // }
                         return null;
                       },
                       function: (value) {
-                        loginController.password.value = value;
+                        _loginController.password = value;
                       },
                       suffixIcon: IconButton(
                         color: ColorManager.lightPrimary,
                         icon: Icon(
-                          loginController.isObscured.value
+                          _loginController.isObscured.value
                               ? Icons.visibility_off
                               : Icons.visibility,
                         ),
                         onPressed: () {
-                          loginController
-                              .isObscured(!(loginController.isObscured.value));
+                          _loginController
+                              .isObscured(!(_loginController.isObscured.value));
                         },
                       ),
                     ),
@@ -144,46 +139,41 @@ class LoginScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const TextUtils(
-                        text: 'Don\'t have an account ?',
-                        fontWeight: FontWeight.normal,
-                        fontSize: 16),
+                      text: 'Don\'t have an account ?',
+                      fontWeight: FontWeight.normal,
+                      fontSize: AppSize.s14,
+                    ),
                     const SizedBox(
                       width: 5.0,
                     ),
                     GestureDetector(
                       onTap: () {
-                        Get.off(RegisterScreen());
+                        Get.off(
+                          RegisterScreen(),
+                          transition: Transition.fadeIn,
+                          duration: const Duration(milliseconds: 700),
+                        );
                       },
                       child: TextUtils(
                         text: 'Register',
                         color: ColorManager.primary,
                         fontWeight: FontWeightManager.semiBold,
-                        fontSize: FontSize.s16,
+                        fontSize: FontSize.s14,
                       ),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
+                  height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 AuthButton(
                   borderRadius: AppSize.s60,
                   text: "Log In",
                   width: MediaQuery.of(context).size.width * 0.83,
-                  height: MediaQuery.of(context).size.height * 0.071,
+                  height: MediaQuery.of(context).size.height * 0.065,
                   function: () {
-                    print(loginController.phoneNumber);
-                    if (formKey.currentState!.validate() &&
-                        loginController.phoneNumber.isNotEmpty) {
-                      // loginController.logIn(loginController.phoneNumber,
-                      // loginController.password.value);
-                      loginController.logInWithPhoneNumber();
-                    } else if (loginController.userName.value.isNotEmpty) {
-                      Get.snackbar(
-                        "Error",
-                        "Please Enter Your Phone Number",
-                        snackPosition: SnackPosition.BOTTOM,
-                      );
+                    if (formKey.currentState!.validate()) {
+                      _loginController.checkIsLogin();
                     }
                   },
                 ),

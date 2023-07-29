@@ -23,7 +23,7 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    timeDilation = 1.5;
+    timeDilation = 2;
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -54,17 +54,17 @@ class SettingScreen extends StatelessWidget {
                     settingController.isLightMode.value ? 'light' : 'dark';
                 themeService.save(themeName);
               },
-              child: Obx(
-                () => Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Container(
-                    height: MediaQuery.of(context).size.height / 12,
-                    width: MediaQuery.of(context).size.width / 12,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: ColorManager.darkPrimary,
-                    ),
-                    child: settingController.timer.value
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Container(
+                  height: MediaQuery.of(context).size.height / 12,
+                  width: MediaQuery.of(context).size.width / 12,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: ColorManager.darkPrimary,
+                  ),
+                  child: Obx(
+                    () => settingController.timer.value
                         ? Rive(
                             artboard: settingController.riveArtBoard!,
                           )

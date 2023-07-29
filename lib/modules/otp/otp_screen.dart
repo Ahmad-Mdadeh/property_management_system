@@ -128,7 +128,7 @@ class OtpScreen extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.071,
                 function: ()  {
 
-                 _otpController.checkSubmit();
+                 _otpController.checkSubmitOtp();
                 },
               ),
             ],

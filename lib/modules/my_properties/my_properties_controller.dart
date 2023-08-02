@@ -8,24 +8,24 @@ class MyPropertiesController extends GetxController {
   RxBool isSelectedSell = false.obs;
   RxBool isSelected = false.obs;
 
-  // String postType = "";
+  String postType = "";
   late List<MyProperties> myPropertiesRent = [];
   late List<MyProperties> myPropertiesSale = [];
-  final MyPropertiesService _propertiesService =MyPropertiesService();
+  final MyPropertiesService _propertiesService = MyPropertiesService();
 
-  @override
-  void onInit() async {
-    myPropertiesRent =
-        await _propertiesService.getProperties(User.token, "rent");
-    myPropertiesSale =
-        await _propertiesService.getProperties(User.token, "sale");
-    super.onInit();
-  }
+  // @override
+  // void onInit() async {
+  //   myPropertiesRent =
+  //       await _propertiesService.getProperties(User.token, "rent");
+  //   myPropertiesSale =
+  //       await _propertiesService.getProperties(User.token, "sale");
+  //   super.onInit();
+  // }
 
-  void getTypeMyProperties(String postType) async {
-    myPropertiesRent =
-        await _propertiesService.getProperties(User.token, postType);
-    myPropertiesSale =
-        await _propertiesService.getProperties(User.token, postType);
-  }
+  // void getTypeMyProperties(String postType) async {
+  //   myPropertiesRent =
+  //       await _propertiesService.getProperties(User.token, postType);
+  //   myPropertiesSale =
+  //       await _propertiesService.getProperties(User.token, postType);
+  // }
 }

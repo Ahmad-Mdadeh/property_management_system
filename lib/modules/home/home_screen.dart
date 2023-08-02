@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:property_management_system/modules/filters/filters_screen.dart';
+import 'package:property_management_system/modules/properties_type/properties_type_screen.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:property_management_system/resources/values_manager.dart';
-
 import '../../widget/home_widgets/featured_property_card.dart';
 import '../../widget/home_widgets/most_viewed_property_card.dart';
 import '../../widget/home_widgets/property_type_button.dart';
@@ -149,6 +149,7 @@ class HomeScreen extends StatelessWidget {
                         Theme.of(context).appBarTheme.backgroundColor!,
                         Theme.of(context).iconTheme.color!,
                         Theme.of(context).textTheme.bodyMedium!.color!,
+                        () {},
                       ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width / 35,
@@ -159,6 +160,7 @@ class HomeScreen extends StatelessWidget {
                         Theme.of(context).appBarTheme.backgroundColor!,
                         Theme.of(context).iconTheme.color!,
                         Theme.of(context).textTheme.bodyMedium!.color!,
+                        () {},
                       ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width / 35,
@@ -169,6 +171,7 @@ class HomeScreen extends StatelessWidget {
                         Theme.of(context).appBarTheme.backgroundColor!,
                         Theme.of(context).iconTheme.color!,
                         Theme.of(context).textTheme.bodyMedium!.color!,
+                        () {},
                       ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width / 35,
@@ -179,6 +182,7 @@ class HomeScreen extends StatelessWidget {
                         Theme.of(context).appBarTheme.backgroundColor!,
                         Theme.of(context).iconTheme.color!,
                         Theme.of(context).textTheme.bodyMedium!.color!,
+                        () {},
                       ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width / 35,
@@ -189,6 +193,11 @@ class HomeScreen extends StatelessWidget {
                         Theme.of(context).appBarTheme.backgroundColor!,
                         Theme.of(context).iconTheme.color!,
                         Theme.of(context).textTheme.bodyMedium!.color!,
+                        () {
+                          Get.to(
+                            const PropertyTypesScreen(),
+                          );
+                        },
                       ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width / 35,

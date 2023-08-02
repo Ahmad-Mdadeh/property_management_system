@@ -19,11 +19,11 @@ class MyPropertiesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (_propertiesController.isSelectedRent.value) {
-      _propertiesController.getTypeMyProperties("rent");
-    } else {
-      _propertiesController.getTypeMyProperties("sale");
-    }
+    // if (_propertiesController.isSelectedRent.value) {
+    //   _propertiesController.getTypeMyProperties("rent");
+    // } else {
+    //   _propertiesController.getTypeMyProperties("sale");
+    // }
     return Scaffold(
       appBar: AppBar(
         title: const TextUtils(

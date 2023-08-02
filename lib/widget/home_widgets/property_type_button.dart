@@ -9,7 +9,13 @@ import 'package:property_management_system/resources/values_manager.dart';
 final settingController = Get.put(SettingController());
 
 Container buildPropertyButton(
-    String text, IconData icon, Color color, Color colorIcon, Color colorText) {
+  String text,
+  IconData icon,
+  Color? color,
+  Color? colorIcon,
+  Color? colorText,
+  VoidCallback onPressed,
+) {
   return Container(
     height: 35,
     decoration: BoxDecoration(
@@ -23,7 +29,7 @@ Container buildPropertyButton(
           : null,
     ),
     child: ElevatedButton(
-      onPressed: () {},
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         shadowColor: Colors.black.withOpacity(0.2),
         backgroundColor: color,

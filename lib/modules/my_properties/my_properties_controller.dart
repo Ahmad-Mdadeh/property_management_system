@@ -1,31 +1,35 @@
 import 'package:get/get.dart';
-import 'package:property_management_system/models/properties.dart';
+import 'package:property_management_system/models/my_properties.dart';
 import 'package:property_management_system/models/user.dart';
 import 'package:property_management_system/modules/my_properties/my_properties_service.dart';
 
 class MyPropertiesController extends GetxController {
-  RxBool isSelectedRent = true.obs;
   RxBool isSelectedSell = false.obs;
+  RxBool isSelectedRent = true.obs;
   RxBool isSelected = false.obs;
-
+  RxBool isLoading = false.obs;
+  late List<List<Post>> post;
+  late List<Post> postRent;
+  late List<Post> postSale;
   String postType = "";
-  late List<MyProperties> myPropertiesRent = [];
-  late List<MyProperties> myPropertiesSale = [];
+
+
   final MyPropertiesService _propertiesService = MyPropertiesService();
 
-  // @override
-  // void onInit() async {
-  //   myPropertiesRent =
-  //       await _propertiesService.getProperties(User.token, "rent");
-  //   myPropertiesSale =
-  //       await _propertiesService.getProperties(User.token, "sale");
-  //   super.onInit();
-  // }
+  @override
+  void onInit() async {
+    getTypeMyProperties();
+    super.onInit();
+  }
 
-  // void getTypeMyProperties(String postType) async {
-  //   myPropertiesRent =
-  //       await _propertiesService.getProperties(User.token, postType);
-  //   myPropertiesSale =
-  //       await _propertiesService.getProperties(User.token, postType);
-  // }
+  void getTypeMyProperties() async {
+    post = await _propertiesService.getMyProperties(User.token);
+    if (post.isNotEmpty) {
+      postRent = post[0];
+      postSale = post[1];
+      isLoading.value = true;
+    } else {
+      isLoading.value = false;
+    }
+  }
 }

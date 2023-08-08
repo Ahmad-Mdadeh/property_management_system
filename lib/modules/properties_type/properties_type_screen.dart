@@ -1,14 +1,16 @@
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:property_management_system/modules/settings/settings_controller.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
 import 'package:property_management_system/resources/values_manager.dart';
-
-import '../../widget/home_widgets/property_type_button.dart';
+import 'package:property_management_system/widget/home_widgets/property_type_button.dart';
 
 class PropertyTypesScreen extends StatelessWidget {
-  const PropertyTypesScreen({super.key});
+  PropertyTypesScreen({super.key});
+
+  final settingController = Get.put(SettingController());
 
   @override
   Widget build(BuildContext context) {
@@ -49,47 +51,24 @@ class PropertyTypesScreen extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.all(15.0),
           child: GridView(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: MediaQuery.of(context).size.width / 50,
-                mainAxisSpacing: MediaQuery.of(context).size.height / 80,
-                mainAxisExtent: MediaQuery.of(context).size.height / 8,
-                childAspectRatio: 80,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: MediaQuery.of(context).size.width / 50,
+              mainAxisSpacing: MediaQuery.of(context).size.height / 80,
+              mainAxisExtent: MediaQuery.of(context).size.height / 8,
+              childAspectRatio: 80,
+            ),
+            children: [
+              TabBarPropertyButton(
+                text: 'Villa',
+                icon: Icons.villa_rounded,
+                color: ColorManager.primary,
+                colorIcon: Theme.of(context).iconTheme.color!,
+                colorText: Theme.of(context).textTheme.bodyMedium!.color!,
+                onPressed: () {},
               ),
-              children: [
-                buildPropertyButton(
-                  'Villa',
-                  Icons.villa_rounded,
-                  ColorManager.primary,
-                  Theme.of(context).iconTheme.color!,
-                  Theme.of(context).textTheme.bodyMedium!.color!,
-                  () {},
-                ),
-                buildPropertyButton(
-                  'Villa',
-                  Icons.villa_rounded,
-                  ColorManager.primary,
-                  Theme.of(context).iconTheme.color!,
-                  Theme.of(context).textTheme.bodyMedium!.color!,
-                  () {},
-                ),
-                buildPropertyButton(
-                  'Villa',
-                  Icons.villa_rounded,
-                  ColorManager.primary,
-                  Theme.of(context).iconTheme.color!,
-                  Theme.of(context).textTheme.bodyMedium!.color!,
-                  () {},
-                ),
-                buildPropertyButton(
-                  'Villa',
-                  Icons.villa_rounded,
-                  ColorManager.primary,
-                  Theme.of(context).iconTheme.color!,
-                  Theme.of(context).textTheme.bodyMedium!.color!,
-                  () {},
-                ),
-              ]),
+            ],
+          ),
         ),
       ),
     );

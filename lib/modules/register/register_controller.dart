@@ -36,6 +36,7 @@ class RegisterController extends GetxController {
   }
   void isContinueToOtp() async {
     Get.dialog(
+      barrierDismissible: false,
       Dialog(
         elevation: 0,
         backgroundColor: Colors.transparent,

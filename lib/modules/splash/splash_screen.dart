@@ -2,35 +2,18 @@ import 'dart:async';
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:property_management_system/modules/onBoarding/on_boarding_screen.dart';
-import 'package:property_management_system/resources/assets_manager.dart';
-import 'package:property_management_system/resources/color_manager.dart';
+
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return const SplashScreenSub();
-  }
-}
-
-class SplashScreenSub extends StatefulWidget {
-  const SplashScreenSub({Key? key}) : super(key: key);
-
-  @override
   _SplashScreenSubState createState() => _SplashScreenSubState();
 }
 
-class _SplashScreenSubState extends State<SplashScreenSub>
-    with TickerProviderStateMixin {
-  double _containerSize = 1.5;
+class _SplashScreenSubState extends State<SplashScreen> with TickerProviderStateMixin {
   double _containerOpacity = 0.0;
 
   late AnimationController _controller;
@@ -54,7 +37,6 @@ class _SplashScreenSubState extends State<SplashScreenSub>
       () {
         setState(
           () {
-            _containerSize = 2;
             _containerOpacity = 1;
           },
         );
@@ -68,7 +50,7 @@ class _SplashScreenSubState extends State<SplashScreenSub>
           () => const OnBoardingScreen(),
           transition: Transition.native,
           duration: const Duration(
-            seconds: 2,
+            seconds:3,
           ),
         );
       },

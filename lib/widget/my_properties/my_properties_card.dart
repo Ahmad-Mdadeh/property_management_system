@@ -15,7 +15,7 @@ class MyPropertiesCard extends StatelessWidget {
   final RxBool isHighlighted = true.obs;
   final RxBool isFavorite = false.obs;
   final settingController = Get.put(SettingController());
-  final _propertiesController = Get.put(MyPropertiesController());
+  final _myPropertiesController = Get.put(MyPropertiesController());
 
   @override
   Widget build(BuildContext context) {
@@ -56,11 +56,13 @@ class MyPropertiesCard extends StatelessWidget {
                 height: MediaQuery.of(context).size.height / 35,
                 width: MediaQuery.of(context).size.width / 3.5,
                 decoration: BoxDecoration(
-                  color: _propertiesController
-                              .myPropertiesRent[index].visibility ==
-                          0
-                      ? Colors.orange
-                      : Colors.green,
+                  color: _myPropertiesController.isSelectedRent.value
+                      ? _myPropertiesController.postRent[index].visibility == 0
+                          ? Colors.orange
+                          : Colors.green
+                      : _myPropertiesController.postSale[index].visibility == 0
+                          ? Colors.orange
+                          : Colors.green,
                   borderRadius: BorderRadius.circular(
                     7,
                   ),
@@ -68,11 +70,15 @@ class MyPropertiesCard extends StatelessWidget {
                 child: Center(
                   child: TextUtils(
                     color: ColorManager.white,
-                    text: _propertiesController
-                                .myPropertiesRent[index].visibility ==
-                            0
-                        ? "Deactivate"
-                        : "Active",
+                    text: _myPropertiesController.isSelectedRent.value
+                        ? _myPropertiesController.postRent[index].visibility ==
+                                0
+                            ? "Deactivate"
+                            : "Active"
+                        : _myPropertiesController.postSale[index].visibility ==
+                                0
+                            ? "Deactivate"
+                            : "Active",
                     fontWeight: FontWeightManager.medium,
                     fontSize: FontSize.s14,
                   ),
@@ -97,8 +103,9 @@ class MyPropertiesCard extends StatelessWidget {
                       size: AppSize.s18,
                     ),
                     TextUtils(
-                      text: _propertiesController
-                          .myPropertiesRent[index].propertyType,
+                      text: _myPropertiesController.isSelectedRent.value
+                          ? _myPropertiesController.postRent[index].postType
+                          : _myPropertiesController.postSale[index].postType,
                       color: Theme.of(context).textTheme.bodySmall!.color,
                       fontWeight: FontWeightManager.semilight,
                       fontSize: FontSize.s12,
@@ -111,8 +118,9 @@ class MyPropertiesCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 3),
                   child: TextUtils(
-                    text:
-                        '\$${_propertiesController.myPropertiesRent[index].monthlyRent}',
+                    text: _myPropertiesController.isSelectedRent.value
+                        ? '${_myPropertiesController.postRent[index].monthlyRent}'
+                        : '${_myPropertiesController.postSale[index].price}',
                     color: Theme.of(context).iconTheme.color,
                     fontWeight: FontWeightManager.regular,
                     fontSize: FontSize.s16,
@@ -125,8 +133,9 @@ class MyPropertiesCard extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 3),
                   child: TextUtils(
                     textOverflow: TextOverflow.ellipsis,
-                    text: _propertiesController
-                        .myPropertiesRent[index].property.name,
+                    text: _myPropertiesController.isSelectedRent.value
+                        ? '${_myPropertiesController.postRent[index].propertyId}'
+                        : '${_myPropertiesController.postSale[index].propertyId}',
                     color: Theme.of(context).textTheme.bodyMedium!.color,
                     fontWeight: FontWeightManager.regular,
                     fontSize: FontSize.s18,
@@ -145,8 +154,7 @@ class MyPropertiesCard extends StatelessWidget {
                     Expanded(
                       child: TextUtils(
                           textOverflow: TextOverflow.ellipsis,
-                          text: _propertiesController
-                              .myPropertiesRent[index].property.address,
+                          text: "32",
                           color: Theme.of(context).textTheme.bodySmall!.color,
                           fontWeight: FontWeightManager.semilight,
                           fontSize: FontSize.s12),
@@ -183,10 +191,10 @@ class MyPropertiesCard extends StatelessWidget {
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.2),
-                          blurRadius: 15,
+                          blurRadius: 5,
                           offset: const Offset(
-                            -4,
-                            6,
+                            -2,
+                            4,
                           ),
                         ),
                       ],

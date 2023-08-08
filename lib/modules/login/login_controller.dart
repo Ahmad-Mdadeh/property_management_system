@@ -38,6 +38,7 @@ class LoginController extends GetxController {
 
   void checkIsLogin() async {
     Get.dialog(
+      barrierDismissible: false,
       Dialog(
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -58,6 +59,7 @@ class LoginController extends GetxController {
     if (isLogin) {
       Get.back(closeOverlays: true);
       Get.dialog(
+        barrierDismissible: false,
         Dialog(
           elevation: 0,
           backgroundColor: Colors.transparent,
@@ -95,6 +97,7 @@ class LoginController extends GetxController {
     } else {
       Get.back(closeOverlays: true);
       Get.dialog(
+        barrierDismissible: false,
         Dialog(
           elevation: 0,
           backgroundColor: Colors.transparent,
@@ -107,13 +110,11 @@ class LoginController extends GetxController {
                 width: double.infinity,
                 height: AppSize.s150,
               ),
-              Center(
-                child: TextUtils(
-                  color: ColorManager.error,
-                  text: _loginService.message,
-                  fontWeight: FontWeightManager.medium,
-                  fontSize: FontSize.s20,
-                ),
+              TextUtils(
+                color: ColorManager.error,
+                text: _loginService.message,
+                fontWeight: FontWeightManager.regular,
+                fontSize: FontSize.s13,
               ),
             ],
           ),
@@ -121,7 +122,7 @@ class LoginController extends GetxController {
       );
       Timer(
         const Duration(seconds: 3),
-            () {
+        () {
           Get.back(closeOverlays: true);
         },
       );

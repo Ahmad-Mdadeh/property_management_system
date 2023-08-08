@@ -1,45 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:property_management_system/modules/settings/settings_controller.dart';
-import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
 import 'package:property_management_system/resources/values_manager.dart';
 
-final settingController = Get.put(SettingController());
+class TabBarPropertyButton extends StatelessWidget {
+  final String text;
+  final IconData icon;
+  final Color? color;
+  final Color? colorIcon;
+  final Color? colorText;
+  final VoidCallback? onPressed;
+  final settingController = Get.put(SettingController());
 
-Container buildPropertyButton(
-  String text,
-  IconData icon,
-  Color? color,
-  Color? colorIcon,
-  Color? colorText,
-  VoidCallback onPressed,
-) {
-  return Container(
-    height: 35,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(
-        7.0,
-      ),
-      border: settingController.isLightMode.value
-          ? Border.all(
-              color: ColorManager.black.withOpacity(0.05),
-            )
-          : null,
-    ),
-    child: ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        shadowColor: Colors.black.withOpacity(0.2),
-        backgroundColor: color,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(
-            7.0,
-          ),
-        ),
-      ),
+  TabBarPropertyButton({
+    required this.text,
+    required this.icon,
+    this.color,
+    this.colorIcon,
+    this.colorText,
+    this.onPressed,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.035,
+      width: MediaQuery.of(context).size.width * 0.3,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
             icon,
@@ -57,6 +48,6 @@ Container buildPropertyButton(
           ),
         ],
       ),
-    ),
-  );
+    );
+  }
 }

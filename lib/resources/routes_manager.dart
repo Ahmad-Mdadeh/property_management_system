@@ -5,15 +5,12 @@ import 'package:property_management_system/bindings/register_binding.dart';
 import 'package:property_management_system/modules/base/base_screen.dart';
 import 'package:property_management_system/modules/filters/filters_screen.dart';
 import 'package:property_management_system/modules/home/home_screen.dart';
-import 'package:property_management_system/modules/otp/otp_screen.dart';
+import 'package:property_management_system/modules/login/login_screen.dart';
 import 'package:property_management_system/modules/properties_type/properties_type_screen.dart';
 import 'package:property_management_system/modules/register/register_screen.dart';
 import 'package:property_management_system/modules/onBoarding/on_boarding_screen.dart';
-import 'package:property_management_system/modules/register/register_screen.dart';
 import 'package:property_management_system/modules/splash/splash_screen.dart';
 
-import '../bindings/register_binding.dart';
-import '../modules/login/login_screen.dart';
 
 class AppRoutes {
   static const splash = Routes.splash;
@@ -40,9 +37,9 @@ class AppRoutes {
         page: () => RegisterScreen(),
         binding: RegisterBinding()),
     GetPage(name: Routes.baseScreen, page: () => BaseScreen()),
-    GetPage(name: Routes.home, page: () => const HomeScreen()),
+    GetPage(name: Routes.home, page: () =>  HomeScreen()),
     GetPage(name: Routes.filters, page: () => FiltersScreen()),
-    GetPage(name: Routes.propertyTypes, page: () => const PropertyTypesScreen())
+    GetPage(name: Routes.propertyTypes, page: () =>  PropertyTypesScreen())
   ];
 }
 

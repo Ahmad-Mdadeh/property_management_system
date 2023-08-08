@@ -2,8 +2,6 @@ import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
-import 'package:property_management_system/modules/base/base_screen.dart';
 import 'package:property_management_system/modules/otp/otp_service.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';

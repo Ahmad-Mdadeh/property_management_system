@@ -1,43 +1,41 @@
 // To parse this JSON data, do
 //
-//     final allProperties = allPropertiesFromJson(jsonString);
+//     final propertiesDetails = propertiesDetailsFromJson(jsonString);
 
 import 'dart:convert';
 
-List<AllProperties> allPropertiesFromJson(String str) => List<AllProperties>.from(json.decode(str).map((x) => AllProperties.fromJson(x)));
+PropertiesDetails propertiesDetailsFromJson(String str) => PropertiesDetails.fromJson(json.decode(str));
 
-String allPropertiesToJson(List<AllProperties> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String propertiesDetailsToJson(PropertiesDetails data) => json.encode(data.toJson());
 
-class AllProperties {
-  int id;
-  int userId;
-  int viewPlanId;
-  int propertyId;
+class PropertiesDetails {
+  int? id;
+  int? userId;
+  int? viewPlanId;
+  int? propertyId;
   int? monthlyRent;
   int? maxDuration;
-  int visibility;
-  DateTime createdAt;
-  DateTime updatedAt;
-  String postType;
-  Property property;
-  int? price;
+  int? visibility;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  Property? property;
+  String? postType;
 
-  AllProperties({
-    required this.id,
-    required this.userId,
-    required this.viewPlanId,
-    required this.propertyId,
+  PropertiesDetails({
+    this.id,
+    this.userId,
+    this.viewPlanId,
+    this.propertyId,
     this.monthlyRent,
     this.maxDuration,
-    required this.visibility,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.postType,
-    required this.property,
-    this.price,
+    this.visibility,
+    this.createdAt,
+    this.updatedAt,
+    this.property,
+    this.postType,
   });
 
-  factory AllProperties.fromJson(Map<String, dynamic> json) => AllProperties(
+  factory PropertiesDetails.fromJson(Map<String, dynamic> json) => PropertiesDetails(
     id: json["id"],
     userId: json["user_id"],
     viewPlanId: json["view_plan_id"],
@@ -45,11 +43,10 @@ class AllProperties {
     monthlyRent: json["monthly_rent"],
     maxDuration: json["max_duration"],
     visibility: json["visibility"],
-    createdAt: DateTime.parse(json["created_at"]),
-    updatedAt: DateTime.parse(json["updated_at"]),
+    createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
+    updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
+    property: json["property"] == null ? null : Property.fromJson(json["property"]),
     postType: json["post_type"],
-    property: Property.fromJson(json["property"]),
-    price: json["price"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -60,75 +57,70 @@ class AllProperties {
     "monthly_rent": monthlyRent,
     "max_duration": maxDuration,
     "visibility": visibility,
-    "created_at": createdAt.toIso8601String(),
-    "updated_at": updatedAt.toIso8601String(),
+    "created_at": createdAt?.toIso8601String(),
+    "updated_at": updatedAt?.toIso8601String(),
+    "property": property?.toJson(),
     "post_type": postType,
-    "property": property.toJson(),
-    "price": price,
   };
 }
 
 class Property {
-  int id;
-  DateTime createdAt;
-  DateTime updatedAt;
-  int userId;
-  String name;
-  double latitude;
-  double longitude;
-  String address;
-  String about;
+  int? id;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  int? userId;
+  String? name;
+  double? latitude;
+  double? longitude;
+  String? address;
+  String? about;
   dynamic the360View;
-  int area;
-  int categoryId;
-  int imageCount;
-  String category;
+  int? area;
+  int? categoryId;
+  int? imageCount;
+  String? category;
   int? roomCount;
   int? bathroomCount;
   int? kitchenCount;
   int? storey;
   int? balkony;
-  int? pool;
   int? parking;
   int? securityCameras;
-  int? wiFi;
-  int? garden;
   dynamic elevator;
+  int? wiFi;
   int? securityGard;
 
   Property({
-    required this.id,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.userId,
-    required this.name,
-    required this.latitude,
-    required this.longitude,
-    required this.address,
-    required this.about,
+    this.id,
+    this.createdAt,
+    this.updatedAt,
+    this.userId,
+    this.name,
+    this.latitude,
+    this.longitude,
+    this.address,
+    this.about,
     this.the360View,
-    required this.area,
-    required this.categoryId,
-    required this.imageCount,
-    required this.category,
+    this.area,
+    this.categoryId,
+    this.imageCount,
+    this.category,
     this.roomCount,
     this.bathroomCount,
     this.kitchenCount,
     this.storey,
     this.balkony,
-    this.pool,
     this.parking,
     this.securityCameras,
-    this.wiFi,
-    this.garden,
     this.elevator,
+    this.wiFi,
     this.securityGard,
   });
 
   factory Property.fromJson(Map<String, dynamic> json) => Property(
     id: json["id"],
-    createdAt: DateTime.parse(json["created_at"]),
-    updatedAt: DateTime.parse(json["updated_at"]),
+    createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
+    updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
     userId: json["user_id"],
     name: json["name"],
     latitude: json["latitude"]?.toDouble(),
@@ -145,19 +137,17 @@ class Property {
     kitchenCount: json["kitchen_count"],
     storey: json["storey"],
     balkony: json["balkony"],
-    pool: json["pool"],
     parking: json["parking"],
     securityCameras: json["security_cameras"],
-    wiFi: json["Wi-Fi"],
-    garden: json["garden"],
     elevator: json["elevator"],
+    wiFi: json["Wi-Fi"],
     securityGard: json["security_gard"],
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
-    "created_at": createdAt.toIso8601String(),
-    "updated_at": updatedAt.toIso8601String(),
+    "created_at": createdAt?.toIso8601String(),
+    "updated_at": updatedAt?.toIso8601String(),
     "user_id": userId,
     "name": name,
     "latitude": latitude,
@@ -174,12 +164,10 @@ class Property {
     "kitchen_count": kitchenCount,
     "storey": storey,
     "balkony": balkony,
-    "pool": pool,
     "parking": parking,
     "security_cameras": securityCameras,
-    "Wi-Fi": wiFi,
-    "garden": garden,
     "elevator": elevator,
+    "Wi-Fi": wiFi,
     "security_gard": securityGard,
   };
 }

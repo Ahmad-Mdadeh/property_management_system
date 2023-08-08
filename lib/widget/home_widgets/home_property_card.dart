@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:property_management_system/modules/home/home_controller.dart';
 import 'package:property_management_system/modules/property_detail/property_details_screen.dart';
 import 'package:property_management_system/resources/assets_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
@@ -8,31 +9,33 @@ import 'package:property_management_system/resources/values_manager.dart';
 import 'package:property_management_system/widget/property_details/text_tag.dart';
 
 class HomePropertyCard extends StatelessWidget {
-  HomePropertyCard({super.key});
+  final int index;
 
+  HomePropertyCard({required this.index, super.key});
+
+  final HomeController _homeController = Get.put(HomeController());
   final RxBool isHighlighted = true.obs;
   final RxBool isFavorite = false.obs;
 
   @override
   Widget build(BuildContext context) {
-    return buildHomePropertyCard(context);
-  }
-
-  Stack buildHomePropertyCard(BuildContext context) {
     return Stack(
       children: [
         InkWell(
           onTap: () {
             Get.to(
-              PropertyDetailsScreen(
+              arguments: [
+                _homeController.allProperties[index].id,
+                _homeController.allProperties[index].postType
+              ],
+              () => PropertyDetailsScreen(
                 contextPropertyDetailsScreen: context,
               ),
             );
           },
-          child: Container(
-            margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-            height: MediaQuery.of(context).size.height / 2.8,
+          child: SizedBox(
             width: MediaQuery.of(context).size.width / 1.5,
+            height: MediaQuery.of(context).size.height / 2.7,
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(
@@ -61,7 +64,7 @@ class HomePropertyCard extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: AppSize.s20,
+          top: AppSize.s13,
           left: AppSize.s10,
           child: buildTag(
             text: 'Featured',
@@ -72,7 +75,7 @@ class HomePropertyCard extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: MediaQuery.of(context).size.height / 5,
+          top: MediaQuery.of(context).size.height / 5.5,
           right: MediaQuery.of(context).size.width / 20,
           child: InkWell(
             highlightColor: Colors.transparent,
@@ -116,7 +119,7 @@ class HomePropertyCard extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: MediaQuery.of(context).size.height / 4.2,
+          top: MediaQuery.of(context).size.height / 4.6,
           left: MediaQuery.of(context).size.width / 25,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,7 +132,12 @@ class HomePropertyCard extends StatelessWidget {
                     size: AppSize.s18,
                   ),
                   TextUtils(
-                    text: 'House',
+                    text:
+                        '${_homeController.allProperties[index].property.category}'
+                            .replaceAll(
+                      "Category.",
+                      '',
+                    ),
                     color: Theme.of(context).textTheme.bodySmall!.color,
                     fontWeight: FontWeightManager.semilight,
                     fontSize: FontSize.s12,
@@ -137,27 +145,28 @@ class HomePropertyCard extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 150,
+                height: MediaQuery.of(context).size.height / 80,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 3),
                 child: TextUtils(
-                  text: '\$100000',
+                  text: '\$${_homeController.allProperties[index].monthlyRent}',
                   color: Theme.of(context).iconTheme.color,
                   fontWeight: FontWeightManager.regular,
                   fontSize: FontSize.s18,
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 150,
+                height: MediaQuery.of(context).size.height / 140,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 3),
                 child: TextUtils(
-                    text: 'Property Name',
-                    color: Theme.of(context).textTheme.bodyMedium!.color,
-                    fontWeight: FontWeightManager.regular,
-                    fontSize: FontSize.s14),
+                  text: _homeController.allProperties[index].property.name,
+                  color: Theme.of(context).textTheme.bodyMedium!.color,
+                  fontWeight: FontWeightManager.regular,
+                  fontSize: FontSize.s14,
+                ),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height / 150,
@@ -170,10 +179,12 @@ class HomePropertyCard extends StatelessWidget {
                     size: 18,
                   ),
                   TextUtils(
-                      text: 'Location',
-                      color: Theme.of(context).textTheme.bodySmall!.color,
-                      fontWeight: FontWeightManager.semilight,
-                      fontSize: FontSize.s12)
+                    maxLines: 1,
+                    text: _homeController.allProperties[index].property.address,
+                    color: Theme.of(context).textTheme.bodySmall!.color,
+                    fontWeight: FontWeightManager.semilight,
+                    fontSize: FontSize.s12,
+                  )
                 ],
               ),
             ],

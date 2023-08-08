@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart' show timeDilation;
-import 'package:get/get.dart';
 import 'package:panorama/panorama.dart';
 import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
 import 'package:property_management_system/resources/values_manager.dart';
-import 'package:rive/rive.dart';
 
 class Chat extends StatelessWidget {
   const Chat({Key? key}) : super(key: key);

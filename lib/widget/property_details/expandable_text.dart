@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
+import 'package:property_management_system/resources/values_manager.dart';
 
-import '../../resources/color_manager.dart';
-import '../../resources/values_manager.dart';
-
-class ExpandableText extends StatefulWidget {
+class ExpandableText extends StatelessWidget {
   final String text;
   final Color color;
   final FontWeight fontWeight;
   final double fontSize;
 
   ExpandableText({
+    super.key,
     required this.text,
     this.color = Colors.black,
     this.fontWeight = FontWeight.normal,
     this.fontSize = 14.0,
   });
 
-  @override
-  _ExpandableTextState createState() => _ExpandableTextState();
-}
-
-class _ExpandableTextState extends State<ExpandableText> {
-  bool _isExpanded = false;
+  final RxBool _isExpanded = false.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -30,35 +26,36 @@ class _ExpandableTextState extends State<ExpandableText> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextUtils(
-          text:
-              _isExpanded ? widget.text : '${widget.text.substring(0, 50)}...',
-          color: widget.color,
-          fontWeight: widget.fontWeight,
-          fontSize: widget.fontSize,
+          text: _isExpanded.value
+              ? text
+              : '${text.substring(0, 50)}...',
+          color: color,
+          fontWeight: fontWeight,
+          fontSize:fontSize,
         ),
         const SizedBox(
           height: AppSize.s20,
         ),
-        GestureDetector(
-          onTap: () {
-            setState(() {
-              _isExpanded = !_isExpanded;
-            });
-          },
-          child: _isExpanded
-              ? TextUtils(
-                  text: 'Read Less',
-                  color: ColorManager.primary,
-                  fontWeight: FontWeight.normal,
-                  fontSize: widget.fontSize,
-                )
-              : TextUtils(
-                  text: 'Read More',
-                  color: ColorManager.primary,
-                  fontWeight: FontWeight.normal,
-                  fontSize: widget.fontSize,
-                ),
-        ),
+       Obx(() =>  GestureDetector(
+         onTap: () {
+
+           _isExpanded.value = !_isExpanded.value;
+
+         },
+         child: _isExpanded.value
+             ? TextUtils(
+           text: 'Read Less',
+           color: ColorManager.primary,
+           fontWeight: FontWeight.normal,
+           fontSize: fontSize,
+         )
+             : TextUtils(
+           text: 'Read More',
+           color: ColorManager.primary,
+           fontWeight: FontWeight.normal,
+           fontSize: fontSize,
+         ),
+       ),),
       ],
     );
   }

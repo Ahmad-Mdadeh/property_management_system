@@ -14,7 +14,6 @@ class OnBoardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BuildContext x = context;
     final onBoardingController = Get.put(OnBoardingController());
     return ThemeSwitchingArea(
       child: Scaffold(

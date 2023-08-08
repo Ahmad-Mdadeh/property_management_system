@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shimmer/shimmer.dart';
-
-import '../../modules/property_detail/property_details_screen.dart';
-import '../../resources/assets_manager.dart';
-import '../../resources/color_manager.dart';
-import '../../resources/font_manager.dart';
-import '../../resources/text_manager.dart';
-import '../../resources/values_manager.dart';
-import '../property_details/circular_button.dart';
-import '../property_details/text_tag.dart';
+import 'package:property_management_system/modules/home/home_controller.dart';
+import 'package:property_management_system/modules/property_detail/property_details_screen.dart';
+import 'package:property_management_system/resources/assets_manager.dart';
+import 'package:property_management_system/resources/font_manager.dart';
+import 'package:property_management_system/resources/text_manager.dart';
+import 'package:property_management_system/resources/values_manager.dart';
+import 'package:property_management_system/widget/property_details/text_tag.dart';
 
 class MostViewedPropertyCard extends StatelessWidget {
+  final int index;
+
   MostViewedPropertyCard({
+    required this.index,
     super.key,
   });
 
+  final HomeController _homeController = Get.put(HomeController());
   final RxBool isHighlighted = true.obs;
   final RxBool isFavorite = false.obs;
 
@@ -24,9 +25,13 @@ class MostViewedPropertyCard extends StatelessWidget {
     return Stack(
       children: [
         InkWell(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
           onTap: () {
             Get.to(
-              PropertyDetailsScreen(contextPropertyDetailsScreen: context,),
+              () => PropertyDetailsScreen(
+                contextPropertyDetailsScreen: context,
+              ),
             );
           },
           child: Container(
@@ -63,10 +68,10 @@ class MostViewedPropertyCard extends StatelessWidget {
           top: AppSize.s20,
           left: AppSize.s10,
           child: buildTag(
-              text: 'Featured',
-              width: 53,
-              height: 25,
-              fontSize: 8,
+            text: 'Featured',
+            width: 53,
+            height: 25,
+            fontSize: 8,
             color: Theme.of(context).iconTheme.color!,
           ),
         ),
@@ -94,10 +99,10 @@ class MostViewedPropertyCard extends StatelessWidget {
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.2),
-                        blurRadius: 15,
+                        blurRadius: 5,
                         offset: const Offset(
-                          -4,
-                          6,
+                          -2,
+                          4,
                         ),
                       ),
                     ],
@@ -115,7 +120,7 @@ class MostViewedPropertyCard extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: MediaQuery.of(context).size.height / 4.2,
+          top: MediaQuery.of(context).size.height / 4.3,
           left: MediaQuery.of(context).size.width / 25,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,32 +133,37 @@ class MostViewedPropertyCard extends StatelessWidget {
                     size: AppSize.s18,
                   ),
                   TextUtils(
-                    text: 'House',
+                    text:
+                        '${_homeController.allProperties[index].property.category}'
+                            .replaceAll(
+                      "Category.",
+                      '',
+                    ),
                     color: Theme.of(context).textTheme.bodySmall!.color,
                     fontWeight: FontWeightManager.semilight,
                     fontSize: FontSize.s12,
-                  )
+                  ),
                 ],
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 155,
+                height: MediaQuery.of(context).size.height / 80,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 3),
                 child: TextUtils(
-                  text: '\$100000',
+                  text: '\$${_homeController.allProperties[index].monthlyRent}',
                   color: Theme.of(context).iconTheme.color,
                   fontWeight: FontWeightManager.regular,
-                  fontSize: FontSize.s16,
+                  fontSize: FontSize.s18,
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height / 155,
+                height: MediaQuery.of(context).size.height / 110,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 3),
                 child: TextUtils(
-                  text: 'Property Name',
+                  text: _homeController.allProperties[index].property.name,
                   color: Theme.of(context).textTheme.bodyMedium!.color,
                   fontWeight: FontWeightManager.regular,
                   fontSize: FontSize.s14,
@@ -170,10 +180,13 @@ class MostViewedPropertyCard extends StatelessWidget {
                     size: 18,
                   ),
                   TextUtils(
-                      text: 'Location',
-                      color: Theme.of(context).textTheme.bodySmall!.color,
-                      fontWeight: FontWeightManager.semilight,
-                      fontSize: FontSize.s12)
+                    maxLines: 1,
+                    textOverflow: TextOverflow.ellipsis,
+                    text: "_homeController.allProperties[index].property.address ddddddkkkkkkkkkkkkkkkkkkkkkkkkdddddddddddddddddddddddddd",
+                    color: Theme.of(context).textTheme.bodySmall!.color,
+                    fontWeight: FontWeightManager.semilight,
+                    fontSize: FontSize.s12,
+                  ),
                 ],
               ),
             ],

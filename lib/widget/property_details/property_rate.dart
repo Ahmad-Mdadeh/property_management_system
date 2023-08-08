@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:property_management_system/resources/font_manager.dart';
+import 'package:property_management_system/resources/text_manager.dart';
+import 'package:property_management_system/resources/values_manager.dart';
 
-import '../../resources/color_manager.dart';
-import '../../resources/font_manager.dart';
-import '../../resources/text_manager.dart';
-import '../../resources/values_manager.dart';
-
-Widget buildPropertyRate(IconData icon, String name, String rate,BuildContext context) {
+Widget buildPropertyRate(
+    IconData icon, String name, String rate, BuildContext context) {
   return Row(
     children: [
       ClipRRect(
@@ -27,18 +26,12 @@ Widget buildPropertyRate(IconData icon, String name, String rate,BuildContext co
         children: [
           TextUtils(
               text: name,
-              color: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .color,
+              color: Theme.of(context).textTheme.bodyMedium!.color,
               fontWeight: FontWeightManager.regular,
               fontSize: FontSize.s14),
           TextUtils(
             text: rate,
-            color: Theme.of(context)
-                .textTheme
-                .bodyLarge!
-                .color,
+            color: Theme.of(context).textTheme.bodyLarge!.color,
             fontWeight: FontWeightManager.regular,
             fontSize: FontSize.s16,
           ),

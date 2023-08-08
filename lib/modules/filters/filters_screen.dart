@@ -383,7 +383,7 @@ class FiltersScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.fromLTRB(20, 10, 25, 0),
                 child: TextUtils(
                   text: 'Budget (Price)',
@@ -393,7 +393,7 @@ class FiltersScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(20, 10, 25, 0),
+                padding: const EdgeInsets.fromLTRB(20, 10, 25, 0),
                 child: Row(
                   children: [
                     Expanded(
@@ -472,7 +472,7 @@ class FiltersScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.fromLTRB(20, 10, 25, 0),
                 child: TextUtils(
                   text: 'Area ',
@@ -482,7 +482,7 @@ class FiltersScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.fromLTRB(20, 10, 25, 0),
+                padding: const EdgeInsets.fromLTRB(20, 10, 25, 0),
                 child: TextField(
                   keyboardType: TextInputType.number,
                   cursorColor: ColorManager.primary,

@@ -40,6 +40,7 @@ class OtpController extends GetxController {
 
   void checkSubmitOtp() async {
     Get.dialog(
+      barrierDismissible: false,
       Dialog(
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -60,6 +61,7 @@ class OtpController extends GetxController {
     if (isVerification) {
       Get.back(closeOverlays: true);
       Get.dialog(
+        barrierDismissible: false,
         Dialog(
           elevation: 0,
           backgroundColor: Colors.transparent,
@@ -97,6 +99,7 @@ class OtpController extends GetxController {
     } else {
       Get.back(closeOverlays: true);
       Get.dialog(
+        barrierDismissible: false,
         Dialog(
           elevation: 0,
           backgroundColor: Colors.transparent,

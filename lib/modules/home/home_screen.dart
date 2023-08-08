@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:property_management_system/modules/filters/filters_screen.dart';
-import 'package:property_management_system/modules/properties_type/properties_type_screen.dart';
+import 'package:property_management_system/modules/home/home_controller.dart';
+import 'package:property_management_system/modules/settings/settings_controller.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:property_management_system/resources/values_manager.dart';
-import '../../widget/home_widgets/featured_property_card.dart';
-import '../../widget/home_widgets/most_viewed_property_card.dart';
-import '../../widget/home_widgets/property_type_button.dart';
-import '../../widget/home_widgets/slide_show.dart';
+import 'package:property_management_system/utils/scroll_glow.dart';
+import 'package:property_management_system/widget/home_widgets/home_property_card.dart';
+import 'package:property_management_system/widget/home_widgets/most_viewed_property_card.dart';
+import 'package:property_management_system/widget/home_widgets/property_type_button.dart';
+import 'package:property_management_system/widget/home_widgets/slide_show.dart';
+import 'package:property_management_system/widget/home_widgets/home_property_card_shimmer.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
+  final HomeController _homeController = Get.put(HomeController());
+  final settingController = Get.put(SettingController());
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +42,7 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.only(
             top: 8,
@@ -121,7 +128,6 @@ class HomeScreen extends StatelessWidget {
                 options: CarouselOptions(
                   height: MediaQuery.of(context).size.height / 5.5,
                   autoPlay: true,
-                  aspectRatio: 16 / 9,
                   enableInfiniteScroll: true,
                   viewportFraction: 1,
                   initialPage: 0,
@@ -129,90 +135,75 @@ class HomeScreen extends StatelessWidget {
                   animateToClosest: true,
                   autoPlayAnimationDuration: const Duration(milliseconds: 800),
                 ),
-                items: const [
-                  SlideShow(),
-                  SlideShow(),
-                  SlideShow(),
-                  SlideShow(),
+                items: [
+                  ...List.generate(
+                    4,
+                    (index) => const SlideShow(),
+                  ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 12, left: 8),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      buildPropertyButton(
-                        'Villa',
-                        Icons.villa_rounded,
-                        Theme.of(context).appBarTheme.backgroundColor!,
-                        Theme.of(context).iconTheme.color!,
-                        Theme.of(context).textTheme.bodyMedium!.color!,
-                        () {},
+              Obx(
+                () => Padding(
+                  padding: const EdgeInsets.only(
+                    top: AppPadding.p10,
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        15.0,
                       ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 35,
+                      border: Border.all(
+                        color: settingController.isLightMode.value
+                            ? ColorManager.black.withOpacity(0.05)
+                            : ColorManager.grey1,
                       ),
-                      buildPropertyButton(
-                        'Land',
-                        Icons.landscape_rounded,
-                        Theme.of(context).appBarTheme.backgroundColor!,
-                        Theme.of(context).iconTheme.color!,
-                        Theme.of(context).textTheme.bodyMedium!.color!,
-                        () {},
+                    ),
+                    child: TabBar(
+                      onTap: (value) => {
+                        _homeController.isSelected.value = value,
+                      },
+                      labelPadding: const EdgeInsets.symmetric(
+                        vertical: 5,
                       ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 35,
+                      isScrollable: true,
+                      splashBorderRadius: BorderRadius.circular(
+                        15.0,
                       ),
-                      buildPropertyButton(
-                        'House',
-                        Icons.home,
-                        Theme.of(context).appBarTheme.backgroundColor!,
-                        Theme.of(context).iconTheme.color!,
-                        Theme.of(context).textTheme.bodyMedium!.color!,
-                        () {},
+                      indicator: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          15.0,
+                        ),
+                        color: Theme.of(context).iconTheme.color,
                       ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 35,
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      controller: _homeController.tabController,
+                      tabs: List.generate(
+                        4,
+                        (index) => TabBarPropertyButton(
+                          text: _homeController.typePropertiesName[index],
+                          icon: Icons.villa_rounded,
+                          color: Theme.of(context).iconTheme.color,
+                          colorIcon: _homeController.isSelected.value == index
+                              ? ColorManager.white
+                              : Theme.of(context).iconTheme.color,
+                          colorText: _homeController.isSelected.value == index
+                              ? ColorManager.white
+                              : Theme.of(context).textTheme.bodyMedium!.color,
+                          onPressed: () {},
+                        ),
                       ),
-                      buildPropertyButton(
-                        'WareHouse',
-                        Icons.warehouse,
-                        Theme.of(context).appBarTheme.backgroundColor!,
-                        Theme.of(context).iconTheme.color!,
-                        Theme.of(context).textTheme.bodyMedium!.color!,
-                        () {},
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 35,
-                      ),
-                      buildPropertyButton(
-                        'More',
-                        Icons.more_horiz_rounded,
-                        Theme.of(context).appBarTheme.backgroundColor!,
-                        Theme.of(context).iconTheme.color!,
-                        Theme.of(context).textTheme.bodyMedium!.color!,
-                        () {
-                          Get.to(
-                            const PropertyTypesScreen(),
-                          );
-                        },
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 35,
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(
                   left: 8,
-                  top: 12,
+                  top: 10,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 14, 15, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 18, 14, 14),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -235,76 +226,96 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(8, 4, 0, 0),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          HomePropertyCard(),
-                          HomePropertyCard(),
-                          HomePropertyCard(),
-                          HomePropertyCard(),
-                          HomePropertyCard(),
-                          HomePropertyCard(),
-                        ],
-                      ),
+              SizedBox(
+                height: 300,
+                child: ScrollConfiguration(
+                  behavior: MyBehavior(),
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 8,
+                    itemBuilder: (context, index) => Obx(
+                      () => _homeController.isLoadingProperties.value
+                          ? HomePropertyCard(
+                              index: index,
+                            )
+                          : const HomePropertyCardShimmer()
+                              .animate(
+                                onPlay: (controller) => controller.repeat(),
+                              )
+                              .shimmer(
+                                color: settingController.isLightMode.value
+                                    ? ColorManager.grey2.withOpacity(0.3)
+                                    : ColorManager.ofWhite.withOpacity(0.2),
+                                duration: 450.ms,
+                              ),
                     ),
                   ),
-                ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                  left: 8,
-                  top: 12,
+                  left: AppPadding.p8,
+                  top: AppPadding.p8,
+                  right: AppPadding.p14,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 14, 15, 0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      TextUtils(
-                        text: 'Most Viewed',
-                        color: Theme.of(context).textTheme.bodyMedium!.color,
-                        fontWeight: FontWeightManager.regular,
-                        fontSize: FontSize.s16,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextUtils(
+                      text: 'Most Viewed',
+                      color: Theme.of(context).textTheme.bodyMedium!.color,
+                      fontWeight: FontWeightManager.regular,
+                      fontSize: FontSize.s16,
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: TextUtils(
+                        text: 'See All',
+                        color: ColorManager.lightGrey,
+                        fontWeight: FontWeightManager.light,
+                        fontSize: FontSize.s12,
                       ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: TextUtils(
-                          text: 'See All',
-                          color: ColorManager.lightGrey,
-                          fontWeight: FontWeightManager.light,
-                          fontSize: FontSize.s12,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 1.92,
-                  child: GridView.count(
-                    childAspectRatio: 0.57,
-                    shrinkWrap: false,
-                    physics: const NeverScrollableScrollPhysics(),
-                    crossAxisCount: 2,
-                    children: [
-                      MostViewedPropertyCard(),
-                      MostViewedPropertyCard(),
-                      MostViewedPropertyCard(),
-                      MostViewedPropertyCard(),
-                      MostViewedPropertyCard(),
-                      MostViewedPropertyCard(),
-                      MostViewedPropertyCard(),
-                      MostViewedPropertyCard(),
-                      MostViewedPropertyCard(),
-                      MostViewedPropertyCard()
-                    ],
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 1.99,
+                child: GridView.count(
+                  childAspectRatio: 0.58,
+                  shrinkWrap: false,
+                  primary: false,
+                  crossAxisCount: 2,
+                  children: List.generate(
+                    9,
+                    (index) => Obx(
+                      () => _homeController.isLoadingProperties.value
+                          ? MostViewedPropertyCard(index: index)
+                          : Container(
+                              margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                              width: MediaQuery.of(context).size.width / 2.2,
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                    10.0,
+                                  ),
+                                ),
+                                color: Theme.of(context)
+                                    .appBarTheme
+                                    .backgroundColor,
+                              ),
+                            )
+                              .animate(
+                                onPlay: (controller) => controller.repeat(),
+                              )
+                              .shimmer(
+                                color: settingController.isLightMode.value
+                                    ? ColorManager.grey2.withOpacity(0.3)
+                                    : ColorManager.ofWhite.withOpacity(0.2),
+                                duration: 450.ms,
+                              ),
+                    ),
                   ),
                 ),
               ),

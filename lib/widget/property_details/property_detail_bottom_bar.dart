@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:property_management_system/modules/settings/settings_controller.dart';
-
-import '../../resources/values_manager.dart';
-import 'contact_button.dart';
+import 'package:property_management_system/resources/values_manager.dart';
+import 'package:property_management_system/widget/property_details/contact_button.dart';
 
 class PropertyDetailBottomBar extends StatelessWidget {
  const PropertyDetailBottomBar({

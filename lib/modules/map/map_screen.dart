@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:property_management_system/modules/property_detail/property_details_controller.dart';
+import 'package:property_management_system/resources/text_manager.dart';
+import 'package:property_management_system/resources/values_manager.dart';
 
-import '../../resources/color_manager.dart';
-import '../../resources/text_manager.dart';
-import '../../resources/values_manager.dart';
-import '../property_detail/property_details_controller.dart';
 
 class MapScreen extends StatelessWidget {
   final BuildContext contextMapScreen;

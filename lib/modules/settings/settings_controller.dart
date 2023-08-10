@@ -9,6 +9,9 @@ class SettingController extends GetxController {
   RxBool isLightMode = ThemeService.sunOrMoon;
   late RiveAnimationController controllerToDark;
   late RiveAnimationController controllerToLight;
+  String selectedLang = 'en';
+  RxString selectedL = 'en'.obs;
+  RxBool isArabic = false.obs;
 
   @override
   void onInit() {
@@ -17,7 +20,7 @@ class SettingController extends GetxController {
     controllerToDark = SimpleAnimation("sunToMoonAniamtion");
     controllerToLight = SimpleAnimation("moonToSunAnimation");
     rootBundle.load('assets/rive/moon_to_sun_animated_icon.riv').then(
-          (data) {
+      (data) {
         final file = RiveFile.import(data);
         final artBoard = file.mainArtboard;
         artBoard.addController(

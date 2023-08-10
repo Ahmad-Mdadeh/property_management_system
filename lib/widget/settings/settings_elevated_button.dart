@@ -42,12 +42,12 @@ class SettingsButton extends StatelessWidget {
               text: text,
               color: Colors.white,
               fontWeight: FontWeight.normal,
-              fontSize: 13.0,
+              fontSize: 10.8,
             ),
             const SizedBox(
-              width: 4,
+              width: 5,
             ),
-             Icon(
+            Icon(
               Icons.edit_note_outlined,
               color: ColorManager.white,
             ),

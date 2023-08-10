@@ -81,7 +81,7 @@ class FiltersScreen extends StatelessWidget {
             children: [
               Obx(
                 () => Padding(
-                  padding: const EdgeInsets.fromLTRB(8.0, 25, 8, 15),
+                  padding: const EdgeInsets.fromLTRB(8, 25, 8, 15),
                   child: Center(
                     child: Container(
                       width: MediaQuery.of(context).size.width / 1.1,
@@ -171,7 +171,7 @@ class FiltersScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(20, 10, 0, 25),
+                padding: const EdgeInsets.fromLTRB(20, 10, 20, 25),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -214,7 +214,7 @@ class FiltersScreen extends StatelessWidget {
                                   width: 5.0,
                                 ),
                                 TextUtils(
-                                  text: 'house'.tr,
+                                  text: 'House'.tr,
                                   color: filterController.isSelectedHouse.value
                                       ? ColorManager.darkPrimary
                                       : ColorManager.white,
@@ -265,7 +265,7 @@ class FiltersScreen extends StatelessWidget {
                                   width: 5.0,
                                 ),
                                 TextUtils(
-                                  text: 'office'.tr,
+                                  text: 'Office'.tr,
                                   color:
                                       filterController.isSelectedWareHouse.value
                                           ? ColorManager.darkPrimary
@@ -316,7 +316,7 @@ class FiltersScreen extends StatelessWidget {
                                   width: 5.0,
                                 ),
                                 TextUtils(
-                                  text: 'villa'.tr,
+                                  text: 'Villa'.tr,
                                   color: filterController.isSelectedVilla.value
                                       ? ColorManager.darkPrimary
                                       : ColorManager.white,
@@ -366,7 +366,7 @@ class FiltersScreen extends StatelessWidget {
                                   width: 5.0,
                                 ),
                                 TextUtils(
-                                  text: 'lands'.tr,
+                                  text: 'Lands'.tr,
                                   color: filterController.isSelectedLand.value
                                       ? ColorManager.darkPrimary
                                       : ColorManager.white,

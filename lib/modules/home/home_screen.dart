@@ -46,13 +46,12 @@ class HomeScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(
             top: 8,
-            left: 8,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+                padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
                 child: Row(
                   children: [
                     Expanded(
@@ -126,7 +125,8 @@ class HomeScreen extends StatelessWidget {
               ),
               CarouselSlider(
                 options: CarouselOptions(
-                  height: MediaQuery.of(context).size.height / 5.5,
+                  // scrollDirection: ,
+                  height: MediaQuery.of(context).size.height / 5.4,
                   autoPlay: true,
                   enableInfiniteScroll: true,
                   viewportFraction: 1,

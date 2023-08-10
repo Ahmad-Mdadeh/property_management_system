@@ -1,24 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:property_management_system/modules/settings/settings_controller.dart';
 import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
 import 'package:property_management_system/resources/values_manager.dart';
 
-class SittingsList extends StatelessWidget {
-  String _selectedLang = 'en';
-
+class SittingsList extends StatefulWidget {
   SittingsList({super.key});
+
+  @override
+  State<SittingsList> createState() => _SittingsListState();
+}
+
+class _SittingsListState extends State<SittingsList> {
+  SettingController sittingController = SettingController();
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       enableFeedback: false,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Padding(
-            padding: const EdgeInsets.only(
-              left: AppPadding.p20,
-              right: AppPadding.p20,
+            padding: EdgeInsets.only(
+              left: MediaQuery.of(context).size.width / 25,
+              right: MediaQuery.of(context).size.width / 25,
             ),
             child: Container(
               width: 40,
@@ -36,53 +43,51 @@ class SittingsList extends StatelessWidget {
             text: 'language'.tr,
             color: Theme.of(context).textTheme.bodyMedium!.color,
             fontWeight: FontWeightManager.medium,
-            fontSize: FontSize.s15,
+            fontSize: FontSize.s14,
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: AppPadding.p103,
-            ),
-            child: DropdownButton(
-              items: const [
-                DropdownMenuItem(
-                  child: Text('en'),
-                  value: 'en',
+          SizedBox(
+            width: MediaQuery.of(context).size.width / 4,
+          ),
+          DropdownButton(
+            // dropdownColor: ,
+            items: const [
+              DropdownMenuItem(
+                value: 'en',
+                child: Text(
+                  'English',
+                  style: TextStyle(fontFamily: 'Outfit'),
                 ),
-                DropdownMenuItem(
-                  child: Text('ar'),
-                  value: 'ar',
+              ),
+              DropdownMenuItem(
+                value: 'ar',
+                child: Text(
+                  'العربية',
+                  style: TextStyle(fontFamily: 'Outfit'),
                 ),
-                DropdownMenuItem(
-                  child: Text('fr'),
-                  value: 'fr',
+              ),
+              DropdownMenuItem(
+                value: 'fr',
+                child: Text(
+                  'Français',
+                  style: TextStyle(fontFamily: 'Outfit'),
                 ),
-              ],
-              value: _selectedLang,
-              onChanged: (value) {
-                Get.updateLocale(
-                  Locale(value!),
-                );
-                // _selectedLang = Locale(value!) as String;
-              },
-
-              // child: Container(
-              //   width: 33,
-              //   height: 33,
-              //   decoration: BoxDecoration(
-              //     border: Border.all(
-              //       color: Theme.of(context).colorScheme.primaryContainer,
-              //       width: 1.5,
-              //     ),
-              //     borderRadius: BorderRadius.circular(
-              //       7.0,
-              //     ),
-              //   ),
-              //   child: Icon(
-              //     Icons.arrow_forward_ios_outlined,
-              //     color: Theme.of(context).colorScheme.onPrimaryContainer,
-              //   ),
-              // ),
-            ),
+              ),
+            ],
+            value: sittingController.selectedLang,
+            onChanged: (value) {
+              setState(() {
+                if (value == 'ar') {
+                  sittingController.isArabic.value = true;
+                  sittingController.selectedL.value = value!;
+                } else {
+                  sittingController.isArabic.value = false;
+                }
+                sittingController.selectedLang = value!;
+              });
+              Get.updateLocale(
+                Locale(value!),
+              );
+            },
           ),
         ],
       ),

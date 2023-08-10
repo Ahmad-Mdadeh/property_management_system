@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:property_management_system/modules/base/base_controller.dart';
 import 'package:property_management_system/modules/settings/settings_controller.dart';
 import 'package:property_management_system/resources/font_manager.dart';
@@ -97,7 +98,7 @@ class CustomAnimatedBottomBar extends StatelessWidget {
                           0XFF2DC8C8,
                         ),
                         fontWeight: FontWeightManager.regular,
-                        fontSize: FontSize.s12,
+                        fontSize: 9,
                       ),
                     ),
                   ),

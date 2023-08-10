@@ -20,10 +20,10 @@ class RiveAssets {
 }
 
 List<String> nameIcon = [
-  "home".tr,
-  "favorites".tr,
-  "properties".tr,
-  "profile".tr,
+  "home",
+  "favorites",
+  "properties",
+  "profile",
 ];
 
 List<RiveAssets> bottomNav = [

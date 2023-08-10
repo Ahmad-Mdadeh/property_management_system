@@ -144,7 +144,7 @@ class SettingScreen extends StatelessWidget {
                       ),
                     ),
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         TextUtils(
                           text: "Ahmad Mdadeh",

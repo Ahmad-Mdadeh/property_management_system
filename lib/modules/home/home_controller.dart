@@ -15,10 +15,12 @@ class HomeController extends GetxController
   RxBool isLoadingProperties = false.obs;
 
   List typePropertiesName = [
-    'Villa',
-    'Land',
-    'House',
-    'Gym',
+    'house'.tr,
+    'office'.tr,
+    'villa'.tr,
+    'commercial'.tr,
+    'apartment'.tr,
+    'lands'.tr,
   ];
 
   @override

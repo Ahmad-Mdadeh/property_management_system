@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:rive/rive.dart';
+
 Rx<RiveAssets> select = bottomNav.first.obs;
 
 class RiveAssets {
@@ -19,10 +20,10 @@ class RiveAssets {
 }
 
 List<String> nameIcon = [
-  "HOME",
-  "Favorite",
-  "Properties",
-  "PROFILE",
+  "home".tr,
+  "favorites".tr,
+  "properties".tr,
+  "profile".tr,
 ];
 
 List<RiveAssets> bottomNav = [

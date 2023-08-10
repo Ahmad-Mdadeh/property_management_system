@@ -24,7 +24,7 @@ class CustomAnimatedBottomBar extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primaryContainer,
               )
             : null,
-          color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+        color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(
             8,
@@ -92,7 +92,7 @@ class CustomAnimatedBottomBar extends StatelessWidget {
                     () => Opacity(
                       opacity: bottomNav[index] == select.value ? 1 : 0.35,
                       child: TextUtils(
-                        text: nameIcon[index],
+                        text: nameIcon[index].tr,
                         color: const Color(
                           0XFF2DC8C8,
                         ),

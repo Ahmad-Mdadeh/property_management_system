@@ -58,7 +58,7 @@ class MyPropertiesRentSellButton extends StatelessWidget {
                 child: Center(
                   child: TextUtils(
                     fontFamily: '',
-                    text: "Sell",
+                    text: "sell".tr,
                     color: Theme.of(context).textTheme.bodyLarge!.color,
                     fontWeight: FontWeightManager.semilight,
                     fontSize: FontSize.s20,
@@ -109,7 +109,7 @@ class MyPropertiesRentSellButton extends StatelessWidget {
                 child: Center(
                   child: TextUtils(
                     fontFamily: '',
-                    text: "Rent",
+                    text: "rent".tr,
                     color: Theme.of(context).textTheme.bodyLarge!.color,
                     fontWeight: FontWeightManager.semilight,
                     fontSize: FontSize.s20,

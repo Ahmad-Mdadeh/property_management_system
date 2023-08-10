@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:property_management_system/modules/home/home_controller.dart';
 import 'package:property_management_system/modules/property_detail/property_details_screen.dart';
 import 'package:property_management_system/resources/assets_manager.dart';
@@ -64,10 +65,10 @@ class HomePropertyCard extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: AppSize.s13,
-          left: AppSize.s10,
+          top: 13,
+          left: Localizations.localeOf(context).languageCode == 'en' ? 18 : 160,
           child: buildTag(
-            text: 'Featured',
+            text: 'featured'.tr,
             width: 65,
             height: 27,
             fontSize: 10,

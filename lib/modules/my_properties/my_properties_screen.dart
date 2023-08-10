@@ -20,8 +20,8 @@ class MyPropertiesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const TextUtils(
-          text: "My Properties",
+        title: TextUtils(
+          text: "my_property".tr,
           fontWeight: FontWeightManager.regular,
           fontSize: FontSize.s20,
         ),

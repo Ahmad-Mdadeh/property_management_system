@@ -9,7 +9,7 @@ class BaseController extends GetxController {
   final RxInt selectedIndex = 0.obs;
 
   List<Widget> namePages = [
-     HomeScreen(),
+    HomeScreen(),
     const Chat(),
     MyPropertiesScreen(),
     SettingScreen(),

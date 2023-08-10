@@ -75,8 +75,8 @@ class SettingScreen extends StatelessWidget {
             ),
           ),
         ],
-        title: const TextUtils(
-          text: "My Profile",
+        title: TextUtils(
+          text: 'my_profile'.tr,
           fontWeight: FontWeightManager.regular,
           fontSize: FontSize.s20,
         ),
@@ -167,7 +167,7 @@ class SettingScreen extends StatelessWidget {
                         SettingsButton(
                           borderRadius: 6,
                           color: Theme.of(context).iconTheme.color,
-                          text: "Edit Profile",
+                          text: 'edit_profile'.tr,
                           width: MediaQuery.of(context).size.width * 0.4,
                           height: MediaQuery.of(context).size.width * 0.074,
                           function: () {
@@ -248,10 +248,10 @@ class SettingScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      itemCount: 13,
+                      itemCount: 1,
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) => const SittingsList(),
+                      itemBuilder: (context, index) => SittingsList(),
                     ),
                     Divider(
                       color: ColorManager.grey1,

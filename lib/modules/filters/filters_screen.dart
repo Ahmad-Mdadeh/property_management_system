@@ -35,7 +35,7 @@ class FiltersScreen extends StatelessWidget {
             color: ColorManager.white,
             fontSize: 20,
             fontWeight: FontWeight.normal,
-            text: 'Filter',
+            text: 'filter'.tr,
           ),
           actions: [
             ElevatedButton(
@@ -56,7 +56,7 @@ class FiltersScreen extends StatelessWidget {
                 ),
               ),
               child: TextUtils(
-                text: 'Clear Filter',
+                text: 'clear_filter'.tr,
                 color: ColorManager.white,
                 fontWeight: FontWeightManager.regular,
                 fontSize: FontSize.s16,
@@ -115,7 +115,7 @@ class FiltersScreen extends StatelessWidget {
                               child: Center(
                                 child: TextUtils(
                                   fontFamily: 'Outfit',
-                                  text: "For Sell",
+                                  text: "for_sell".tr,
                                   color: ColorManager.white,
                                   fontWeight: FontWeightManager.regular,
                                   fontSize: FontSize.s18,
@@ -147,7 +147,7 @@ class FiltersScreen extends StatelessWidget {
                               child: Center(
                                 child: TextUtils(
                                   fontFamily: 'Outfit',
-                                  text: "For Rent",
+                                  text: "for_rent".tr,
                                   color: ColorManager.white,
                                   fontWeight: FontWeightManager.regular,
                                   fontSize: FontSize.s18,
@@ -161,10 +161,10 @@ class FiltersScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(20, 10, 25, 0),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 10, 25, 0),
                 child: TextUtils(
-                  text: 'Property Type',
+                  text: 'property_type'.tr,
                   color: Colors.white,
                   fontWeight: FontWeightManager.regular,
                   fontSize: FontSize.s18,
@@ -214,7 +214,7 @@ class FiltersScreen extends StatelessWidget {
                                   width: 5.0,
                                 ),
                                 TextUtils(
-                                  text: 'House',
+                                  text: 'house'.tr,
                                   color: filterController.isSelectedHouse.value
                                       ? ColorManager.darkPrimary
                                       : ColorManager.white,
@@ -265,7 +265,7 @@ class FiltersScreen extends StatelessWidget {
                                   width: 5.0,
                                 ),
                                 TextUtils(
-                                  text: 'WareHouse',
+                                  text: 'office'.tr,
                                   color:
                                       filterController.isSelectedWareHouse.value
                                           ? ColorManager.darkPrimary
@@ -316,7 +316,7 @@ class FiltersScreen extends StatelessWidget {
                                   width: 5.0,
                                 ),
                                 TextUtils(
-                                  text: 'Villa',
+                                  text: 'villa'.tr,
                                   color: filterController.isSelectedVilla.value
                                       ? ColorManager.darkPrimary
                                       : ColorManager.white,
@@ -366,7 +366,7 @@ class FiltersScreen extends StatelessWidget {
                                   width: 5.0,
                                 ),
                                 TextUtils(
-                                  text: 'Land',
+                                  text: 'lands'.tr,
                                   color: filterController.isSelectedLand.value
                                       ? ColorManager.darkPrimary
                                       : ColorManager.white,
@@ -383,10 +383,10 @@ class FiltersScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(20, 10, 25, 0),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 10, 25, 0),
                 child: TextUtils(
-                  text: 'Budget (Price)',
+                  text: 'budget'.tr,
                   color: Colors.white,
                   fontWeight: FontWeightManager.regular,
                   fontSize: FontSize.s18,
@@ -402,7 +402,7 @@ class FiltersScreen extends StatelessWidget {
                       child: TextField(
                         cursorColor: ColorManager.primary,
                         decoration: InputDecoration(
-                          labelText: 'Min',
+                          labelText: 'min'.tr,
                           labelStyle: TextStyle(
                               color: ColorManager.primary,
                               fontFamily: 'Outfit'),
@@ -440,7 +440,7 @@ class FiltersScreen extends StatelessWidget {
                         keyboardType: TextInputType.number,
                         cursorColor: ColorManager.primary,
                         decoration: InputDecoration(
-                          labelText: 'Max',
+                          labelText: 'max'.tr,
                           labelStyle: TextStyle(
                               color: ColorManager.primary,
                               fontFamily: 'Outfit'),
@@ -472,10 +472,10 @@ class FiltersScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(20, 10, 25, 0),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 10, 25, 0),
                 child: TextUtils(
-                  text: 'Area ',
+                  text: 'area'.tr,
                   color: Colors.white,
                   fontWeight: FontWeightManager.regular,
                   fontSize: FontSize.s18,
@@ -487,7 +487,7 @@ class FiltersScreen extends StatelessWidget {
                   keyboardType: TextInputType.number,
                   cursorColor: ColorManager.primary,
                   decoration: InputDecoration(
-                    labelText: 'Area',
+                    labelText: 'area'.tr,
                     labelStyle: TextStyle(
                         color: ColorManager.primary, fontFamily: 'Outfit'),
                     suffixText: 'M',
@@ -535,7 +535,7 @@ class FiltersScreen extends StatelessWidget {
                 ),
               ),
               child: TextUtils(
-                text: 'Apply Filter',
+                text: 'apply_filter'.tr,
                 color: ColorManager.darkPrimary,
                 fontWeight: FontWeightManager.light,
                 fontSize: FontSize.s16,

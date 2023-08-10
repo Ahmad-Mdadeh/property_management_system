@@ -35,8 +35,8 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-        title: const TextUtils(
-          text: "HOME",
+        title: TextUtils(
+          text: 'home'.tr,
           fontWeight: FontWeightManager.regular,
           fontSize: FontSize.s20,
         ),
@@ -80,7 +80,7 @@ class HomeScreen extends StatelessWidget {
                                   Theme.of(context).textTheme.bodyMedium!.color,
                               fontFamily: 'Outfit',
                             ),
-                            hintText: 'Search',
+                            hintText: 'search'.tr,
                             border: InputBorder.none,
                             prefixIcon: Icon(
                               Icons.search,
@@ -208,7 +208,7 @@ class HomeScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       TextUtils(
-                        text: 'Featured Properties',
+                        text: 'featured_properties'.tr,
                         color: Theme.of(context).textTheme.bodyMedium!.color,
                         fontWeight: FontWeightManager.regular,
                         fontSize: FontSize.s18,
@@ -216,7 +216,7 @@ class HomeScreen extends StatelessWidget {
                       GestureDetector(
                         onTap: () {},
                         child: TextUtils(
-                          text: 'See All',
+                          text: 'see_all'.tr,
                           color: ColorManager.lightGrey,
                           fontWeight: FontWeightManager.light,
                           fontSize: FontSize.s12,
@@ -263,7 +263,7 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextUtils(
-                      text: 'Most Viewed',
+                      text: 'most_viewed'.tr,
                       color: Theme.of(context).textTheme.bodyMedium!.color,
                       fontWeight: FontWeightManager.regular,
                       fontSize: FontSize.s16,
@@ -271,7 +271,7 @@ class HomeScreen extends StatelessWidget {
                     GestureDetector(
                       onTap: () {},
                       child: TextUtils(
-                        text: 'See All',
+                        text: 'see_all'.tr,
                         color: ColorManager.lightGrey,
                         fontWeight: FontWeightManager.light,
                         fontSize: FontSize.s12,
@@ -280,42 +280,38 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 1.99,
-                child: GridView.count(
-                  childAspectRatio: 0.58,
-                  shrinkWrap: false,
-                  primary: false,
-                  crossAxisCount: 2,
-                  children: List.generate(
-                    9,
-                    (index) => Obx(
-                      () => _homeController.isLoadingProperties.value
-                          ? MostViewedPropertyCard(index: index)
-                          : Container(
-                              margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                              width: MediaQuery.of(context).size.width / 2.2,
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                    10.0,
-                                  ),
+              GridView.count(
+                childAspectRatio: 0.58,
+                shrinkWrap: true,
+                primary: false,
+                crossAxisCount: 2,
+                children: List.generate(
+                  9,
+                  (index) => Obx(
+                    () => _homeController.isLoadingProperties.value
+                        ? MostViewedPropertyCard(index: index)
+                        : Container(
+                            margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                            width: MediaQuery.of(context).size.width / 2.2,
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                  10.0,
                                 ),
-                                color: Theme.of(context)
-                                    .appBarTheme
-                                    .backgroundColor,
                               ),
+                              color:
+                                  Theme.of(context).appBarTheme.backgroundColor,
+                            ),
+                          )
+                            .animate(
+                              onPlay: (controller) => controller.repeat(),
                             )
-                              .animate(
-                                onPlay: (controller) => controller.repeat(),
-                              )
-                              .shimmer(
-                                color: settingController.isLightMode.value
-                                    ? ColorManager.grey2.withOpacity(0.3)
-                                    : ColorManager.ofWhite.withOpacity(0.2),
-                                duration: 450.ms,
-                              ),
-                    ),
+                            .shimmer(
+                              color: settingController.isLightMode.value
+                                  ? ColorManager.grey2.withOpacity(0.3)
+                                  : ColorManager.ofWhite.withOpacity(0.2),
+                              duration: 450.ms,
+                            ),
                   ),
                 ),
               ),

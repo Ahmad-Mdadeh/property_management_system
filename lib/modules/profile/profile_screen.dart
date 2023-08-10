@@ -28,8 +28,8 @@ class ProfileScreen extends StatelessWidget {
               color: ColorManager.primary,
             ),
           ),
-          title: const TextUtils(
-            text: "Edite My Profile",
+          title: TextUtils(
+            text: "edit_profile".tr,
             fontWeight: FontWeightManager.semiBold,
             fontSize: FontSize.s18,
             // color: Theme.of(context).appBarTheme.titleTextStyle!.color,
@@ -56,8 +56,8 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const TextUtils(
-                      text: "Full Name",
+                    TextUtils(
+                      text: 'full_name'.tr,
                       fontWeight: FontWeightManager.light,
                       fontSize: FontSize.s16,
                     ),
@@ -74,8 +74,8 @@ class ProfileScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10.0,
                     ),
-                    const TextUtils(
-                      text: "Email",
+                    TextUtils(
+                      text: 'email'.tr,
                       fontWeight: FontWeightManager.light,
                       fontSize: FontSize.s16,
                     ),
@@ -92,8 +92,8 @@ class ProfileScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10.0,
                     ),
-                    const TextUtils(
-                      text: "Phone Number",
+                    TextUtils(
+                      text: 'phone_number'.tr,
                       fontWeight: FontWeightManager.light,
                       fontSize: FontSize.s16,
                     ),
@@ -110,8 +110,8 @@ class ProfileScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10.0,
                     ),
-                    const TextUtils(
-                      text: "Address",
+                    TextUtils(
+                      text: 'address'.tr,
                       fontWeight: FontWeightManager.light,
                       fontSize: FontSize.s16,
                     ),
@@ -130,7 +130,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     ProfileButton(
                       borderRadius: 16,
-                      text: "Update Profile",
+                      text: 'edit_profile'.tr,
                       height: MediaQuery.of(context).size.height / 17,
                       function: () {},
                     ),

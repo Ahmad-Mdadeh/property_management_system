@@ -41,5 +41,6 @@ class HomeController extends GetxController
     allProperties = await _homeService.getProperties(User.token);
     isLoadingProperties.value = true;
   }
+
   RxBool isArabic = false.obs;
 }

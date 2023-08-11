@@ -104,8 +104,8 @@ class MyPropertiesCard extends StatelessWidget {
                     ),
                     TextUtils(
                       text: _myPropertiesController.isSelectedRent.value
-                          ? _myPropertiesController.postRent[index].postType
-                          : _myPropertiesController.postSale[index].postType,
+                          ? _myPropertiesController.postRent[index].posttype!
+                          : _myPropertiesController.postSale[index].posttype!,
                       color: Theme.of(context).textTheme.bodySmall!.color,
                       fontWeight: FontWeightManager.semilight,
                       fontSize: FontSize.s12,

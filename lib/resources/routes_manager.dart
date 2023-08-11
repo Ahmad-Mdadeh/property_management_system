@@ -6,7 +6,6 @@ import 'package:property_management_system/modules/base/base_screen.dart';
 import 'package:property_management_system/modules/filters/filters_screen.dart';
 import 'package:property_management_system/modules/home/home_screen.dart';
 import 'package:property_management_system/modules/login/login_screen.dart';
-import 'package:property_management_system/modules/properties_type/properties_type_screen.dart';
 import 'package:property_management_system/modules/register/register_screen.dart';
 import 'package:property_management_system/modules/onBoarding/on_boarding_screen.dart';
 import 'package:property_management_system/modules/splash/splash_screen.dart';
@@ -39,7 +38,6 @@ class AppRoutes {
     GetPage(name: Routes.baseScreen, page: () => BaseScreen()),
     GetPage(name: Routes.home, page: () =>  HomeScreen()),
     GetPage(name: Routes.filters, page: () => FiltersScreen()),
-    GetPage(name: Routes.propertyTypes, page: () =>  PropertyTypesScreen())
   ];
 }
 

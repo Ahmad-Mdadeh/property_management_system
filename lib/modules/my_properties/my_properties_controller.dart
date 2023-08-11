@@ -8,9 +8,9 @@ class MyPropertiesController extends GetxController {
   RxBool isSelectedRent = true.obs;
   RxBool isSelected = false.obs;
   RxBool isLoading = false.obs;
-  late List<List<Post>> post;
-  late List<Post> postRent;
-  late List<Post> postSale;
+  late List post;
+  late List<RentPost> postRent;
+  late List<SalePost> postSale;
   String postType = "";
 
 

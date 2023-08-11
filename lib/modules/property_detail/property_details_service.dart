@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class PropertiesDetailsService {
   Future getPropertiesDetails(String token, int id, String postType) async {
     var url = Uri.parse(
-        "${ServerSet.domainNameServer}${ServerSet.showPropertiesDetailsEndPoints}/$id?posttype=$postType");
+        "${ServerSet.domainNameServer}${ServerSet.showPropertiesEndPoints}/$id?posttype=$postType");
 
       var response = await http.get(
         url,

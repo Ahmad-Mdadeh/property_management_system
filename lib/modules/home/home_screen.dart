@@ -289,7 +289,9 @@ class HomeScreen extends StatelessWidget {
                   9,
                   (index) => Obx(
                     () => _homeController.isLoadingProperties.value
-                        ? MostViewedPropertyCard(index: index)
+                        ? MostViewedPropertyCard(
+                            index: index,
+                          )
                         : Container(
                             margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                             width: MediaQuery.of(context).size.width / 2.2,

@@ -24,22 +24,18 @@ class PropertyCard extends StatelessWidget {
       ),
       child: Stack(
         children: <Widget>[
-          SizedBox(
-            width: double.infinity,
-            height: AppSize.s225,
-            child: ClipRRect(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(10),
-              ),
-              child: Image.asset(
-                ImagesAssets.building,
-                fit: BoxFit.cover,
-              ),
+          ClipRRect(
+            borderRadius: const BorderRadius.all(
+              Radius.circular(10),
+            ),
+            child: Image.asset(
+              ImagesAssets.building,
+              fit: BoxFit.cover,
             ),
           ),
           Positioned(
-            top: AppSize.s18,
-            left: AppSize.s18,
+            top: AppSize.s14,
+            left: AppSize.s14,
             child: buildTag(
               text: 'Featured',
               color: Theme.of(context).iconTheme.color!,
@@ -49,8 +45,8 @@ class PropertyCard extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: AppSize.s18,
-            right: AppSize.s18,
+            top: AppSize.s14,
+            right: AppSize.s14,
             child: InkWell(
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
@@ -95,8 +91,8 @@ class PropertyCard extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: AppSize.s18,
-            right: AppSize.s18,
+            bottom: AppSize.s14,
+            right: AppSize.s14,
             child: circularButton(
               colorIcon: Theme.of(context).iconTheme.color!,
               color: Theme.of(context).appBarTheme.backgroundColor!,

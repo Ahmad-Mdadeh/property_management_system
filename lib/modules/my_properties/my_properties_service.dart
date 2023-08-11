@@ -3,10 +3,10 @@ import 'package:property_management_system/resources/server_manager.dart';
 import 'package:http/http.dart' as http;
 
 class MyPropertiesService {
-  List<Post>? _salePosts;
-  List<Post>? _rentPosts;
+  List<SalePost>? _salePosts;
+  List<RentPost>? _rentPosts;
 
-  Future<List<List<Post>>> getMyProperties(String token) async {
+  Future getMyProperties(String token) async {
     var url = Uri.parse(
       ServerSet.domainNameServer + ServerSet.showMyPropertiesEndPoints,
     );

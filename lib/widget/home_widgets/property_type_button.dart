@@ -28,7 +28,7 @@ class TabBarPropertyButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.035,
-      width: MediaQuery.of(context).size.width * 0.3,
+      width: MediaQuery.of(context).size.width * 0.35,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

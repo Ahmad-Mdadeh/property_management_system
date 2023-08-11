@@ -18,8 +18,8 @@ class PropertiesDetails {
   int? visibility;
   DateTime? createdAt;
   DateTime? updatedAt;
+  String? posttype;
   Property? property;
-  String? postType;
 
   PropertiesDetails({
     this.id,
@@ -31,8 +31,8 @@ class PropertiesDetails {
     this.visibility,
     this.createdAt,
     this.updatedAt,
+    this.posttype,
     this.property,
-    this.postType,
   });
 
   factory PropertiesDetails.fromJson(Map<String, dynamic> json) => PropertiesDetails(
@@ -45,8 +45,8 @@ class PropertiesDetails {
     visibility: json["visibility"],
     createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
     updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
+    posttype: json["posttype"],
     property: json["property"] == null ? null : Property.fromJson(json["property"]),
-    postType: json["post_type"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -59,8 +59,8 @@ class PropertiesDetails {
     "visibility": visibility,
     "created_at": createdAt?.toIso8601String(),
     "updated_at": updatedAt?.toIso8601String(),
+    "posttype": posttype,
     "property": property?.toJson(),
-    "post_type": postType,
   };
 }
 
@@ -76,9 +76,9 @@ class Property {
   String? about;
   dynamic the360View;
   int? area;
+  String? categoryType;
   int? categoryId;
   int? imageCount;
-  String? category;
   int? roomCount;
   int? bathroomCount;
   int? kitchenCount;
@@ -102,9 +102,9 @@ class Property {
     this.about,
     this.the360View,
     this.area,
+    this.categoryType,
     this.categoryId,
     this.imageCount,
-    this.category,
     this.roomCount,
     this.bathroomCount,
     this.kitchenCount,
@@ -129,9 +129,9 @@ class Property {
     about: json["about"],
     the360View: json["360_view"],
     area: json["area"],
+    categoryType: json["category_type"],
     categoryId: json["category_id"],
     imageCount: json["image_count"],
-    category: json["category"],
     roomCount: json["room_count"],
     bathroomCount: json["bathroom_count"],
     kitchenCount: json["kitchen_count"],
@@ -156,9 +156,9 @@ class Property {
     "about": about,
     "360_view": the360View,
     "area": area,
+    "category_type": categoryType,
     "category_id": categoryId,
     "image_count": imageCount,
-    "category": category,
     "room_count": roomCount,
     "bathroom_count": bathroomCount,
     "kitchen_count": kitchenCount,

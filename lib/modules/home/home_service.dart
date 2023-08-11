@@ -17,12 +17,12 @@ class HomeService {
           'Authorization': 'Bearer $token',
         },
       );
-      print(response.body);
       if (response.statusCode == 200) {
         List<AllProperties> properties = allPropertiesFromJson(response.body);
         return properties;
       }
     } catch (e) {
+      return [];
       Get.snackbar("Error !", e.toString());
     }
   }

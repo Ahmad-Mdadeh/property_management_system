@@ -8,26 +8,17 @@ import 'package:property_management_system/resources/text_manager.dart';
 import 'package:property_management_system/resources/values_manager.dart';
 import 'package:property_management_system/widget/property_details/text_tag.dart';
 
-import '../../modules/settings/settings_controller.dart';
-
 class HomePropertyCard extends StatelessWidget {
   final int index;
 
-  HomePropertyCard({super.key, required this.index});
+  HomePropertyCard({required this.index, super.key});
 
   final HomeController _homeController = Get.put(HomeController());
-
-  SettingController sittingController = SettingController();
-
   final RxBool isHighlighted = true.obs;
-
   final RxBool isFavorite = false.obs;
 
-  // bool isArabicLocale(Locale locale) {
   @override
   Widget build(BuildContext context) {
-    // bool isArabic = isArabicLocale(currentLocale);
-
     return Stack(
       children: [
         InkWell(
@@ -35,9 +26,9 @@ class HomePropertyCard extends StatelessWidget {
             Get.to(
               arguments: [
                 _homeController.allProperties[index].id,
-                _homeController.allProperties[index].postType
+                _homeController.allProperties[index].posttype
               ],
-              () => PropertyDetailsScreen(
+                  () => PropertyDetailsScreen(
                 contextPropertyDetailsScreen: context,
               ),
             );
@@ -74,7 +65,7 @@ class HomePropertyCard extends StatelessWidget {
         ),
         Positioned(
           top: 13,
-          left: 18,
+          left: Localizations.localeOf(context).languageCode == 'en' ? 18 : 160,
           child: buildTag(
             text: 'featured'.tr,
             width: 65,
@@ -85,9 +76,7 @@ class HomePropertyCard extends StatelessWidget {
         ),
         Positioned(
           top: MediaQuery.of(context).size.height / 5.5,
-          right: sittingController.isArabic.value
-              ? MediaQuery.of(context).size.width * 0.52
-              : MediaQuery.of(context).size.width / 20,
+          right: MediaQuery.of(context).size.width / 20,
           child: InkWell(
             highlightColor: Colors.transparent,
             splashColor: Colors.transparent,
@@ -98,7 +87,7 @@ class HomePropertyCard extends StatelessWidget {
               isFavorite(!(isFavorite.value));
             },
             child: Obx(
-              () {
+                  () {
                 return AnimatedContainer(
                   margin: EdgeInsets.all(isHighlighted.value ? 0 : 3),
                   height: isHighlighted.value ? 35 : 23,
@@ -129,97 +118,76 @@ class HomePropertyCard extends StatelessWidget {
             ),
           ),
         ),
-        Directionality(
-          textDirection: TextDirection.ltr,
-          child: Positioned(
-            top: MediaQuery.of(context).size.height / 4.6,
-            left: MediaQuery.of(context).size.width / 25,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Icon(
-                      Icons.house_outlined,
-                      color: Theme.of(context).iconTheme.color,
-                      size: AppSize.s18,
-                    ),
-                    Text(
-                      '${_homeController.allProperties[index].property.category}'
-                          .replaceAll(
-                            "Category.",
-                            '',
-                          )
-                          .tr,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      style: TextStyle(
-                        color: Theme.of(context).textTheme.bodySmall!.color,
-                        fontWeight: FontWeightManager.semilight,
-                        fontSize: FontSize.s12,
-                      ),
-                    )
-                    // TextUtils(
-                    //   text:
-                    //       '${_homeController.allProperties[index].property.category}'
-                    //           .replaceAll(
-                    //             "Category.",
-                    //             '',
-                    //           )
-                    //           .tr,
-                    //   color: Theme.of(context).textTheme.bodySmall!.color,
-                    //   fontWeight: FontWeightManager.semilight,
-                    //   fontSize: FontSize.s12,
-                    // )
-                  ],
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 80,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 3),
-                  child: TextUtils(
-                    text:
-                        '\$${_homeController.allProperties[index].monthlyRent}',
+        Positioned(
+          top: MediaQuery.of(context).size.height / 4.6,
+          left: MediaQuery.of(context).size.width / 25,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(
+                    Icons.house_outlined,
                     color: Theme.of(context).iconTheme.color,
-                    fontWeight: FontWeightManager.regular,
-                    fontSize: FontSize.s18,
+                    size: AppSize.s18,
                   ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 140,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 3),
-                  child: TextUtils(
-                    text: _homeController.allProperties[index].property.name,
-                    color: Theme.of(context).textTheme.bodyMedium!.color,
-                    fontWeight: FontWeightManager.regular,
-                    fontSize: FontSize.s14,
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 150,
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.not_listed_location_outlined,
-                      color: Theme.of(context).textTheme.bodySmall!.color,
-                      size: 18,
+                  TextUtils(
+                    text:
+                    '${_homeController.allProperties[index].property!.category}'
+                        .replaceAll(
+                      "Category.",
+                      '',
                     ),
-                    TextUtils(
-                      maxLines: 1,
-                      text:
-                          _homeController.allProperties[index].property.address,
-                      color: Theme.of(context).textTheme.bodySmall!.color,
-                      fontWeight: FontWeightManager.semilight,
-                      fontSize: FontSize.s12,
-                    )
-                  ],
+                    color: Theme.of(context).textTheme.bodySmall!.color,
+                    fontWeight: FontWeightManager.semilight,
+                    fontSize: FontSize.s12,
+                  )
+                ],
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 80,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 3),
+                child: TextUtils(
+                  text: '\$${_homeController.allProperties[index].monthlyRent}',
+                  color: Theme.of(context).iconTheme.color,
+                  fontWeight: FontWeightManager.regular,
+                  fontSize: FontSize.s18,
                 ),
-              ],
-            ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 140,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 3),
+                child: TextUtils(
+                  text: _homeController.allProperties[index].property!.name!,
+                  color: Theme.of(context).textTheme.bodyMedium!.color,
+                  fontWeight: FontWeightManager.regular,
+                  fontSize: FontSize.s14,
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 150,
+              ),
+              Row(
+                children: [
+                  Icon(
+                    Icons.not_listed_location_outlined,
+                    color: Theme.of(context).textTheme.bodySmall!.color,
+                    size: 18,
+                  ),
+                  TextUtils(
+                    maxLines: 1,
+                    text: _homeController.allProperties[index].property!.address!,
+                    color: Theme.of(context).textTheme.bodySmall!.color,
+                    fontWeight: FontWeightManager.semilight,
+                    fontSize: FontSize.s12,
+                  )
+                ],
+              ),
+            ],
           ),
         )
       ],

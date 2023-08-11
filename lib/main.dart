@@ -33,9 +33,9 @@ class MyApp extends StatelessWidget {
     return ThemeProvider(
       initTheme: themeData,
       child: GetMaterialApp(
-        locale: Locale('en'),
+        locale: const Locale('en'),
         translations: Languages(),
-        fallbackLocale: Locale('en'),
+        fallbackLocale: const Locale('en'),
         debugShowCheckedModeBanner: false,
         initialRoute: AppRoutes.baseScreen,
         getPages: AppRoutes.getPages,

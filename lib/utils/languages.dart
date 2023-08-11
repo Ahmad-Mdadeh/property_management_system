@@ -43,7 +43,8 @@ class Languages extends Translations {
           'max': 'Max',
           'area': 'Area',
           'apply_filter': 'Apply Filter',
-          'featured': 'Featured'
+          'featured': 'Featured ',
+          'About this property :': 'About this property :'
         },
         'ar': {
           'hello': 'مرحبًا',
@@ -65,7 +66,7 @@ class Languages extends Translations {
           'Villa': 'فيلا',
           'Commercial': 'تجاري',
           'Apartment': 'شقة',
-          'Lands': 'أراضي',
+          'Lands': 'أرض',
           'favorites': 'المفضلة',
           'properties': 'العقارات',
           'profile': 'الملف الشخصي',
@@ -85,7 +86,8 @@ class Languages extends Translations {
           'max': 'الحد الأعلى',
           'area': 'المساحة',
           'apply_filter': 'تطبيق الفلتر',
-          'featured': 'مميز'
+          'featured': 'مميز',
+          'About this property :': ' :عن العقار'
         },
         'fr': {
           'hello': 'Bonjour',
@@ -121,13 +123,14 @@ class Languages extends Translations {
           'for_sell': 'À vendre',
           'for_rent': 'À louer',
           'clear_filter': 'Effacer le filtre',
-          'property_type': 'Type de bien',
+          'property_type': 'Type de propriété',
           'budget': 'Budget',
           'min': 'Min',
           'max': 'Max',
           'area': 'Surface',
           'apply_filter': 'Appliquer le filtre',
-          'featured': 'Vedette'
+          'featured': 'Vedette',
+          'About this property :': 'À propos de cette propriété :'
         },
       };
 }

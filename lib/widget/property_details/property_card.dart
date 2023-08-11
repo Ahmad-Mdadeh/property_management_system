@@ -37,7 +37,7 @@ class PropertyCard extends StatelessWidget {
             top: AppSize.s14,
             left: AppSize.s14,
             child: buildTag(
-              text: 'Featured',
+              text: 'featured'.tr,
               color: Theme.of(context).iconTheme.color!,
               width: AppSize.s80,
               height: 31,

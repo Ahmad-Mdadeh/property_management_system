@@ -122,7 +122,8 @@ class PropertyDetailsScreen extends StatelessWidget {
                                           text: _propertyDetailsController
                                               .propertyDetails
                                               .property!
-                                              .categoryType!,
+                                              .categoryType!
+                                              .tr,
                                           color: Theme.of(
                                                   contextPropertyDetailsScreen)
                                               .textTheme
@@ -157,6 +158,7 @@ class PropertyDetailsScreen extends StatelessWidget {
                                       child: TextUtils(
                                         text: (_propertyDetailsController
                                                 .propertyDetails.posttype!)
+                                            .tr
                                             .toUpperCase(),
                                         color: Theme.of(
                                                 contextPropertyDetailsScreen)
@@ -193,15 +195,36 @@ class PropertyDetailsScreen extends StatelessWidget {
                                         const SizedBox(
                                           height: AppSize.s16,
                                         ),
-                                        TextUtils(
-                                          text:
-                                              '\$ ${_propertyDetailsController.propertyDetails.monthlyRent}',
-                                          color: Theme.of(
-                                                  contextPropertyDetailsScreen)
-                                              .iconTheme
-                                              .color,
-                                          fontWeight: FontWeightManager.regular,
-                                          fontSize: FontSize.s22,
+                                        Row(
+                                          children: [
+                                            TextUtils(
+                                              text:
+                                                  '\$ ${_propertyDetailsController.propertyDetails.monthlyRent}',
+                                              color: Theme.of(
+                                                      contextPropertyDetailsScreen)
+                                                  .iconTheme
+                                                  .color,
+                                              fontWeight:
+                                                  FontWeightManager.regular,
+                                              fontSize: FontSize.s22,
+                                            ),
+                                            SizedBox(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  8,
+                                            ),
+                                            // TextUtils(
+                                            //   text: 'per month',
+                                            //   color: Theme.of(
+                                            //           contextPropertyDetailsScreen)
+                                            //       .iconTheme
+                                            //       .color,
+                                            //   fontWeight:
+                                            //       FontWeightManager.regular,
+                                            //   fontSize: FontSize.s22,
+                                            // ),
+                                          ],
                                         )
                                       ],
                                     ),

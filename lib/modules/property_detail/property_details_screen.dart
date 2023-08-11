@@ -390,48 +390,48 @@ class PropertyDetailsScreen extends StatelessWidget {
                             ),
                           ),
                           child: Stack(
-                            children: const [
+                            children:  [
                               SizedBox(
                                 width: double.infinity,
                                 height: AppSize.s275,
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.all(
+                                  borderRadius: const BorderRadius.all(
                                     Radius.circular(
                                       10.0,
                                     ),
                                   ),
-                                  // child: Obx(
-                                  //   () => GoogleMap(
-                                  //     buildingsEnabled: false,
-                                  //     compassEnabled: true,
-                                  //     myLocationEnabled: true,
-                                  //     scrollGesturesEnabled: true,
-                                  //     myLocationButtonEnabled: true,
-                                  //     trafficEnabled: true,
-                                  //     onTap: (argument) {
-                                  //       Get.to(
-                                  //         () => MapScreen(
-                                  //           contextMapScreen:
-                                  //               contextPropertyDetailsScreen,
-                                  //         ),
-                                  //       );
-                                  //     },
-                                  //     onMapCreated:
-                                  //         _propertyDetailsController
-                                  //             .onMapCreated,
-                                  //     markers:
-                                  //         _propertyDetailsController
-                                  //             .markers
-                                  //             .toSet(),
-                                  //     initialCameraPosition:
-                                  //         CameraPosition(
-                                  //       target:
-                                  //           _propertyDetailsController
-                                  //               .initialPosition.value,
-                                  //       zoom: 16.0,
-                                  //     ),
-                                  //   ),
-                                  // ),
+                                  child: Obx(
+                                    () => GoogleMap(
+                                      buildingsEnabled: false,
+                                      compassEnabled: true,
+                                      myLocationEnabled: true,
+                                      scrollGesturesEnabled: true,
+                                      myLocationButtonEnabled: true,
+                                      trafficEnabled: true,
+                                      onTap: (argument) {
+                                        Get.to(
+                                          () => MapScreen(
+                                            contextMapScreen:
+                                                contextPropertyDetailsScreen,
+                                          ),
+                                        );
+                                      },
+                                      onMapCreated:
+                                          _propertyDetailsController
+                                              .onMapCreated,
+                                      markers:
+                                          _propertyDetailsController
+                                              .markers
+                                              .toSet(),
+                                      initialCameraPosition:
+                                          CameraPosition(
+                                        target:
+                                            _propertyDetailsController
+                                                .initialPosition.value,
+                                        zoom: 16.0,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],

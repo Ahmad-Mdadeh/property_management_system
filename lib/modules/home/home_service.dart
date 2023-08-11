@@ -21,9 +21,12 @@ class HomeService {
         List<AllProperties> properties = allPropertiesFromJson(response.body);
         return properties;
       }
+      print("===================================");
+      print(response.body);
     } catch (e) {
-      return [];
       Get.snackbar("Error !", e.toString());
+      return [];
+
     }
   }
 }

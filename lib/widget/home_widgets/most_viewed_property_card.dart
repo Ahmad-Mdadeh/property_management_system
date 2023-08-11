@@ -138,7 +138,7 @@ class MostViewedPropertyCard extends StatelessWidget {
                   ),
                   TextUtils(
                     text:
-                    '${_homeController.allProperties[index].property!.category}'
+                    '${_homeController.allProperties[index].property!.categoryType}'
                         .replaceAll(
                       "Category.",
                       '',
@@ -165,7 +165,7 @@ class MostViewedPropertyCard extends StatelessWidget {
                 height: MediaQuery.of(context).size.height / 110,
               ),
               SizedBox(
-                width: 150,
+                width: 120,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 3),
                   child: TextUtils(
@@ -181,7 +181,7 @@ class MostViewedPropertyCard extends StatelessWidget {
                 height: MediaQuery.of(context).size.height / 155,
               ),
               SizedBox(
-                width: 150,
+                width: 120,
                 child: Row(
                   children: [
                     Icon(

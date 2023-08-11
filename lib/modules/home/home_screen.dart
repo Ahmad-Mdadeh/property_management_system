@@ -115,7 +115,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         onPressed: () {
                           Get.to(
-                            FiltersScreen(),
+                            () => FiltersScreen(),
                           );
                         },
                       ),

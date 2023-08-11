@@ -8,7 +8,7 @@ import 'package:property_management_system/widget/property_details/image_overlay
 class PropertyDetailsController extends GetxController {
   final PropertiesDetailsService _propertiesDetailsService =
       PropertiesDetailsService();
-  Rx<LatLng> initialPosition = const LatLng(33.5138, 36.2765).obs;
+  Rx<LatLng> initialPosition = const LatLng(32.716323, 36.573041).obs;
   Rx<MapType> mapType = MapType.normal.obs;
   RxList<Marker> markers = <Marker>[].obs;
   late PropertiesDetails propertyDetails;
@@ -27,10 +27,10 @@ class PropertyDetailsController extends GetxController {
     markers.assignAll(
       [
         const Marker(
-          markerId: MarkerId('mazzeh_marker'),
-          position: LatLng(33.5138, 36.2765),
+          markerId: MarkerId('maze_marker'),
+          position: LatLng(32.716323, 36.573041),
           infoWindow: InfoWindow(
-            title: 'Mazzeh',
+            title: 'Maze',
             snippet: 'Damascus',
           ),
         ),

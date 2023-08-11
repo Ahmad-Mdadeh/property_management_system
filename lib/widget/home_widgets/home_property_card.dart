@@ -133,7 +133,7 @@ class HomePropertyCard extends StatelessWidget {
                   ),
                   TextUtils(
                     text:
-                    '${_homeController.allProperties[index].property!.category}'
+                    '${_homeController.allProperties[index].property!.categoryType}'
                         .replaceAll(
                       "Category.",
                       '',

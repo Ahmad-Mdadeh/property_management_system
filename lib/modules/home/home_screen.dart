@@ -95,6 +95,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                    SizedBox(width: MediaQuery.of(context).size.width / 35),
                     Container(
                       decoration: BoxDecoration(
                         border: settingController.isLightMode.value
@@ -107,7 +108,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         color: Theme.of(context).appBarTheme.backgroundColor,
                       ),
-                      margin: const EdgeInsets.only(right: 8.0, left: 8.0),
+                      // margin: const EdgeInsets.only(right: 8.0),
                       child: IconButton(
                         icon: Icon(
                           Icons.filter_list,
@@ -115,7 +116,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         onPressed: () {
                           Get.to(
-                            () => FiltersScreen(),
+                            FiltersScreen(),
                           );
                         },
                       ),
@@ -125,8 +126,9 @@ class HomeScreen extends StatelessWidget {
               ),
               CarouselSlider(
                 options: CarouselOptions(
+                  aspectRatio: 16 / 7,
                   // scrollDirection: ,
-                  height: MediaQuery.of(context).size.height / 5.4,
+                  // height: MediaQuery.of(context).size.height / 5.4,
                   autoPlay: true,
                   enableInfiniteScroll: true,
                   viewportFraction: 1,
@@ -146,6 +148,8 @@ class HomeScreen extends StatelessWidget {
                 () => Padding(
                   padding: const EdgeInsets.only(
                     top: AppPadding.p10,
+                    left: 8,
+                    right: 8,
                   ),
                   child: Container(
                     decoration: BoxDecoration(
@@ -280,40 +284,46 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              GridView.count(
-                childAspectRatio: 0.58,
-                shrinkWrap: true,
-                primary: false,
-                crossAxisCount: 2,
-                children: List.generate(
-                  9,
-                  (index) => Obx(
-                    () => _homeController.isLoadingProperties.value
-                        ? MostViewedPropertyCard(
-                            index: index,
-                          )
-                        : Container(
-                            margin: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-                            width: MediaQuery.of(context).size.width / 2.2,
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  10.0,
-                                ),
-                              ),
-                              color:
-                                  Theme.of(context).appBarTheme.backgroundColor,
-                            ),
-                          )
-                            .animate(
-                              onPlay: (controller) => controller.repeat(),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: GridView.count(
+                  crossAxisSpacing: 0,
+                  mainAxisSpacing: 0,
+                  childAspectRatio: 0.58,
+                  shrinkWrap: true,
+                  primary: false,
+                  crossAxisCount: 2,
+                  children: List.generate(
+                    9,
+                    (index) => Obx(
+                      () => _homeController.isLoadingProperties.value
+                          ? MostViewedPropertyCard(
+                              index: index,
                             )
-                            .shimmer(
-                              color: settingController.isLightMode.value
-                                  ? ColorManager.grey2.withOpacity(0.3)
-                                  : ColorManager.ofWhite.withOpacity(0.2),
-                              duration: 450.ms,
-                            ),
+                          : Container(
+                              // margin: const EdgeInsets.fromLTRB(10, 10, 0, 10),
+                              width: MediaQuery.of(context).size.width / 2.2,
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                    10.0,
+                                  ),
+                                ),
+                                color: Theme.of(context)
+                                    .appBarTheme
+                                    .backgroundColor,
+                              ),
+                            )
+                              .animate(
+                                onPlay: (controller) => controller.repeat(),
+                              )
+                              .shimmer(
+                                color: settingController.isLightMode.value
+                                    ? ColorManager.grey2.withOpacity(0.3)
+                                    : ColorManager.ofWhite.withOpacity(0.2),
+                                duration: 450.ms,
+                              ),
+                    ),
                   ),
                 ),
               ),

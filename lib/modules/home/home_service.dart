@@ -26,7 +26,6 @@ class HomeService {
     } catch (e) {
       Get.snackbar("Error !", e.toString());
       return [];
-
     }
   }
 }

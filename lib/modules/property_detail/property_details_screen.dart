@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:property_management_system/modules/map/map_screen.dart';
 import 'package:property_management_system/modules/property_detail/property_details_controller.dart';
+import 'package:property_management_system/modules/settings/settings_controller.dart';
 import 'package:property_management_system/resources/assets_manager.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
@@ -12,7 +13,6 @@ import 'package:property_management_system/resources/text_manager.dart';
 import 'package:property_management_system/resources/values_manager.dart';
 import 'package:property_management_system/utils/scroll_glow.dart';
 import 'package:property_management_system/widget/property_details/contact_button.dart';
-import 'package:property_management_system/widget/property_details/expandable_text.dart';
 import 'package:property_management_system/widget/property_details/property_card.dart';
 import 'package:property_management_system/widget/property_details/property_detail_bottom_bar.dart';
 import 'package:property_management_system/widget/property_details/property_rate.dart';
@@ -25,8 +25,8 @@ class PropertyDetailsScreen extends StatelessWidget {
   PropertyDetailsScreen(
       {super.key, context, required this.contextPropertyDetailsScreen});
 
-  final PropertyDetailsController _propertyDetailsController =
-      Get.put(PropertyDetailsController());
+  final _propertyDetailsController = Get.put(PropertyDetailsController());
+  final settingController = Get.put(SettingController());
 
   @override
   Widget build(BuildContext context) {
@@ -429,41 +429,62 @@ class PropertyDetailsScreen extends StatelessWidget {
                                       SizedBox(
                                         width: double.infinity,
                                         height: AppSize.s275,
-                                        child: ClipRRect(
-                                          borderRadius: const BorderRadius.all(
-                                            Radius.circular(
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
                                               10.0,
                                             ),
-                                          ),
-                                          child: Obx(
-                                            () => GoogleMap(
-                                              buildingsEnabled: false,
-                                              compassEnabled: true,
-                                              myLocationEnabled: true,
-                                              scrollGesturesEnabled: true,
-                                              myLocationButtonEnabled: true,
-                                              trafficEnabled: true,
-                                              onTap: (argument) {
-                                                Get.to(
-                                                  () => MapScreen(
-                                                    contextMapScreen:
-                                                        contextPropertyDetailsScreen,
+                                            border: settingController
+                                                    .isLightMode.value
+                                                ? Border.all(
+                                                    color: ColorManager.black
+                                                        .withOpacity(0.4),
+                                                    width: 0.8,
+                                                  )
+                                                : Border.all(
+                                                    color: ColorManager.ofWhite
+                                                        .withOpacity(0.4),
+                                                    width: 0.8,
                                                   ),
-                                                );
-                                              },
-                                              onMapCreated:
-                                                  _propertyDetailsController
-                                                      .onMapCreated,
-                                              markers:
-                                                  _propertyDetailsController
-                                                      .markers
-                                                      .toSet(),
-                                              initialCameraPosition:
-                                                  CameraPosition(
-                                                target:
+                                          ),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                              Radius.circular(
+                                                10.0,
+                                              ),
+                                            ),
+                                            child: Obx(
+                                              () => GoogleMap(
+                                                buildingsEnabled: false,
+                                                compassEnabled: true,
+                                                myLocationEnabled: true,
+                                                scrollGesturesEnabled: true,
+                                                myLocationButtonEnabled: true,
+                                                trafficEnabled: true,
+                                                onTap: (argument) {
+                                                  Get.to(
+                                                    () => MapScreen(
+                                                      contextMapScreen:
+                                                          contextPropertyDetailsScreen,
+                                                    ),
+                                                  );
+                                                },
+                                                onMapCreated:
                                                     _propertyDetailsController
-                                                        .initialPosition.value,
-                                                zoom: 16.0,
+                                                        .onMapCreated,
+                                                markers:
+                                                    _propertyDetailsController
+                                                        .markers
+                                                        .toSet(),
+                                                initialCameraPosition:
+                                                    CameraPosition(
+                                                  target:
+                                                      _propertyDetailsController
+                                                          .initialPosition
+                                                          .value,
+                                                  zoom: 16.0,
+                                                ),
                                               ),
                                             ),
                                           ),

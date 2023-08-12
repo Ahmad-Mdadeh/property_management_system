@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:property_management_system/modules/favorites/favorites_controller.dart';
 import 'package:property_management_system/modules/home/home_controller.dart';
 import 'package:property_management_system/modules/property_detail/property_details_screen.dart';
 import 'package:property_management_system/resources/assets_manager.dart';
@@ -16,9 +17,8 @@ class MostViewedPropertyCard extends StatelessWidget {
     super.key,
   });
 
-  final HomeController _homeController = Get.put(HomeController());
-  final RxBool isHighlighted = true.obs;
-  final RxBool isFavorite = false.obs;
+  final _homeController = Get.put(HomeController());
+  final _favoritesController = Get.put(FavoritesController());
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class MostViewedPropertyCard extends StatelessWidget {
               );
             },
             child: Container(
-              margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
+              margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
               width: MediaQuery.of(context).size.width / 2.2,
               child: Card(
                 shape: RoundedRectangleBorder(
@@ -83,22 +83,28 @@ class MostViewedPropertyCard extends StatelessWidget {
           ),
           Positioned(
             top: MediaQuery.of(context).size.height / 5.3,
-            right: MediaQuery.of(context).size.width / 10,
+            left: MediaQuery.of(context).size.width / 3.2,
             child: InkWell(
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
               onHighlightChanged: (value) {
-                isHighlighted(!(isHighlighted.value));
+                _favoritesController
+                    .isHighlighted(!(_favoritesController.isHighlighted.value));
               },
               onTap: () {
-                isFavorite(!(isFavorite.value));
+                _favoritesController.postType =
+                    _homeController.allProperties[index].posttype!;
+                _favoritesController.idProperties =
+                    _homeController.allProperties[index].id!;
+                _favoritesController.addOrRemoveFavoritesProperties();
               },
               child: Obx(
                 () {
                   return AnimatedContainer(
-                    margin: EdgeInsets.all(isHighlighted.value ? 0 : 3),
-                    height: isHighlighted.value ? 35 : 23,
-                    width: isHighlighted.value ? 35 : 23,
+                    margin: EdgeInsets.all(
+                        _favoritesController.isHighlighted.value ? 0 : 3),
+                    height: _favoritesController.isHighlighted.value ? 35 : 23,
+                    width: _favoritesController.isHighlighted.value ? 35 : 23,
                     curve: Curves.fastLinearToSlowEaseIn,
                     duration: const Duration(milliseconds: 300),
                     decoration: BoxDecoration(
@@ -116,11 +122,13 @@ class MostViewedPropertyCard extends StatelessWidget {
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
-                      isFavorite.value
+                      _favoritesController.idList.contains(
+                        _homeController.allProperties[index].id,
+                      )
                           ? Icons.favorite
                           : Icons.favorite_outline,
                       color: Theme.of(context).iconTheme.color,
-                      size: isHighlighted.value ? 22 : 19,
+                      size: _favoritesController.isHighlighted.value ? 22 : 19,
                     ),
                   );
                 },
@@ -140,13 +148,12 @@ class MostViewedPropertyCard extends StatelessWidget {
                       color: Theme.of(context).iconTheme.color,
                       size: AppSize.s18,
                     ),
+                    const SizedBox(
+                      width: 2,
+                    ),
                     TextUtils(
                       text:
-                          '${_homeController.allProperties[index].property!.categoryType}'
-                              .replaceAll(
-                        "Category.",
-                        '',
-                      ),
+                          '${_homeController.allProperties[index].property!.categoryType}',
                       color: Theme.of(context).textTheme.bodySmall!.color,
                       fontWeight: FontWeightManager.semilight,
                       fontSize: FontSize.s12,
@@ -167,12 +174,9 @@ class MostViewedPropertyCard extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 110,
-                ),
-                SizedBox(
                   width: 120,
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 3),
+                    padding: const EdgeInsets.only(left: 3, top: 2),
                     child: TextUtils(
                       textOverflow: TextOverflow.ellipsis,
                       text:

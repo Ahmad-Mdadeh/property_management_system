@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
+import 'package:property_management_system/modules/settings/settings_controller.dart';
+import 'package:property_management_system/resources/color_manager.dart';
 
 class HomePropertyCardShimmer extends StatelessWidget {
-  const HomePropertyCardShimmer({super.key});
+   HomePropertyCardShimmer({super.key});
+  final settingController = Get.put(SettingController());
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +22,14 @@ class HomePropertyCardShimmer extends StatelessWidget {
         ),
         color: Theme.of(context).appBarTheme.backgroundColor,
       ),
+    ) .animate(
+      onPlay: (controller) => controller.repeat(),
+    )
+        .shimmer(
+      color: settingController.isLightMode.value
+          ? ColorManager.grey2.withOpacity(0.3)
+          : ColorManager.ofWhite.withOpacity(0.2),
+      duration: 450.ms,
     );
   }
 }

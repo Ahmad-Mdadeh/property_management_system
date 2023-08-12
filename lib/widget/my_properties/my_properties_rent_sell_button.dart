@@ -35,26 +35,27 @@ class MyPropertiesRentSellButton extends StatelessWidget {
                 width: 110,
                 height: 40,
                 decoration: BoxDecoration(
-                    color: !_myPropertiesController.isSelectedSell.value
-                        ? ColorManager.grey2.withOpacity(
-                            0.15,
-                          )
-                        : ColorManager.lightPrimary.withOpacity(0.13),
-                    borderRadius: BorderRadius.circular(
-                      10.0,
-                    ),
-                    border: settingController.isLightMode.value
-                        ? Border.all(
-                            color: !_myPropertiesController.isSelectedSell.value
-                                ? ColorManager.black.withOpacity(0.4)
-                                : ColorManager.primary,
-                            width: 0.8,
-                          )
-                        : Border.all(
-                            color: !_myPropertiesController.isSelectedSell.value
-                                ? ColorManager.ofWhite.withOpacity(0.4)
-                                : ColorManager.primary,
-                          )),
+                  color: !_myPropertiesController.isSelectedSell.value
+                      ? ColorManager.grey2.withOpacity(
+                          0.15,
+                        )
+                      : ColorManager.lightPrimary.withOpacity(0.13),
+                  borderRadius: BorderRadius.circular(
+                    10.0,
+                  ),
+                  border: settingController.isLightMode.value
+                      ? Border.all(
+                          color: !_myPropertiesController.isSelectedSell.value
+                              ? ColorManager.black.withOpacity(0.4)
+                              : ColorManager.primary,
+                          width: 0.8,
+                        )
+                      : Border.all(
+                          color: !_myPropertiesController.isSelectedSell.value
+                              ? ColorManager.ofWhite.withOpacity(0.4)
+                              : ColorManager.primary,
+                        ),
+                ),
                 child: Center(
                   child: TextUtils(
                     fontFamily: '',

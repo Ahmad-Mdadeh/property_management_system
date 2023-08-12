@@ -34,6 +34,7 @@ ThemeData getThemeDataDarkMode() => ThemeData(
       iconTheme: IconThemeData(
         color: ColorManager.lightPrimary,
       ),
+      cardColor: ColorManager.grey1,
     );
 
 ThemeData getThemeDataLightMode() => ThemeData(
@@ -58,7 +59,7 @@ ThemeData getThemeDataLightMode() => ThemeData(
       ),
       textTheme: TextTheme(
         bodySmall: TextStyle(
-          color:  ColorManager.black.withOpacity(0.6),
+          color: ColorManager.black.withOpacity(0.6),
         ),
         bodyMedium: TextStyle(
           color: ColorManager.black.withOpacity(0.7),
@@ -70,4 +71,5 @@ ThemeData getThemeDataLightMode() => ThemeData(
       iconTheme: IconThemeData(
         color: ColorManager.primary,
       ),
+  cardColor: ColorManager.iconBackgroundDark,
     );

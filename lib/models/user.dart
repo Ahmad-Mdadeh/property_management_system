@@ -1,3 +1,3 @@
 class User {
-  static String token = "13|pEgLWmQKntnHl0TxiLz1d19EdlAMGQFaZyd1gst2";
+  static String token = "5|BL5phn5DozBAICvuRFdmwQJo4E8YBFydy4sVJvAP";
 }

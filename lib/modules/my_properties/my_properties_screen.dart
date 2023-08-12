@@ -64,7 +64,7 @@ class MyPropertiesScreen extends StatelessWidget {
                                       vertical: 8.0,
                                       horizontal: 10.0,
                                     ),
-                                    child: MyPropertiesCard(index: index)),
+                                    child: MyPropertiesCard(index: index),),
                               ),
                             ),
                           );

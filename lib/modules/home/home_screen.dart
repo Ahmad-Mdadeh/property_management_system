@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:property_management_system/modules/favorites/favorites_controller.dart';
 import 'package:property_management_system/modules/filters/filters_screen.dart';
 import 'package:property_management_system/modules/home/home_controller.dart';
 import 'package:property_management_system/modules/settings/settings_controller.dart';
@@ -18,8 +19,9 @@ import 'package:property_management_system/widget/home_widgets/home_property_car
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
-  final HomeController _homeController = Get.put(HomeController());
-  final settingController = Get.put(SettingController());
+  final  _homeController = Get.put(HomeController());
+    final settingController = Get.put(SettingController());
+  final _favoritesController = Get.put(FavoritesController());
 
   @override
   Widget build(BuildContext context) {
@@ -239,20 +241,12 @@ class HomeScreen extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: 8,
                     itemBuilder: (context, index) => Obx(
-                      () => _homeController.isLoadingProperties.value
+                      () => _homeController.isLoadingProperties.value && _favoritesController.isLoadingHart.value
                           ? HomePropertyCard(
                               index: index,
                             )
-                          : const HomePropertyCardShimmer()
-                              .animate(
-                                onPlay: (controller) => controller.repeat(),
-                              )
-                              .shimmer(
-                                color: settingController.isLightMode.value
-                                    ? ColorManager.grey2.withOpacity(0.3)
-                                    : ColorManager.ofWhite.withOpacity(0.2),
-                                duration: 450.ms,
-                              ),
+                          :  HomePropertyCardShimmer()
+
                     ),
                   ),
                 ),
@@ -289,19 +283,18 @@ class HomeScreen extends StatelessWidget {
                 child: GridView.count(
                   crossAxisSpacing: 0,
                   mainAxisSpacing: 0,
-                  childAspectRatio: 0.58,
+                  childAspectRatio: 0.6,
                   shrinkWrap: true,
                   primary: false,
                   crossAxisCount: 2,
                   children: List.generate(
-                    9,
+                    10,
                     (index) => Obx(
-                      () => _homeController.isLoadingProperties.value
+                      () => _homeController.isLoadingProperties.value && _favoritesController.isLoadingHart.value
                           ? MostViewedPropertyCard(
                               index: index,
                             )
-                          : Container(
-                              // margin: const EdgeInsets.fromLTRB(10, 10, 0, 10),
+                          : SizedBox(
                               width: MediaQuery.of(context).size.width / 2.2,
                               child: Card(
                                 shape: RoundedRectangleBorder(

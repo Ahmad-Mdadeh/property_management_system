@@ -13,7 +13,7 @@ class SittingsList extends StatefulWidget {
 }
 
 class _SittingsListState extends State<SittingsList> {
-  SettingController sittingController = SettingController();
+  SettingController sittingController = Get.put(SettingController());
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,7 @@ class _SittingsListState extends State<SittingsList> {
               DropdownMenuItem(
                 value: 'fr',
                 child: Text(
-                  'Français',
+                  'Francais',
                   style: TextStyle(fontFamily: 'Outfit'),
                 ),
               ),

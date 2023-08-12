@@ -6,7 +6,6 @@ import 'package:property_management_system/modules/my_properties/my_properties_s
 class MyPropertiesController extends GetxController {
   RxBool isSelectedSell = false.obs;
   RxBool isSelectedRent = true.obs;
-  RxBool isSelected = false.obs;
   RxBool isLoading = false.obs;
   late List post;
   late List<RentPost> postRent;
@@ -28,8 +27,6 @@ class MyPropertiesController extends GetxController {
       postRent = post[0];
       postSale = post[1];
       isLoading.value = true;
-    } else {
-      isLoading.value = false;
     }
   }
 }

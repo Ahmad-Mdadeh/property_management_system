@@ -57,6 +57,7 @@ dependencies:
   flutter_animate: ^4.2.0+1
   intl: ^0.18.1
   readmore: ^2.1.0
+  share: ^2.0.4
 
 #  equatable: ^2.0.5
 

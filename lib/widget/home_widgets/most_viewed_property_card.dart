@@ -30,6 +30,7 @@ class MostViewedPropertyCard extends StatelessWidget {
             splashColor: Colors.transparent,
             highlightColor: Colors.transparent,
             onTap: () {
+
               Get.to(
                 arguments: [
                   _homeController.allProperties[index].id,
@@ -166,8 +167,10 @@ class MostViewedPropertyCard extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(left: 3),
                   child: TextUtils(
-                    text:
-                        '\$${_homeController.allProperties[index].monthlyRent}',
+                    text: _homeController.allProperties[index].monthlyRent !=
+                            null
+                        ? '\$${_homeController.allProperties[index].monthlyRent}'
+                        : '\$${_homeController.allProperties[index].price}',
                     color: Theme.of(context).iconTheme.color,
                     fontWeight: FontWeightManager.regular,
                     fontSize: FontSize.s18,

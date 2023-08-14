@@ -18,7 +18,6 @@ import 'package:property_management_system/widget/property_details/property_deta
 import 'package:property_management_system/widget/property_details/property_rate.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:readmore/readmore.dart';
-import 'package:share/share.dart';
 
 class PropertyDetailsScreen extends StatelessWidget {
   final BuildContext contextPropertyDetailsScreen;
@@ -31,27 +30,6 @@ class PropertyDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late String propertyName =
-        _propertyDetailsController.propertyDetails.property!.categoryType!.tr;
-
-    late String propertyType =
-        _propertyDetailsController.propertyDetails.property!.categoryType!.tr;
-
-    late String propertyStatus =
-        _propertyDetailsController.propertyDetails.posttype!.tr.toUpperCase();
-
-    late String price =
-        (_propertyDetailsController.propertyDetails.monthlyRent).toString();
-
-    late String mapLink = Uri(
-      scheme: 'https',
-      host: 'www.google.com',
-      path: '/maps',
-      queryParameters: {
-        'q': '25.1972,55.2744',
-      },
-    ).toString();
-
     return ThemeSwitchingArea(
       child: Scaffold(
         appBar: AppBar(
@@ -86,9 +64,7 @@ class PropertyDetailsScreen extends StatelessWidget {
               ),
               child: GestureDetector(
                 onTap: () {
-                  Share.share(
-                    'Property Name: $propertyName\nProperty Type: $propertyType\nProperty Status: $propertyStatus\nPrice: $price\nYou Can See The Location here: $mapLink\nFor more info Download PROPERTUNITY',
-                  );
+                  _propertyDetailsController.shareLink();
                 },
                 child: Icon(
                   Icons.share,
@@ -115,6 +91,7 @@ class PropertyDetailsScreen extends StatelessWidget {
                             child: InkWell(
                               child: PropertyCard(),
                               onTap: () {
+
                                 Get.find<PropertyDetailsController>()
                                     .goToImageOverlay(
                                   ImagesAssets.building,
@@ -239,16 +216,6 @@ class PropertyDetailsScreen extends StatelessWidget {
                                                       .width /
                                                   8,
                                             ),
-                                            // TextUtils(
-                                            //   text: 'per month',
-                                            //   color: Theme.of(
-                                            //           contextPropertyDetailsScreen)
-                                            //       .iconTheme
-                                            //       .color,
-                                            //   fontWeight:
-                                            //       FontWeightManager.regular,
-                                            //   fontSize: FontSize.s22,
-                                            // ),
                                           ],
                                         )
                                       ],
@@ -271,7 +238,7 @@ class PropertyDetailsScreen extends StatelessWidget {
                                 TextUtils(
                                   color: Theme.of(contextPropertyDetailsScreen)
                                       .textTheme
-                                      .bodyMedium!
+                                      .bodyLarge!
                                       .color,
                                   fontWeight: FontWeightManager.regular,
                                   fontSize: FontSize.s20,
@@ -304,10 +271,11 @@ class PropertyDetailsScreen extends StatelessWidget {
                                             .iconTheme
                                             .color,
                                   ),
-                                  style: const TextStyle(
+                                  style:  TextStyle(
                                     fontFamily: 'Outfit',
                                     fontWeight: FontWeightManager.light,
                                     fontSize: FontSize.s14,
+                                    color: Theme.of(contextPropertyDetailsScreen).textTheme.bodyMedium!.color,
                                   ),
                                 )
                                     .animate(

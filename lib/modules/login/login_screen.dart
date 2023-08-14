@@ -168,7 +168,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 AuthButton(
                   borderRadius: AppSize.s60,
-                  text: "Log In",
+                  text: "LogIn",
                   width: MediaQuery.of(context).size.width * 0.83,
                   height: MediaQuery.of(context).size.height * 0.065,
                   function: () {

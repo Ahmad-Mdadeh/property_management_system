@@ -22,7 +22,7 @@ class MyPropertiesController extends GetxController {
   }
 
   void getTypeMyProperties() async {
-    post = await _propertiesService.getMyProperties(User.token);
+    post = await _propertiesService.getMyProperties(Users.token);
     if (post.isNotEmpty) {
       postRent = post[0];
       postSale = post[1];

@@ -5,14 +5,14 @@ import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
 import 'package:property_management_system/resources/values_manager.dart';
 
-class SittingsList extends StatefulWidget {
-  SittingsList({super.key});
+class LanguageList extends StatefulWidget {
+  const LanguageList({super.key});
 
   @override
-  State<SittingsList> createState() => _SittingsListState();
+  State<LanguageList> createState() => _LanguageListState();
 }
 
-class _SittingsListState extends State<SittingsList> {
+class _LanguageListState extends State<LanguageList> {
   SettingController sittingController = Get.put(SettingController());
 
   @override
@@ -20,7 +20,6 @@ class _SittingsListState extends State<SittingsList> {
     return InkWell(
       enableFeedback: false,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Padding(
             padding: EdgeInsets.only(
@@ -36,7 +35,7 @@ class _SittingsListState extends State<SittingsList> {
                   AppSize.s8,
                 ),
               ),
-              child: const Icon(Icons.language_rounded),
+              child: const Icon(Icons.language_rounded,),
             ),
           ),
           TextUtils(

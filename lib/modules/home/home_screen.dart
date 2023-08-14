@@ -19,9 +19,9 @@ import 'package:property_management_system/widget/home_widgets/home_property_car
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
-  final  _homeController = Get.put(HomeController());
-    final settingController = Get.put(SettingController());
+  final _homeController = Get.put(HomeController());
   final _favoritesController = Get.put(FavoritesController());
+  final settingController = Get.put(SettingController());
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,6 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        physics: const ClampingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.only(
             top: 8,
@@ -126,25 +125,29 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              CarouselSlider(
-                options: CarouselOptions(
-                  aspectRatio: 16 / 7,
-                  // scrollDirection: ,
-                  // height: MediaQuery.of(context).size.height / 5.4,
-                  autoPlay: true,
-                  enableInfiniteScroll: true,
-                  viewportFraction: 1,
-                  initialPage: 0,
-                  autoPlayCurve: Curves.easeInOutCubicEmphasized,
-                  animateToClosest: true,
-                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: AppPadding.p8,
                 ),
-                items: [
-                  ...List.generate(
-                    4,
-                    (index) => const SlideShow(),
+                child: CarouselSlider(
+                  options: CarouselOptions(
+                    aspectRatio: 16 / 7,
+                    autoPlay: true,
+                    enableInfiniteScroll: true,
+                    viewportFraction: 1,
+                    initialPage: 0,
+                    autoPlayCurve: Curves.easeInOutCubicEmphasized,
+                    animateToClosest: true,
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 800),
                   ),
-                ],
+                  items: [
+                    ...List.generate(
+                      4,
+                      (index) =>  SlideShow(index: index,),
+                    ),
+                  ],
+                ),
               ),
               Obx(
                 () => Padding(
@@ -166,7 +169,15 @@ class HomeScreen extends StatelessWidget {
                     ),
                     child: TabBar(
                       onTap: (value) => {
-                        _homeController.isSelected.value = value,
+                        if (_homeController.isSelected.value != value)
+                          {
+                            _homeController.category =
+                                _homeController.typePropertiesName[value],
+                            _homeController.getAllPropertiesByFilterCategory(),
+                            _homeController.isSelected.value = value,
+                          }
+                        else
+                          _homeController.isSelected.value = value,
                       },
                       labelPadding: const EdgeInsets.symmetric(
                         vertical: 5,
@@ -185,7 +196,7 @@ class HomeScreen extends StatelessWidget {
                       physics: const AlwaysScrollableScrollPhysics(),
                       controller: _homeController.tabController,
                       tabs: List.generate(
-                        4,
+                        _homeController.typePropertiesName.length,
                         (index) => TabBarPropertyButton(
                           text: _homeController.typePropertiesName[index],
                           icon: Icons.villa_rounded,
@@ -232,21 +243,29 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 300,
-                child: ScrollConfiguration(
-                  behavior: MyBehavior(),
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 8,
-                    itemBuilder: (context, index) => Obx(
-                      () => _homeController.isLoadingProperties.value && _favoritesController.isLoadingHart.value
-                          ? HomePropertyCard(
-                              index: index,
-                            )
-                          :  HomePropertyCardShimmer()
-
+              Obx(
+                () => SizedBox(
+                  height: 300,
+                  child: ScrollConfiguration(
+                    behavior: MyBehavior(),
+                    child: ListView.builder(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppPadding.p8,
+                      ),
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: _homeController.isLoadingProperties.value
+                          ? _homeController.allProperties.length > 5
+                              ? 5
+                              : _homeController.allProperties.length
+                          : 2,
+                      itemBuilder: (context, index) => Obx(() =>
+                          _homeController.isLoadingProperties.value &&
+                                  _favoritesController.isLoadingHart.value
+                              ? HomePropertyCard(
+                                  index: index,
+                                )
+                              : HomePropertyCardShimmer()),
                     ),
                   ),
                 ),
@@ -278,44 +297,49 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: GridView.count(
-                  crossAxisSpacing: 0,
-                  mainAxisSpacing: 0,
-                  childAspectRatio: 0.6,
-                  shrinkWrap: true,
-                  primary: false,
-                  crossAxisCount: 2,
-                  children: List.generate(
-                    10,
-                    (index) => Obx(
-                      () => _homeController.isLoadingProperties.value && _favoritesController.isLoadingHart.value
-                          ? MostViewedPropertyCard(
-                              index: index,
-                            )
-                          : SizedBox(
-                              width: MediaQuery.of(context).size.width / 2.2,
-                              child: Card(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                    10.0,
-                                  ),
-                                ),
-                                color: Theme.of(context)
-                                    .appBarTheme
-                                    .backgroundColor,
-                              ),
-                            )
-                              .animate(
-                                onPlay: (controller) => controller.repeat(),
+              Obx(
+                () => Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: GridView.count(
+                    crossAxisSpacing: 0,
+                    mainAxisSpacing: 0,
+                    childAspectRatio: 0.6,
+                    shrinkWrap: true,
+                    primary: false,
+                    crossAxisCount: 2,
+                    children: List.generate(
+                      _homeController.isLoadingProperties.value
+                          ? _homeController.allProperties.length
+                          : 5,
+                      (index) => Obx(
+                        () => _homeController.isLoadingProperties.value &&
+                                _favoritesController.isLoadingHart.value
+                            ? MostViewedPropertyCard(
+                                index: index,
                               )
-                              .shimmer(
-                                color: settingController.isLightMode.value
-                                    ? ColorManager.grey2.withOpacity(0.3)
-                                    : ColorManager.ofWhite.withOpacity(0.2),
-                                duration: 450.ms,
-                              ),
+                            : SizedBox(
+                                width: MediaQuery.of(context).size.width / 2.2,
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(
+                                      10.0,
+                                    ),
+                                  ),
+                                  color: Theme.of(context)
+                                      .appBarTheme
+                                      .backgroundColor,
+                                ),
+                              )
+                                .animate(
+                                  onPlay: (controller) => controller.repeat(),
+                                )
+                                .shimmer(
+                                  color: settingController.isLightMode.value
+                                      ? ColorManager.grey2.withOpacity(0.3)
+                                      : ColorManager.ofWhite.withOpacity(0.2),
+                                  duration: 450.ms,
+                                ),
+                      ),
                     ),
                   ),
                 ),

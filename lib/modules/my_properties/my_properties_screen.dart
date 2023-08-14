@@ -60,11 +60,12 @@ class MyPropertiesScreen extends StatelessWidget {
                                 curve: Curves.fastLinearToSlowEaseIn,
                                 duration: const Duration(milliseconds: 1500),
                                 child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 8.0,
-                                      horizontal: 10.0,
-                                    ),
-                                    child: MyPropertiesCard(index: index),),
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 8.0,
+                                    horizontal: 10.0,
+                                  ),
+                                  child: MyPropertiesCard(index: index),
+                                ),
                               ),
                             ),
                           );

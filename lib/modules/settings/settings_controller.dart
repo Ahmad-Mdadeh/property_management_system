@@ -1,9 +1,13 @@
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:property_management_system/modules/login/login_screen.dart';
+import 'package:property_management_system/modules/settings/settings_service.dart';
 import 'package:property_management_system/utils/theme_service.dart';
 import 'package:rive/rive.dart';
+import 'package:property_management_system/models/user.dart';
 
 class SettingController extends GetxController {
+  final SettingService _settingService = SettingService();
   Artboard? riveArtBoard;
   RxBool timer = false.obs;
   RxBool isLightMode = ThemeService.sunOrMoon;
@@ -12,11 +16,10 @@ class SettingController extends GetxController {
   String selectedLang = 'en';
   RxString selectedL = 'en'.obs;
   RxBool isArabic = false.obs;
+  RxBool isLogout = false.obs;
 
   @override
   void onInit() {
-    // controllerToDark = SimpleAnimation("to dark");
-    // controllerToLight = SimpleAnimation("to light");
     controllerToDark = SimpleAnimation("sunToMoonAniamtion");
     controllerToLight = SimpleAnimation("moonToSunAnimation");
     rootBundle.load('assets/rive/moon_to_sun_animated_icon.riv').then(
@@ -32,6 +35,14 @@ class SettingController extends GetxController {
     );
 
     super.onInit();
+  }
+
+  Future<void> signOutFromApp() async {
+    await _settingService.logOutFromApp(Users.token);
+    Get.offAll(
+      transition: Transition.fade,
+      () => LoginScreen(),
+    );
   }
 
   void remove() {

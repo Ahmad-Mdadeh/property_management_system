@@ -16,7 +16,7 @@ class HomePropertyCard extends StatelessWidget {
 
   final _favoritesController = Get.put(FavoritesController());
 
-  final HomeController _homeController = Get.put(HomeController());
+  final  _homeController = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
@@ -165,7 +165,10 @@ class HomePropertyCard extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 3),
                   child: TextUtils(
                     text:
-                        '\$${_homeController.allProperties[index].monthlyRent}',
+                    _homeController.allProperties[index].monthlyRent !=
+                        null
+                        ? '\$${_homeController.allProperties[index].monthlyRent}'
+                        : '\$${_homeController.allProperties[index].price}',
                     color: Theme.of(context).iconTheme.color,
                     fontWeight: FontWeightManager.regular,
                     fontSize: FontSize.s18,

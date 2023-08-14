@@ -58,7 +58,6 @@ class FavoritesService {
         "Error !",
         e.toString(),
       );
-      return [];
     }
   }
 }

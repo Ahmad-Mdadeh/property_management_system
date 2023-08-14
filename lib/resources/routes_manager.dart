@@ -25,16 +25,9 @@ class AppRoutes {
 
   static final getPages = [
     GetPage(name: Routes.splash, page: () => const SplashScreen()),
-    GetPage(
-        name: Routes.onBoarding,
-        page: () => const OnBoardingScreen(),
-        binding: OnBoardingBinding()),
-    GetPage(
-        name: Routes.login, page: () => LoginScreen(), binding: LoginBinding()),
-    GetPage(
-        name: Routes.register,
-        page: () => RegisterScreen(),
-        binding: RegisterBinding()),
+    GetPage(name: Routes.onBoarding, page: () => const OnBoardingScreen(), binding: OnBoardingBinding()),
+    GetPage(name: Routes.login, page: () => LoginScreen(), binding: LoginBinding()),
+    GetPage(name: Routes.register, page: () => RegisterScreen(), binding: RegisterBinding()),
     GetPage(name: Routes.baseScreen, page: () => BaseScreen()),
     GetPage(name: Routes.home, page: () =>  HomeScreen()),
     GetPage(name: Routes.filters, page: () => FiltersScreen()),

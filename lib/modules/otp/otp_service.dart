@@ -26,7 +26,7 @@ class OtpService {
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
         var status = authFromJson(response.body).status;
-        User.token = authFromJson(response.body).accessToken!;
+        Users.token = authFromJson(response.body).accessToken!;
         return status;
       } else if (response.statusCode == 401) {
         message = authFromJson(response.body).message;

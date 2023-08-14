@@ -111,7 +111,7 @@ class RegisterScreen extends StatelessWidget {
                       function: (value) {
                         _registerController.password = value;
                       },
-                      validator: (String value) {
+                      validator: (value) {
                         if (value.isEmpty) {
                           return 'Password is required';
                         }

@@ -8,7 +8,6 @@ import 'package:property_management_system/resources/values_manager.dart';
 import 'package:property_management_system/widget/favorites/favorites_list.dart';
 import 'package:property_management_system/widget/favorites/favorites_list_shimmer.dart';
 
-
 class FavoritesScreen extends StatelessWidget {
   FavoritesScreen({Key? key}) : super(key: key);
   final _favoritesController = Get.put(FavoritesController());
@@ -34,15 +33,16 @@ class FavoritesScreen extends StatelessWidget {
             fontSize: FontSize.s20,
           ),
         ),
-        body: Obx(() => Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppPadding.p8,
+        body: Obx(
+          () => Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppPadding.p8,
+            ),
+            child: _favoritesController.isLoading.value
+                ?  FavoritesListWidget()
+                : FavoritesListShimmerWidget(),
           ),
-          child: _favoritesController.isLoading.value
-              ? FavoritesListWidget()
-              : FavoritesListShimmerWidget()
-
-        ),),
+        ),
       ),
     );
   }

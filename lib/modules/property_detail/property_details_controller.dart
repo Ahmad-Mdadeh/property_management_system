@@ -4,8 +4,19 @@ import 'package:property_management_system/models/properties_details.dart';
 import 'package:property_management_system/models/user.dart';
 import 'package:property_management_system/modules/property_detail/property_details_service.dart';
 import 'package:property_management_system/widget/property_details/image_overlay.dart';
+import 'package:share/share.dart';
 
-class PropertyDetailsController extends GetxController {
+  class PropertyDetailsController extends GetxController {
+  late String propertyName;
+
+  late String propertyType;
+
+  late String propertyStatus;
+
+  late String price;
+
+  late String mapLink;
+
   final PropertiesDetailsService _propertiesDetailsService =
       PropertiesDetailsService();
   Rx<LatLng> initialPosition = const LatLng(32.716323, 36.573041).obs;
@@ -18,8 +29,20 @@ class PropertyDetailsController extends GetxController {
   late String postType;
 
   @override
-  void onInit() {
-    getPropertiesDetails();
+  void onInit() async {
+    await getPropertiesDetails();
+    propertyName = propertyDetails.property!.categoryType!.tr;
+    propertyType = propertyDetails.property!.categoryType!.tr;
+    propertyStatus = propertyDetails.posttype!.tr.toUpperCase();
+    price = (propertyDetails.monthlyRent).toString();
+    mapLink = Uri(
+      scheme: 'https',
+      host: 'www.google.com',
+      path: '/maps',
+      queryParameters: {
+        'q': '25.1972,55.2744',
+      },
+    ).toString();
     super.onInit();
   }
 
@@ -55,14 +78,20 @@ class PropertyDetailsController extends GetxController {
     );
   }
 
-  void getPropertiesDetails() async {
+  Future<void> getPropertiesDetails() async {
     postType = arguments[1];
     id = arguments[0];
     propertyDetails = await _propertiesDetailsService.getPropertiesDetails(
-      User.token,
+      Users.token,
       id,
       postType,
     );
     isLoading.value = true;
+  }
+
+  void shareLink(){
+    Share.share(
+      'Property Name: $propertyName\nProperty Type: $propertyType\nProperty Status: $propertyStatus\nPrice: $price\nYou Can See The Location here: $mapLink\nFor more info Download PrepertUnity',
+    );
   }
 }

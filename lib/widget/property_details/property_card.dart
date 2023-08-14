@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:property_management_system/modules/favorites/favorites_controller.dart';
+import 'package:property_management_system/modules/property_detail/property_details_controller.dart';
 import 'package:property_management_system/utils/my_flutter_app_icons.dart';
 import 'package:property_management_system/resources/assets_manager.dart';
 import 'package:property_management_system/resources/values_manager.dart';
@@ -7,12 +9,11 @@ import 'package:property_management_system/widget/property_details/circular_butt
 import 'package:property_management_system/widget/property_details/text_tag.dart';
 
 class PropertyCard extends StatelessWidget {
-  PropertyCard({
-    super.key,
-  });
+  PropertyCard({super.key});
 
+  final _favoritesController = Get.put(FavoritesController());
+  final _propertyDetailsController = Get.put(PropertyDetailsController());
   final RxBool isHighlighted = true.obs;
-  final RxBool isFavorite = false.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +55,11 @@ class PropertyCard extends StatelessWidget {
                 isHighlighted(!(isHighlighted.value));
               },
               onTap: () {
-                isFavorite(!(isFavorite.value));
+                _favoritesController.postType =
+                _propertyDetailsController.postType;
+                _favoritesController.idProperties =
+                _propertyDetailsController.id;
+                _favoritesController.addOrRemoveFavoritesProperties();
               },
               child: Obx(
                 () {
@@ -79,7 +84,9 @@ class PropertyCard extends StatelessWidget {
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
-                      isFavorite.value
+                      _favoritesController.idList.contains(
+                        _propertyDetailsController.id,
+                      )
                           ? Icons.favorite
                           : Icons.favorite_outline,
                       color: Theme.of(context).iconTheme.color,
@@ -93,7 +100,8 @@ class PropertyCard extends StatelessWidget {
           Positioned(
             bottom: AppSize.s14,
             right: AppSize.s14,
-            child: circularButton(
+            child: CircularDegrees360Button(
+              context: context,
               colorIcon: Theme.of(context).iconTheme.color!,
               color: Theme.of(context).appBarTheme.backgroundColor!,
               icon: MyFlutterApp.degrees360,

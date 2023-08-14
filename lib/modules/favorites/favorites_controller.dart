@@ -6,17 +6,15 @@ import 'package:property_management_system/modules/favorites/favorites_service.d
 
 class FavoritesController extends GetxController {
   final RxBool isHighlighted = true.obs;
-
-  // final RxBool isFavorite = false.obs;
   final FavoritesService _favoritesService = FavoritesService();
   late List<AllProperties> favoritesProperties;
   late Favorites favorites;
+  RxBool isEmpty = false.obs;
   String postType = "";
   int idProperties = 0;
-  RxBool isLoadingHart = true.obs;
-
+  RxBool isLoadingHart = false.obs;
   RxBool isLoading = false.obs;
-  late RxList idList = [].obs;
+  RxList idList = [].obs;
 
   @override
   void onInit() {
@@ -26,26 +24,31 @@ class FavoritesController extends GetxController {
 
   Future<void> getFavoritesProperties() async {
     favoritesProperties =
-    await _favoritesService.getFavoritesProperties(User.token);
+        await _favoritesService.getFavoritesProperties(Users.token);
     idList =
         (favoritesProperties.map((element) => element.id ?? -1).toList()).obs;
+    if (favoritesProperties.isNotEmpty) {
+      isEmpty.value = true;
+    }
     isLoading.value = true;
+    isLoadingHart.value = true;
   }
 
   void addOrRemoveFavoritesProperties() async {
     favorites = await _favoritesService.addOrRemoveFavoritesProperties(
-        User.token, postType, idProperties);
+        Users.token, postType, idProperties);
     if (idList.contains(idProperties)) {
       idList.remove(idProperties);
     } else {
       idList.add(idProperties);
     }
-    isLoadingHart.value = true;
+    if (idList.isEmpty) {
+      isEmpty.value = false;
+    }
   }
 
-  Future <void> refreshIndicator() async{
+  Future<void> refreshIndicator() async {
     isLoading.value = false;
-    getFavoritesProperties();
-
+    await getFavoritesProperties();
   }
 }

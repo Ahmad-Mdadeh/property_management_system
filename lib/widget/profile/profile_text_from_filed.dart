@@ -5,17 +5,19 @@ class ProfileTextFromFiled extends StatelessWidget {
   final TextInputType textInputType;
   final Function validator;
   final Function function;
+  final String hintText;
 
   const ProfileTextFromFiled(
       {required this.textInputType,
       required this.validator,
       required this.function,
+      required this.hintText,
       super.key});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      onChanged: (value) => function,
+      onChanged: (value) => function(value),
       validator: (value) => validator(value),
       keyboardType: textInputType,
       style:  TextStyle(
@@ -24,6 +26,7 @@ class ProfileTextFromFiled extends StatelessWidget {
         fontSize: 17.0,
       ),
       decoration: InputDecoration(
+        hintText: hintText,
         filled: true,
         fillColor: ColorManager.grey3.withOpacity(0.1),
         border: OutlineInputBorder(

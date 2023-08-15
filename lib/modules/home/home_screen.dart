@@ -14,14 +14,15 @@ import 'package:property_management_system/utils/scroll_glow.dart';
 import 'package:property_management_system/widget/home_widgets/home_property_card.dart';
 import 'package:property_management_system/widget/home_widgets/most_viewed_property_card.dart';
 import 'package:property_management_system/widget/home_widgets/property_type_button.dart';
+import 'package:property_management_system/widget/home_widgets/search_bar.dart';
 import 'package:property_management_system/widget/home_widgets/slide_show.dart';
 import 'package:property_management_system/widget/home_widgets/home_property_card_shimmer.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
   final _homeController = Get.put(HomeController());
-  final _favoritesController = Get.put(FavoritesController());
   final settingController = Get.put(SettingController());
+  final _favoritesController = Get.put(FavoritesController());
 
   @override
   Widget build(BuildContext context) {
@@ -68,32 +69,7 @@ class HomeScreen extends StatelessWidget {
                               : null,
                           color: Theme.of(context).appBarTheme.backgroundColor,
                         ),
-                        child: TextField(
-                          style: TextStyle(
-                            color:
-                                Theme.of(context).textTheme.bodyMedium!.color,
-                            fontFamily: 'Outfit',
-                          ),
-                          decoration: InputDecoration(
-                            hintStyle: TextStyle(
-                              color:
-                                  Theme.of(context).textTheme.bodyMedium!.color,
-                              fontFamily: 'Outfit',
-                            ),
-                            hintText: 'search'.tr,
-                            border: InputBorder.none,
-                            prefixIcon: Icon(
-                              Icons.search,
-                              color: Theme.of(context).iconTheme.color,
-                            ),
-                            contentPadding: const EdgeInsets.symmetric(
-                              vertical: 16.0,
-                              horizontal: 16.0,
-                            ),
-                          ),
-                          onChanged: (value) {},
-                          cursorColor: ColorManager.primary,
-                        ),
+                        child: SearchBar(),
                       ),
                     ),
                     SizedBox(width: MediaQuery.of(context).size.width / 35),
@@ -144,7 +120,9 @@ class HomeScreen extends StatelessWidget {
                   items: [
                     ...List.generate(
                       4,
-                      (index) =>  SlideShow(index: index,),
+                      (index) => SlideShow(
+                        index: index,
+                      ),
                     ),
                   ],
                 ),
@@ -243,30 +221,21 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Obx(
-                () => SizedBox(
-                  height: 300,
-                  child: ScrollConfiguration(
-                    behavior: MyBehavior(),
-                    child: ListView.builder(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppPadding.p8,
-                      ),
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: _homeController.isLoadingProperties.value
-                          ? _homeController.allProperties.length > 5
-                              ? 5
-                              : _homeController.allProperties.length
-                          : 2,
-                      itemBuilder: (context, index) => Obx(() =>
-                          _homeController.isLoadingProperties.value &&
-                                  _favoritesController.isLoadingHart.value
-                              ? HomePropertyCard(
-                                  index: index,
-                                )
-                              : HomePropertyCardShimmer()),
-                    ),
+              SizedBox(
+                height: 300,
+                child: ScrollConfiguration(
+                  behavior: MyBehavior(),
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 8,
+                    itemBuilder: (context, index) => Obx(() =>
+                        _homeController.isLoadingProperties.value &&
+                                _favoritesController.isLoadingHart.value
+                            ? HomePropertyCard(
+                                index: index,
+                              )
+                            : HomePropertyCardShimmer()),
                   ),
                 ),
               ),
@@ -297,49 +266,45 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              Obx(
-                () => Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: GridView.count(
-                    crossAxisSpacing: 0,
-                    mainAxisSpacing: 0,
-                    childAspectRatio: 0.6,
-                    shrinkWrap: true,
-                    primary: false,
-                    crossAxisCount: 2,
-                    children: List.generate(
-                      _homeController.isLoadingProperties.value
-                          ? _homeController.allProperties.length
-                          : 5,
-                      (index) => Obx(
-                        () => _homeController.isLoadingProperties.value &&
-                                _favoritesController.isLoadingHart.value
-                            ? MostViewedPropertyCard(
-                                index: index,
-                              )
-                            : SizedBox(
-                                width: MediaQuery.of(context).size.width / 2.2,
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                      10.0,
-                                    ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: GridView.count(
+                  crossAxisSpacing: 0,
+                  mainAxisSpacing: 0,
+                  childAspectRatio: 0.6,
+                  shrinkWrap: true,
+                  primary: false,
+                  crossAxisCount: 2,
+                  children: List.generate(
+                    10,
+                    (index) => Obx(
+                      () => _homeController.isLoadingProperties.value &&
+                              _favoritesController.isLoadingHart.value
+                          ? MostViewedPropertyCard(
+                              index: index,
+                            )
+                          : SizedBox(
+                              width: MediaQuery.of(context).size.width / 2.2,
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                    10.0,
                                   ),
-                                  color: Theme.of(context)
-                                      .appBarTheme
-                                      .backgroundColor,
                                 ),
+                                color: Theme.of(context)
+                                    .appBarTheme
+                                    .backgroundColor,
+                              ),
+                            )
+                              .animate(
+                                onPlay: (controller) => controller.repeat(),
                               )
-                                .animate(
-                                  onPlay: (controller) => controller.repeat(),
-                                )
-                                .shimmer(
-                                  color: settingController.isLightMode.value
-                                      ? ColorManager.grey2.withOpacity(0.3)
-                                      : ColorManager.ofWhite.withOpacity(0.2),
-                                  duration: 450.ms,
-                                ),
-                      ),
+                              .shimmer(
+                                color: settingController.isLightMode.value
+                                    ? ColorManager.grey2.withOpacity(0.3)
+                                    : ColorManager.ofWhite.withOpacity(0.2),
+                                duration: 450.ms,
+                              ),
                     ),
                   ),
                 ),

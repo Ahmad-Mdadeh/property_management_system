@@ -237,6 +237,58 @@ class FiltersScreen extends StatelessWidget {
                           highlightColor: Colors.transparent,
                           enableFeedback: false,
                           onTap: () {
+                            filterController.isSelectedOffice.value =
+                                !filterController.isSelectedOffice.value;
+                            filterController.isSelectedApartment.value = false;
+                            filterController.isSelectedCommercial.value = false;
+                            filterController.isSelectedHouse.value = false;
+                            filterController.isSelectedVilla.value = false;
+                            filterController.isSelectedLand.value = false;
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width / 4,
+                            height: MediaQuery.of(context).size.height / 21,
+                            decoration: BoxDecoration(
+                              color: filterController.isSelectedOffice.value
+                                  ? ColorManager.primary
+                                  : ColorManager.darkPrimary,
+                              borderRadius: BorderRadius.circular(
+                                15.0,
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.store_rounded,
+                                  size: AppSize.s22,
+                                  color: filterController.isSelectedOffice.value
+                                      ? ColorManager.darkPrimary
+                                      : ColorManager.primary,
+                                ),
+                                const SizedBox(
+                                  width: 5.0,
+                                ),
+                                TextUtils(
+                                  text: 'Office'.tr,
+                                  color: filterController.isSelectedOffice.value
+                                      ? ColorManager.darkPrimary
+                                      : ColorManager.white,
+                                  fontWeight: FontWeightManager.light,
+                                  fontSize: FontSize.s16,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: MediaQuery.of(context).size.width / 25),
+                      Obx(
+                        () => InkWell(
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          enableFeedback: false,
+                          onTap: () {
                             filterController.isSelectedLand.value =
                                 !filterController.isSelectedLand.value;
                             filterController.isSelectedHouse.value = false;
@@ -272,112 +324,6 @@ class FiltersScreen extends StatelessWidget {
                                 TextUtils(
                                   text: 'Lands'.tr,
                                   color: filterController.isSelectedLand.value
-                                      ? ColorManager.darkPrimary
-                                      : ColorManager.white,
-                                  fontWeight: FontWeightManager.light,
-                                  fontSize: FontSize.s16,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: MediaQuery.of(context).size.width / 25),
-                      Obx(
-                        () => InkWell(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          enableFeedback: false,
-                          onTap: () {
-                            filterController.isSelectedOffice.value =
-                                !filterController.isSelectedOffice.value;
-                            filterController.isSelectedApartment.value = false;
-                            filterController.isSelectedCommercial.value = false;
-                            filterController.isSelectedHouse.value = false;
-                            filterController.isSelectedVilla.value = false;
-                            filterController.isSelectedLand.value = false;
-                          },
-                          child: Container(
-                            width: MediaQuery.of(context).size.width / 4,
-                            height: MediaQuery.of(context).size.height / 21,
-                            decoration: BoxDecoration(
-                              color: filterController.isSelectedOffice.value
-                                  ? ColorManager.primary
-                                  : ColorManager.darkPrimary,
-                              borderRadius: BorderRadius.circular(
-                                15.0,
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.apartment,
-                                  size: AppSize.s22,
-                                  color: filterController.isSelectedOffice.value
-                                      ? ColorManager.darkPrimary
-                                      : ColorManager.primary,
-                                ),
-                                const SizedBox(
-                                  width: 5.0,
-                                ),
-                                TextUtils(
-                                  text: 'Office'.tr,
-                                  color: filterController.isSelectedOffice.value
-                                      ? ColorManager.darkPrimary
-                                      : ColorManager.white,
-                                  fontWeight: FontWeightManager.light,
-                                  fontSize: FontSize.s16,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: MediaQuery.of(context).size.width / 25),
-                      Obx(
-                        () => InkWell(
-                          splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          enableFeedback: false,
-                          onTap: () {
-                            filterController.isSelectedCommercial.value =
-                                !filterController.isSelectedCommercial.value;
-                            filterController.isSelectedHouse.value = false;
-                            filterController.isSelectedVilla.value = false;
-                            filterController.isSelectedLand.value = false;
-                            filterController.isSelectedApartment.value = false;
-                            filterController.isSelectedOffice.value = false;
-                          },
-                          child: Container(
-                            width: MediaQuery.of(context).size.width / 2.5,
-                            height: MediaQuery.of(context).size.height / 21,
-                            decoration: BoxDecoration(
-                              color: filterController.isSelectedCommercial.value
-                                  ? ColorManager.primary
-                                  : ColorManager.darkPrimary,
-                              borderRadius: BorderRadius.circular(
-                                15.0,
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.apartment_rounded,
-                                  size: AppSize.s22,
-                                  color: filterController
-                                          .isSelectedCommercial.value
-                                      ? ColorManager.darkPrimary
-                                      : ColorManager.primary,
-                                ),
-                                const SizedBox(
-                                  width: 5.0,
-                                ),
-                                TextUtils(
-                                  text: 'Commercial'.tr,
-                                  color: filterController
-                                          .isSelectedCommercial.value
                                       ? ColorManager.darkPrimary
                                       : ColorManager.white,
                                   fontWeight: FontWeightManager.light,
@@ -495,6 +441,60 @@ class FiltersScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(width: MediaQuery.of(context).size.width / 25),
+                      Obx(
+                        () => InkWell(
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          enableFeedback: false,
+                          onTap: () {
+                            filterController.isSelectedCommercial.value =
+                                !filterController.isSelectedCommercial.value;
+                            filterController.isSelectedHouse.value = false;
+                            filterController.isSelectedVilla.value = false;
+                            filterController.isSelectedLand.value = false;
+                            filterController.isSelectedApartment.value = false;
+                            filterController.isSelectedOffice.value = false;
+                          },
+                          child: Container(
+                            width: MediaQuery.of(context).size.width / 2.5,
+                            height: MediaQuery.of(context).size.height / 21,
+                            decoration: BoxDecoration(
+                              color: filterController.isSelectedCommercial.value
+                                  ? ColorManager.primary
+                                  : ColorManager.darkPrimary,
+                              borderRadius: BorderRadius.circular(
+                                15.0,
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.store_mall_directory_rounded,
+                                  size: AppSize.s22,
+                                  color: filterController
+                                          .isSelectedCommercial.value
+                                      ? ColorManager.darkPrimary
+                                      : ColorManager.primary,
+                                ),
+                                const SizedBox(
+                                  width: 5.0,
+                                ),
+                                TextUtils(
+                                  text: 'Commercial'.tr,
+                                  color: filterController
+                                          .isSelectedCommercial.value
+                                      ? ColorManager.darkPrimary
+                                      : ColorManager.white,
+                                  fontWeight: FontWeightManager.light,
+                                  fontSize: FontSize.s16,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      // SizedBox(width: MediaQuery.of(context).size.width / 25),
                     ],
                   ),
                 ),

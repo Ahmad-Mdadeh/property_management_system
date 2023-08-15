@@ -8,8 +8,8 @@ import 'package:property_management_system/modules/home/home_screen.dart';
 import 'package:property_management_system/modules/login/login_screen.dart';
 import 'package:property_management_system/modules/register/register_screen.dart';
 import 'package:property_management_system/modules/onBoarding/on_boarding_screen.dart';
+import 'package:property_management_system/modules/search_results/search_results_screen.dart';
 import 'package:property_management_system/modules/splash/splash_screen.dart';
-
 
 class AppRoutes {
   static const splash = Routes.splash;
@@ -22,6 +22,7 @@ class AppRoutes {
   static const filters = Routes.filters;
   static const map = Routes.map;
   static const propertyTypes = Routes.propertyTypes;
+  static const search = Routes.search;
 
   static final getPages = [
     GetPage(name: Routes.splash, page: () => const SplashScreen()),
@@ -29,8 +30,9 @@ class AppRoutes {
     GetPage(name: Routes.login, page: () => LoginScreen(), binding: LoginBinding()),
     GetPage(name: Routes.register, page: () => RegisterScreen(), binding: RegisterBinding()),
     GetPage(name: Routes.baseScreen, page: () => BaseScreen()),
-    GetPage(name: Routes.home, page: () =>  HomeScreen()),
+    GetPage(name: Routes.home, page: () => HomeScreen()),
     GetPage(name: Routes.filters, page: () => FiltersScreen()),
+    GetPage(name: Routes.search, page: () => SearchResult()),
   ];
 }
 
@@ -45,4 +47,5 @@ class Routes {
   static const filters = '/filters';
   static const map = '/map';
   static const propertyTypes = '/propertTypes';
+  static const search = '/search_results';
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:property_management_system/models/properties.dart';
+import 'package:property_management_system/models/search.dart';
 import 'package:property_management_system/models/user.dart';
 import 'package:property_management_system/modules/filters/filters_services.dart';
 import 'package:property_management_system/modules/home/home_service.dart';
@@ -15,7 +16,11 @@ class HomeController extends GetxController
 
   late List<AllProperties> allProperties;
 
+  late List searchProperties;
+
   RxBool isLoadingProperties = false.obs;
+
+  TextEditingController searchController = TextEditingController();
 
   List typePropertiesName = [
     'All'.tr,

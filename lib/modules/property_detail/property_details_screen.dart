@@ -112,12 +112,37 @@ class PropertyDetailsScreen extends StatelessWidget {
                                     Row(
                                       children: [
                                         Icon(
-                                          Icons.house_outlined,
+                                          _propertyDetailsController
+                                                      .propertyDetails
+                                                      .property!
+                                                      .categoryType! ==
+                                                  'House'
+                                              ? Icons.house
+                                              : _propertyDetailsController
+                                                          .propertyDetails
+                                                          .property!
+                                                          .categoryType! ==
+                                                      'Land'
+                                                  ? Icons.landscape
+                                                  : _propertyDetailsController
+                                                              .propertyDetails
+                                                              .property!
+                                                              .categoryType! ==
+                                                          'Apartment'
+                                                      ? Icons.apartment
+                                                      : _propertyDetailsController
+                                                                  .propertyDetails
+                                                                  .property!
+                                                                  .categoryType! ==
+                                                              'Villa'
+                                                          ? Icons.villa
+                                                          : Icons
+                                                              .store_mall_directory_rounded,
                                           color: Theme.of(
                                                   contextPropertyDetailsScreen)
                                               .iconTheme
                                               .color,
-                                        ), // depends on the type
+                                        ),
                                         const SizedBox(
                                           width: AppSize.s10,
                                         ),

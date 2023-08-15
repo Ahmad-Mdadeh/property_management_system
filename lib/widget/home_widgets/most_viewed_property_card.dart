@@ -145,7 +145,23 @@ class MostViewedPropertyCard extends StatelessWidget {
                 Row(
                   children: [
                     Icon(
-                      Icons.house_outlined,
+                      _homeController.allProperties[index].property!
+                                  .categoryType ==
+                              'House'
+                          ? Icons.house
+                          : _homeController.allProperties[index].property!
+                                      .categoryType ==
+                                  'Land'
+                              ? Icons.landscape
+                              : _homeController.allProperties[index].property!
+                                          .categoryType ==
+                                      'Apartment'
+                                  ? Icons.apartment
+                                  : _homeController.allProperties[index]
+                                              .property!.categoryType ==
+                                          'Villa'
+                                      ? Icons.villa
+                                      : Icons.store_mall_directory_rounded,
                       color: Theme.of(context).iconTheme.color,
                       size: AppSize.s18,
                     ),

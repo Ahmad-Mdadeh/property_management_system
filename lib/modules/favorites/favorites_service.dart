@@ -1,14 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:property_management_system/models/favorites.dart';
 import 'package:property_management_system/models/properties.dart';
-import 'package:property_management_system/modules/settings/settings_controller.dart';
-import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/server_manager.dart';
 import 'package:http/http.dart' as http;
 
 class FavoritesService {
-  final _settingController = Get.put(SettingController());
 
   Future getFavoritesProperties(String token) async {
     var url = Uri.parse(

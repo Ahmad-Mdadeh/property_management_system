@@ -1,15 +1,11 @@
-import 'dart:io';
-
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:property_management_system/modules/profile/profile_controller.dart';
 import 'package:property_management_system/modules/profile/profile_screen.dart';
 import 'package:property_management_system/modules/settings/settings_controller.dart';
 import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
-import 'package:property_management_system/resources/server_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
 import 'package:property_management_system/resources/values_manager.dart';
 import 'package:property_management_system/utils/theme.dart';
@@ -18,13 +14,11 @@ import 'package:property_management_system/utils/theme_service.dart';
 import 'package:property_management_system/widget/settings/setting_list.dart';
 import 'package:property_management_system/widget/settings/setting_shimmer.dart';
 import 'package:property_management_system/widget/settings/settings_elevated_button.dart';
-import 'package:property_management_system/widget/settings/language_list.dart';
 import 'package:rive/rive.dart';
 
 class SettingScreen extends StatelessWidget {
   SettingScreen({Key? key}) : super(key: key);
   final RxBool x = true.obs;
-
   final _settingController = Get.put(SettingController());
   final _profileController = Get.put(ProfileController());
 
@@ -137,19 +131,7 @@ class SettingScreen extends StatelessWidget {
                               bottom: AppPadding.p20,
                               right: AppPadding.p12,
                             ),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width / 6.4,
-                              height: MediaQuery.of(context).size.width / 6.4,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: NetworkImage(_profileController.networkImage.value,),
-                                  fit: BoxFit.cover,
-                                ),
-                                borderRadius: BorderRadius.circular(
-                                  AppSize.s20,
-                                ),
-                              ),
-                            ),
+                            child: _settingController.getImage(context),
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -268,4 +250,5 @@ class SettingScreen extends StatelessWidget {
       ),
     );
   }
+
 }

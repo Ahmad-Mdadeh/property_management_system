@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:property_management_system/modules/favorites/favorites_controller.dart';
-import 'package:property_management_system/modules/home/home_controller.dart';
 import 'package:property_management_system/modules/my_properties/my_properties_controller.dart';
 import 'package:property_management_system/modules/property_detail/property_details_screen.dart';
 import 'package:property_management_system/modules/settings/settings_controller.dart';
@@ -20,6 +19,7 @@ class MyPropertiesCard extends StatelessWidget {
   final _myPropertiesController = Get.put(MyPropertiesController());
   final _favoritesController = Get.put(FavoritesController());
   final RxBool isHighlighted = true.obs;
+  final RxBool isLoadingHart = true.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -201,7 +201,7 @@ class MyPropertiesCard extends StatelessWidget {
                 onHighlightChanged: (value) {
                   isHighlighted(!(isHighlighted.value));
                 },
-                onTap: () {
+                onTap: () async {
                   _favoritesController.postType =
                       _myPropertiesController.isSelectedRent.value
                           ? _myPropertiesController.postRent[index].posttype!
@@ -210,7 +210,9 @@ class MyPropertiesCard extends StatelessWidget {
                       _myPropertiesController.isSelectedRent.value
                           ? _myPropertiesController.postRent[index].id!
                           : _myPropertiesController.postSale[index].id!;
-                  _favoritesController.addOrRemoveFavoritesProperties();
+                  isLoadingHart.value = false;
+                  await _favoritesController.addOrRemoveFavoritesProperties();
+                  isLoadingHart.value = true;
                 },
                 child: Obx(
                   () {
@@ -236,17 +238,23 @@ class MyPropertiesCard extends StatelessWidget {
                         color: Theme.of(context).appBarTheme.backgroundColor,
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(
-                        _favoritesController.idList.contains(
+                      child: isLoadingHart.value
+                          ? Icon(
+                              _favoritesController.idList.contains(
                                 _myPropertiesController.isSelectedRent.value
                                     ? _myPropertiesController.postRent[index].id
                                     : _myPropertiesController
-                                        .postSale[index].id)
-                            ? Icons.favorite
-                            : Icons.favorite_outline,
-                        color: Theme.of(context).iconTheme.color,
-                        size: isHighlighted.value ? 22 : 19,
-                      ),
+                                        .postSale[index].id,
+                              )
+                                  ? Icons.favorite
+                                  : Icons.favorite_outline,
+                              color: Theme.of(context).iconTheme.color,
+                              size: isHighlighted.value ? 22 : 19,
+                            )
+                          : CircularProgressIndicator(
+                              color: Theme.of(context).iconTheme.color,
+                              strokeWidth: 2,
+                            ),
                     );
                   },
                 ),

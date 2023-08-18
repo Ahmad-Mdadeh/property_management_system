@@ -1,12 +1,16 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:property_management_system/modules/login/login_screen.dart';
+import 'package:property_management_system/modules/profile/profile_controller.dart';
 import 'package:property_management_system/modules/settings/settings_service.dart';
+import 'package:property_management_system/resources/values_manager.dart';
 import 'package:property_management_system/utils/theme_service.dart';
 import 'package:rive/rive.dart';
 import 'package:property_management_system/models/user.dart';
 
 class SettingController extends GetxController {
+  final _profileController = Get.put(ProfileController());
   final SettingService _settingService = SettingService();
   Artboard? riveArtBoard;
   RxBool timer = false.obs;
@@ -36,7 +40,49 @@ class SettingController extends GetxController {
 
     super.onInit();
   }
-
+  getImage(context) {
+    return _profileController.networkImage.value.isEmpty ? Container(
+      width: MediaQuery.of(context).size.width / 6.4,
+      height: MediaQuery.of(context).size.width / 6.4,
+      decoration: BoxDecoration(
+        image: const DecorationImage(
+          image: AssetImage("assets/images/empty_proile.png"),
+          fit: BoxFit.cover,
+        ),
+        borderRadius: BorderRadius.circular(
+          AppSize.s20,
+        ),
+      ),
+    )
+        : !_profileController.load.value ? Container(
+      width: MediaQuery.of(context).size.width / 6.4,
+      height: MediaQuery.of(context).size.width / 6.4,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: NetworkImage(
+            _profileController.networkImage.value,
+          ),
+          fit: BoxFit.cover,
+        ),
+        borderRadius: BorderRadius.circular(
+          AppSize.s20,
+        ),
+      ),
+    )
+        : Container(
+      width: MediaQuery.of(context).size.width / 6.4,
+      height: MediaQuery.of(context).size.width / 6.4,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: FileImage(_profileController.selectedImagePath),
+          fit: BoxFit.cover,
+        ),
+        borderRadius: BorderRadius.circular(
+          AppSize.s20,
+        ),
+      ),
+    );
+  }
   Future<void> signOutFromApp() async {
     await _settingService.logOutFromApp(Users.token);
     Get.offAll(

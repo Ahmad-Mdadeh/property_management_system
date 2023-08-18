@@ -10,15 +10,16 @@ import 'package:property_management_system/resources/server_manager.dart';
 import 'package:property_management_system/resources/values_manager.dart';
 
 class ProfileController extends GetxController {
+  late final Image image;
   final ProfileService _profileService = ProfileService();
   late InfoProfile infoProfile;
   RxBool isLoading = false.obs;
   RxBool isUpdate = false.obs;
   late String name;
-  RxString networkImage="".obs ;
+  RxString networkImage = "".obs;
 
   final picker = ImagePicker();
-  late File selectedImagePath ;
+  late File selectedImagePath;
 
   RxBool load = false.obs;
 
@@ -28,7 +29,25 @@ class ProfileController extends GetxController {
     super.onInit();
   }
 
-  Future<void> getImage(ImageSource src) async {
+  getImage() {
+    return networkImage.value.isEmpty ? const CircleAvatar(
+      radius: 55.0,
+      backgroundImage: AssetImage("assets/images/empty_proile.png"),
+    )
+        : ! load.value ? CircleAvatar(
+      radius: 55.0,
+      backgroundImage: NetworkImage(
+        networkImage.value,
+      ),
+    ) : CircleAvatar(
+      radius: 55.0,
+      backgroundImage: FileImage(
+        selectedImagePath,
+      ),
+    );
+  }
+
+  Future<void> getImagePicker(ImageSource src) async {
     final pickedFile = await picker.pickImage(source: src);
     if (pickedFile != null) {
       selectedImagePath = File(pickedFile.path);
@@ -49,14 +68,16 @@ class ProfileController extends GetxController {
 
   Future<void> getInfoProfile() async {
     infoProfile = await _profileService.getInfoProfile(Users.token);
-    networkImage.value = ServerSet.domainNameServer + infoProfile.user!.profilePhotoUrl!;
     isLoading.value = true;
+    networkImage.value =
+    infoProfile.user!.profilePhotoUrl != null ? ServerSet.domainNameServer +
+        infoProfile.user!.profilePhotoUrl! : '';
   }
 
   Future<void> updateInfoProfile() async {
     await _profileService.updateInfoProfile(Users.token, name);
-    if(load.value) {
-      await _profileService.uploadImage(selectedImagePath,Users.token);
+    if (load.value) {
+      await _profileService.uploadImage(selectedImagePath, Users.token);
     }
     isUpdate.value = true;
   }
@@ -84,9 +105,8 @@ class ProfileController extends GetxController {
     if (isUpdate.value) {
       isLoading.value = false;
       await getInfoProfile();
-      print("================================");
-      print(networkImage.value);
       Get.back(closeOverlays: true);
     }
   }
+
 }

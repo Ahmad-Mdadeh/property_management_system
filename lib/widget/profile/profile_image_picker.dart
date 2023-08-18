@@ -37,12 +37,7 @@ class ProfileImagePicker extends StatelessWidget {
                 return Positioned(
                   top: 41,
                   left: 128,
-                  child: CircleAvatar(
-                    radius: 55.0,
-                    backgroundImage: NetworkImage(
-                      _profileController.networkImage.value,
-                    ),
-                  ),
+                  child: _profileController.getImage(),
                 );
               } else {
                 return Positioned(
@@ -114,7 +109,7 @@ class ProfileImagePicker extends StatelessWidget {
                                 ),
                                 onTap: () {
                                   _profileController
-                                      .getImage(ImageSource.gallery);
+                                      .getImagePicker(ImageSource.gallery);
                                 },
                               ),
                             ),
@@ -143,7 +138,7 @@ class ProfileImagePicker extends StatelessWidget {
                                 ),
                                 onTap: () {
                                   _profileController
-                                      .getImage(ImageSource.camera);
+                                      .getImagePicker(ImageSource.camera);
                                 },
                               ),
                             ),
@@ -155,6 +150,7 @@ class ProfileImagePicker extends StatelessWidget {
                       ),
                     ),
                   );
+
                 },
                 icon: Icon(
                   Icons.edit_outlined,
@@ -168,4 +164,5 @@ class ProfileImagePicker extends StatelessWidget {
       ),
     );
   }
+
 }

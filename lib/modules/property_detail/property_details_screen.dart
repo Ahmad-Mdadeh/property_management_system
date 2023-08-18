@@ -91,9 +91,7 @@ class PropertyDetailsScreen extends StatelessWidget {
                             child: InkWell(
                               child: PropertyCard(),
                               onTap: () {
-
-                                Get.find<PropertyDetailsController>()
-                                    .goToImageOverlay(
+                                _propertyDetailsController.goToImageOverlay(
                                   ImagesAssets.building,
                                 );
                               },
@@ -271,11 +269,15 @@ class PropertyDetailsScreen extends StatelessWidget {
                                             .iconTheme
                                             .color,
                                   ),
-                                  style:  TextStyle(
+                                  style: TextStyle(
                                     fontFamily: 'Outfit',
                                     fontWeight: FontWeightManager.light,
                                     fontSize: FontSize.s14,
-                                    color: Theme.of(contextPropertyDetailsScreen).textTheme.bodyMedium!.color,
+                                    color:
+                                        Theme.of(contextPropertyDetailsScreen)
+                                            .textTheme
+                                            .bodyMedium!
+                                            .color,
                                   ),
                                 )
                                     .animate(

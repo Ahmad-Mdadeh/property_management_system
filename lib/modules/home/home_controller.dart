@@ -12,8 +12,11 @@ class HomeController extends GetxController
   late FilterService _filterService;
   RxInt isSelected = 0.obs;
   String? category;
+  RxString inputSearch = "".obs;
+  TextEditingController searchController = TextEditingController();
 
-  late List<AllProperties> allProperties;
+  var allPropertiesTemp = <AllProperties>[].obs;
+  var allProperties = <AllProperties>[].obs;
 
   RxBool isLoadingProperties = false.obs;
 
@@ -44,20 +47,44 @@ class HomeController extends GetxController
   }
 
   Future<void> getAllProperties() async {
-    allProperties = await _homeService.getProperties(Users.token);
+    allProperties.value = await _homeService.getProperties(Users.token);
     isLoadingProperties.value = true;
   }
 
   Future<void> getAllPropertiesByFilterCategory() async {
     if (category != "All") {
       isLoadingProperties.value = false;
-      allProperties = await _filterService.filterByCategoryProperties(
+      allProperties.value = await _filterService.filterByCategoryProperties(
           Users.token, category!);
       isLoadingProperties.value = true;
     } else {
       isLoadingProperties.value = false;
-      allProperties = await _homeService.getProperties(Users.token);
+      allProperties.value = await _homeService.getProperties(Users.token);
       isLoadingProperties.value = true;
     }
+  }
+
+  Future<void> getResultsPropertiesSearch() async {
+    isLoadingProperties.value = false;
+    if (inputSearch.value.isNotEmpty) {
+      allProperties.value = allProperties
+          .where(
+            (search) => search.property!.address!.contains(
+              inputSearch.value,
+            ),
+          )
+          .toList();
+      isLoadingProperties.value = true;
+    }
+    if (inputSearch.value.isEmpty) {
+      await getAllProperties();
+    }
+  }
+
+  void clearSearch() async {
+    isLoadingProperties.value = false;
+    searchController.clear();
+    inputSearch.value = "";
+    await getAllProperties();
   }
 }

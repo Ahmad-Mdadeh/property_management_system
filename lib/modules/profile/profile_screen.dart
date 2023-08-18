@@ -72,6 +72,8 @@ class ProfileScreen extends StatelessWidget {
                           vertical: 8.0,
                         ),
                         child: ProfileTextFromFiled(
+                          color: ColorManager.grey2,
+                          icon: Icons.person,
                           hintText: _profileController.infoProfile.user!.name!,
                           textInputType: TextInputType.name,
                           function: (value) {

@@ -38,14 +38,13 @@ class FavoritesListWidget extends StatelessWidget {
                   itemBuilder: (context, index) => GestureDetector(
                     onTap: () {
                       Get.to(
+                        arguments: [
+                          _favoritesController.favoritesProperties[index].id,
+                          _favoritesController.favoritesProperties[index].posttype,
+                        ],
                         () => PropertyDetailsScreen(
                           contextPropertyDetailsScreen: context,
                         ),
-                        arguments: [
-                          _favoritesController.favoritesProperties[index].id,
-                          _favoritesController
-                              .favoritesProperties[index].posttype,
-                        ],
                       );
                     },
                     child: Stack(

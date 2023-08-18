@@ -21,14 +21,13 @@ class LoginService {
           "password": password,
         },
       );
-      print(response.body);
       if (response.statusCode == 200 || response.statusCode == 201) {
-        var status = authFromJson(response.body).status;
+        var status = authFromJson(response.body).success;
         Users.token = authFromJson(response.body).accessToken!;
         return status;
       } else if (response.statusCode == 401) {
         message = authFromJson(response.body).message;
-        var status = authFromJson(response.body).status;
+        var status = authFromJson(response.body).success;
         return status;
       }
     } catch (e) {

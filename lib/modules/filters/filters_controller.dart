@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
 class FiltersController extends GetxController {
-  RxBool isSelectedRent = false.obs;
-  RxBool isSelectedSell = false.obs;
+    RxBool isSelectedRent = false.obs;
+    RxBool isSelectedSell = false.obs;
 
   RxBool isSelectedHouse = false.obs;
   RxBool isSelectedLand = false.obs;

@@ -1,58 +1,85 @@
 // To parse this JSON data, do
 //
-//     final propertiesDetails = propertiesDetailsFromJson(jsonString);
+//     final createPost = createPostFromJson(jsonString);
 
 import 'dart:convert';
 
-PropertiesDetails propertiesDetailsFromJson(String str) => PropertiesDetails.fromJson(json.decode(str));
+CreatePost createPostFromJson(String str) => CreatePost.fromJson(json.decode(str));
 
-String propertiesDetailsToJson(PropertiesDetails data) => json.encode(data.toJson());
+String createPostToJson(CreatePost data) => json.encode(data.toJson());
 
-class PropertiesDetails {
+class CreatePost {
+  bool? success;
+  String? message;
+  Post? post;
+
+  CreatePost({
+    this.success,
+    this.message,
+    this.post,
+  });
+
+  factory CreatePost.fromJson(Map<String, dynamic> json) => CreatePost(
+    success: json["success"],
+    message: json["message"],
+    post: json["post"] == null ? null : Post.fromJson(json["post"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "success": success,
+    "message": message,
+    "post": post?.toJson(),
+  };
+}
+
+class Post {
   int? id;
   int? userId;
-  int? viewPlanId;
+  dynamic viewPlanId;
   int? propertyId;
+  int? price;
+  int? visibility;
   int? monthlyRent;
   int? maxDuration;
-  int? visibility;
-  int? approval;
-  String? rejectionPurpose;
+  dynamic approval;
+  dynamic rejectionPurpose;
   DateTime? createdAt;
   DateTime? updatedAt;
-  Property? property;
   String? posttype;
+  Property? property;
 
-  PropertiesDetails({
+  Post({
     this.id,
     this.userId,
     this.viewPlanId,
     this.propertyId,
+    this.price,
+    this.visibility,
     this.monthlyRent,
     this.maxDuration,
-    this.visibility,
     this.approval,
     this.rejectionPurpose,
     this.createdAt,
     this.updatedAt,
-    this.property,
     this.posttype,
+    this.property,
   });
 
-  factory PropertiesDetails.fromJson(Map<String, dynamic> json) => PropertiesDetails(
+  factory Post.fromJson(Map<String, dynamic> json) => Post(
     id: json["id"],
     userId: json["user_id"],
     viewPlanId: json["view_plan_id"],
     propertyId: json["property_id"],
+    price: json["price"],
+    visibility: json["visibility"],
     monthlyRent: json["monthly_rent"],
     maxDuration: json["max_duration"],
-    visibility: json["visibility"],
     approval: json["approval"],
     rejectionPurpose: json["rejection_purpose"],
     createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
     updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-    property: json["property"] == null ? null : Property.fromJson(json["property"]),
     posttype: json["posttype"],
+    property: json["property"] == null ? null : Property.fromJson(json["property"]),
   );
 
   Map<String, dynamic> toJson() => {
@@ -60,15 +87,16 @@ class PropertiesDetails {
     "user_id": userId,
     "view_plan_id": viewPlanId,
     "property_id": propertyId,
+    "price": price,
+    "visibility": visibility,
     "monthly_rent": monthlyRent,
     "max_duration": maxDuration,
-    "visibility": visibility,
     "approval": approval,
     "rejection_purpose": rejectionPurpose,
     "created_at": createdAt?.toIso8601String(),
     "updated_at": updatedAt?.toIso8601String(),
-    "property": property?.toJson(),
     "posttype": posttype,
+    "property": property?.toJson(),
   };
 }
 
@@ -78,8 +106,8 @@ class Property {
   DateTime? updatedAt;
   int? userId;
   String? name;
-  double? latitude;
-  double? longitude;
+  dynamic latitude;
+  dynamic longitude;
   String? address;
   String? about;
   dynamic the360View;
@@ -96,7 +124,7 @@ class Property {
   int? pool;
   int? parking;
   int? securityCameras;
-  int? wiFi;
+  dynamic wiFi;
   int? garden;
 
   Property({
@@ -133,8 +161,8 @@ class Property {
     updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
     userId: json["user_id"],
     name: json["name"],
-    latitude: json["latitude"]?.toDouble(),
-    longitude: json["longitude"]?.toDouble(),
+    latitude: json["latitude"],
+    longitude: json["longitude"],
     address: json["address"],
     about: json["about"],
     the360View: json["360_view"],

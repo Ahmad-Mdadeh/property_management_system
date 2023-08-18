@@ -16,6 +16,8 @@ class AllProperties {
   int? monthlyRent;
   int? maxDuration;
   int? visibility;
+  int? approval;
+  String? rejectionPurpose;
   DateTime? createdAt;
   DateTime? updatedAt;
   String? posttype;
@@ -30,6 +32,8 @@ class AllProperties {
     this.monthlyRent,
     this.maxDuration,
     this.visibility,
+    this.approval,
+    this.rejectionPurpose,
     this.createdAt,
     this.updatedAt,
     this.posttype,
@@ -45,6 +49,8 @@ class AllProperties {
     monthlyRent: json["monthly_rent"],
     maxDuration: json["max_duration"],
     visibility: json["visibility"],
+    approval: json["approval"],
+    rejectionPurpose: json["rejection_purpose"],
     createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
     updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
     posttype: json["posttype"],
@@ -60,6 +66,8 @@ class AllProperties {
     "monthly_rent": monthlyRent,
     "max_duration": maxDuration,
     "visibility": visibility,
+    "approval": approval,
+    "rejection_purpose": rejectionPurpose,
     "created_at": createdAt?.toIso8601String(),
     "updated_at": updatedAt?.toIso8601String(),
     "posttype": posttype,
@@ -83,19 +91,19 @@ class Property {
   String? categoryType;
   int? categoryId;
   int? imageCount;
+  List<dynamic>? imageUrls;
   int? roomCount;
   int? bathroomCount;
   int? kitchenCount;
   int? storey;
   int? balkony;
-  int? parking;
-  int? securityCameras;
-  int? elevator;
-  int? wiFi;
-  int? securityGard;
-  Category? category;
   int? gym;
   int? pool;
+  int? parking;
+  int? securityCameras;
+  int? wiFi;
+  int? securityGard;
+  int? garden;
 
   Property({
     this.id,
@@ -112,19 +120,19 @@ class Property {
     this.categoryType,
     this.categoryId,
     this.imageCount,
+    this.imageUrls,
     this.roomCount,
     this.bathroomCount,
     this.kitchenCount,
     this.storey,
     this.balkony,
-    this.parking,
-    this.securityCameras,
-    this.elevator,
-    this.wiFi,
-    this.securityGard,
-    this.category,
     this.gym,
     this.pool,
+    this.parking,
+    this.securityCameras,
+    this.wiFi,
+    this.securityGard,
+    this.garden,
   });
 
   factory Property.fromJson(Map<String, dynamic> json) => Property(
@@ -142,19 +150,19 @@ class Property {
     categoryType: json["category_type"],
     categoryId: json["category_id"],
     imageCount: json["image_count"],
+    imageUrls: json["image_urls"] == null ? [] : List<dynamic>.from(json["image_urls"]!.map((x) => x)),
     roomCount: json["room_count"],
     bathroomCount: json["bathroom_count"],
     kitchenCount: json["kitchen_count"],
     storey: json["storey"],
     balkony: json["balkony"],
-    parking: json["parking"],
-    securityCameras: json["security_cameras"],
-    elevator: json["elevator"],
-    wiFi: json["Wi-Fi"],
-    securityGard: json["security_gard"],
-    category: json["category"] == null ? null : Category.fromJson(json["category"]),
     gym: json["gym"],
     pool: json["pool"],
+    parking: json["parking"],
+    securityCameras: json["security_cameras"],
+    wiFi: json["Wi-Fi"],
+    securityGard: json["security_gard"],
+    garden: json["garden"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -172,77 +180,7 @@ class Property {
     "category_type": categoryType,
     "category_id": categoryId,
     "image_count": imageCount,
-    "room_count": roomCount,
-    "bathroom_count": bathroomCount,
-    "kitchen_count": kitchenCount,
-    "storey": storey,
-    "balkony": balkony,
-    "parking": parking,
-    "security_cameras": securityCameras,
-    "elevator": elevator,
-    "Wi-Fi": wiFi,
-    "security_gard": securityGard,
-    "category": category?.toJson(),
-    "gym": gym,
-    "pool": pool,
-  };
-}
-
-class Category {
-  int? id;
-  int? roomCount;
-  int? bathroomCount;
-  int? kitchenCount;
-  int? storey;
-  int? balkony;
-  int? gym;
-  int? pool;
-  int? parking;
-  int? securityCameras;
-  int? elevator;
-  int? wiFi;
-  int? securityGard;
-  DateTime? createdAt;
-  DateTime? updatedAt;
-
-  Category({
-    this.id,
-    this.roomCount,
-    this.bathroomCount,
-    this.kitchenCount,
-    this.storey,
-    this.balkony,
-    this.gym,
-    this.pool,
-    this.parking,
-    this.securityCameras,
-    this.elevator,
-    this.wiFi,
-    this.securityGard,
-    this.createdAt,
-    this.updatedAt,
-  });
-
-  factory Category.fromJson(Map<String, dynamic> json) => Category(
-    id: json["id"],
-    roomCount: json["room_count"],
-    bathroomCount: json["bathroom_count"],
-    kitchenCount: json["kitchen_count"],
-    storey: json["storey"],
-    balkony: json["balkony"],
-    gym: json["gym"],
-    pool: json["pool"],
-    parking: json["parking"],
-    securityCameras: json["security_cameras"],
-    elevator: json["elevator"],
-    wiFi: json["Wi-Fi"],
-    securityGard: json["security_gard"],
-    createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-    updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": id,
+    "image_urls": imageUrls == null ? [] : List<dynamic>.from(imageUrls!.map((x) => x)),
     "room_count": roomCount,
     "bathroom_count": bathroomCount,
     "kitchen_count": kitchenCount,
@@ -252,10 +190,8 @@ class Category {
     "pool": pool,
     "parking": parking,
     "security_cameras": securityCameras,
-    "elevator": elevator,
     "Wi-Fi": wiFi,
     "security_gard": securityGard,
-    "created_at": createdAt?.toIso8601String(),
-    "updated_at": updatedAt?.toIso8601String(),
+    "garden": garden,
   };
 }

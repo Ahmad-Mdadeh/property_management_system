@@ -31,11 +31,13 @@ class MyProperties {
 class RentPost {
   int? id;
   int? userId;
-  int? viewPlanId;
+  dynamic viewPlanId;
   int? propertyId;
   int? monthlyRent;
   int? maxDuration;
   int? visibility;
+  dynamic approval;
+  dynamic rejectionPurpose;
   DateTime? createdAt;
   DateTime? updatedAt;
   String? posttype;
@@ -49,6 +51,8 @@ class RentPost {
     this.monthlyRent,
     this.maxDuration,
     this.visibility,
+    this.approval,
+    this.rejectionPurpose,
     this.createdAt,
     this.updatedAt,
     this.posttype,
@@ -63,6 +67,8 @@ class RentPost {
     monthlyRent: json["monthly_rent"],
     maxDuration: json["max_duration"],
     visibility: json["visibility"],
+    approval: json["approval"],
+    rejectionPurpose: json["rejection_purpose"],
     createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
     updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
     posttype: json["posttype"],
@@ -77,6 +83,8 @@ class RentPost {
     "monthly_rent": monthlyRent,
     "max_duration": maxDuration,
     "visibility": visibility,
+    "approval": approval,
+    "rejection_purpose": rejectionPurpose,
     "created_at": createdAt?.toIso8601String(),
     "updated_at": updatedAt?.toIso8601String(),
     "posttype": posttype,
@@ -90,8 +98,8 @@ class Property {
   DateTime? updatedAt;
   int? userId;
   String? name;
-  double? latitude;
-  double? longitude;
+  dynamic latitude;
+  dynamic longitude;
   String? address;
   String? about;
   dynamic the360View;
@@ -99,18 +107,16 @@ class Property {
   String? categoryType;
   int? categoryId;
   int? imageCount;
+  List<dynamic>? imageUrls;
   int? roomCount;
   int? bathroomCount;
   int? kitchenCount;
   int? storey;
   int? balkony;
-  int? gym;
   int? pool;
   int? parking;
   int? securityCameras;
-  int? elevator;
-  int? wiFi;
-  int? securityGard;
+  dynamic wiFi;
   int? garden;
 
   Property({
@@ -128,18 +134,16 @@ class Property {
     this.categoryType,
     this.categoryId,
     this.imageCount,
+    this.imageUrls,
     this.roomCount,
     this.bathroomCount,
     this.kitchenCount,
     this.storey,
     this.balkony,
-    this.gym,
     this.pool,
     this.parking,
     this.securityCameras,
-    this.elevator,
     this.wiFi,
-    this.securityGard,
     this.garden,
   });
 
@@ -149,8 +153,8 @@ class Property {
     updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
     userId: json["user_id"],
     name: json["name"],
-    latitude: json["latitude"]?.toDouble(),
-    longitude: json["longitude"]?.toDouble(),
+    latitude: json["latitude"],
+    longitude: json["longitude"],
     address: json["address"],
     about: json["about"],
     the360View: json["360_view"],
@@ -158,18 +162,16 @@ class Property {
     categoryType: json["category_type"],
     categoryId: json["category_id"],
     imageCount: json["image_count"],
+    imageUrls: json["image_urls"] == null ? [] : List<dynamic>.from(json["image_urls"]!.map((x) => x)),
     roomCount: json["room_count"],
     bathroomCount: json["bathroom_count"],
     kitchenCount: json["kitchen_count"],
     storey: json["storey"],
     balkony: json["balkony"],
-    gym: json["gym"],
     pool: json["pool"],
     parking: json["parking"],
     securityCameras: json["security_cameras"],
-    elevator: json["elevator"],
     wiFi: json["Wi-Fi"],
-    securityGard: json["security_gard"],
     garden: json["garden"],
   );
 
@@ -188,18 +190,16 @@ class Property {
     "category_type": categoryType,
     "category_id": categoryId,
     "image_count": imageCount,
+    "image_urls": imageUrls == null ? [] : List<dynamic>.from(imageUrls!.map((x) => x)),
     "room_count": roomCount,
     "bathroom_count": bathroomCount,
     "kitchen_count": kitchenCount,
     "storey": storey,
     "balkony": balkony,
-    "gym": gym,
     "pool": pool,
     "parking": parking,
     "security_cameras": securityCameras,
-    "elevator": elevator,
     "Wi-Fi": wiFi,
-    "security_gard": securityGard,
     "garden": garden,
   };
 }
@@ -207,10 +207,12 @@ class Property {
 class SalePost {
   int? id;
   int? userId;
-  int? viewPlanId;
+  dynamic viewPlanId;
   int? propertyId;
   int? price;
   int? visibility;
+  int? approval;
+  dynamic rejectionPurpose;
   DateTime? createdAt;
   DateTime? updatedAt;
   String? posttype;
@@ -223,6 +225,8 @@ class SalePost {
     this.propertyId,
     this.price,
     this.visibility,
+    this.approval,
+    this.rejectionPurpose,
     this.createdAt,
     this.updatedAt,
     this.posttype,
@@ -236,6 +240,8 @@ class SalePost {
     propertyId: json["property_id"],
     price: json["price"],
     visibility: json["visibility"],
+    approval: json["approval"],
+    rejectionPurpose: json["rejection_purpose"],
     createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
     updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
     posttype: json["posttype"],
@@ -249,6 +255,8 @@ class SalePost {
     "property_id": propertyId,
     "price": price,
     "visibility": visibility,
+    "approval": approval,
+    "rejection_purpose": rejectionPurpose,
     "created_at": createdAt?.toIso8601String(),
     "updated_at": updatedAt?.toIso8601String(),
     "posttype": posttype,

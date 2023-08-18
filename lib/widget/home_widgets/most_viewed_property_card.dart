@@ -11,6 +11,8 @@ import 'package:property_management_system/widget/property_details/text_tag.dart
 
 class MostViewedPropertyCard extends StatelessWidget {
   final int index;
+  final RxBool isHighlighted = true.obs;
+  final RxBool isLoadingHart = true.obs;
 
   MostViewedPropertyCard({
     required this.index,
@@ -60,10 +62,8 @@ class MostViewedPropertyCard extends StatelessWidget {
                         borderRadius: const BorderRadius.all(
                           Radius.circular(10),
                         ),
-                        child: Image.asset(
-                          ImagesAssets.building,
-                          fit: BoxFit.fill,
-                        ),
+                        child: Image.asset(ImagesAssets.building,fit: BoxFit.cover,),
+                        // child: Image(image: NetworkImage(ServerSet.domainNameServer+_homeController.allProperties[0].property!.imageUrls![1],),fit: BoxFit.cover,),
                       ),
                     ),
                   ],
@@ -89,23 +89,24 @@ class MostViewedPropertyCard extends StatelessWidget {
               highlightColor: Colors.transparent,
               splashColor: Colors.transparent,
               onHighlightChanged: (value) {
-                _favoritesController
-                    .isHighlighted(!(_favoritesController.isHighlighted.value));
+                isHighlighted(!(isHighlighted.value));
               },
-              onTap: () {
+              onTap: () async {
                 _favoritesController.postType =
                     _homeController.allProperties[index].posttype!;
                 _favoritesController.idProperties =
                     _homeController.allProperties[index].id!;
-                _favoritesController.addOrRemoveFavoritesProperties();
+                isLoadingHart.value =false;
+                await _favoritesController.addOrRemoveFavoritesProperties();
+                isLoadingHart.value = true;
               },
               child: Obx(
                 () {
                   return AnimatedContainer(
                     margin: EdgeInsets.all(
-                        _favoritesController.isHighlighted.value ? 0 : 3),
-                    height: _favoritesController.isHighlighted.value ? 35 : 23,
-                    width: _favoritesController.isHighlighted.value ? 35 : 23,
+      isHighlighted.value ? 0 : 3),
+                    height: isHighlighted.value ? 35 : 23,
+                    width: isHighlighted.value ? 35 : 23,
                     curve: Curves.fastLinearToSlowEaseIn,
                     duration: const Duration(milliseconds: 300),
                     decoration: BoxDecoration(
@@ -122,14 +123,21 @@ class MostViewedPropertyCard extends StatelessWidget {
                       color: Theme.of(context).appBarTheme.backgroundColor,
                       shape: BoxShape.circle,
                     ),
-                    child: Icon(
+                    child: isLoadingHart.value
+                        ? Icon(
                       _favoritesController.idList.contains(
                         _homeController.allProperties[index].id,
                       )
                           ? Icons.favorite
                           : Icons.favorite_outline,
                       color: Theme.of(context).iconTheme.color,
-                      size: _favoritesController.isHighlighted.value ? 22 : 19,
+                      size: isHighlighted.value
+                          ? 22
+                          : 19,
+                    )
+                        : CircularProgressIndicator(
+                      color: Theme.of(context).iconTheme.color,
+                      strokeWidth: 2,
                     ),
                   );
                 },
@@ -223,4 +231,5 @@ class MostViewedPropertyCard extends StatelessWidget {
       ),
     );
   }
+
 }

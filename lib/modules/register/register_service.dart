@@ -21,12 +21,12 @@ class RegisterService {
         },
       );
       if (response.statusCode == 200) {
-        var status = authFromJson(response.body).status;
+        var status = authFromJson(response.body).success;
         return status;
       } else if (response.statusCode == 401) {
         message = authFromJson(response.body).message;
 
-        var status = authFromJson(response.body).status;
+        var status = authFromJson(response.body).success;
         return status;
       }
     } catch (e) {

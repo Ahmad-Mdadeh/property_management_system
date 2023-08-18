@@ -1,18 +1,17 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:property_management_system/models/favorites.dart';
 import 'package:property_management_system/models/properties.dart';
 import 'package:property_management_system/models/user.dart';
 import 'package:property_management_system/modules/favorites/favorites_service.dart';
 
 class FavoritesController extends GetxController {
-  final RxBool isHighlighted = true.obs;
   final FavoritesService _favoritesService = FavoritesService();
   late List<AllProperties> favoritesProperties;
   late Favorites favorites;
   RxBool isEmpty = false.obs;
   String postType = "";
   int idProperties = 0;
-  RxBool isLoadingHart = false.obs;
   RxBool isLoading = false.obs;
   RxList idList = [].obs;
 
@@ -25,16 +24,15 @@ class FavoritesController extends GetxController {
   Future<void> getFavoritesProperties() async {
     favoritesProperties =
         await _favoritesService.getFavoritesProperties(Users.token);
-    idList =
+    idList.value =
         (favoritesProperties.map((element) => element.id ?? -1).toList()).obs;
     if (favoritesProperties.isNotEmpty) {
       isEmpty.value = true;
     }
     isLoading.value = true;
-    isLoadingHart.value = true;
   }
 
-  void addOrRemoveFavoritesProperties() async {
+  Future<void> addOrRemoveFavoritesProperties() async {
     favorites = await _favoritesService.addOrRemoveFavoritesProperties(
         Users.token, postType, idProperties);
     if (idList.contains(idProperties)) {
@@ -45,7 +43,10 @@ class FavoritesController extends GetxController {
     if (idList.isEmpty) {
       isEmpty.value = false;
     }
+
+
   }
+
 
   Future<void> refreshIndicator() async {
     isLoading.value = false;

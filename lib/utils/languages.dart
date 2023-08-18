@@ -44,7 +44,8 @@ class Languages extends Translations {
           'area': 'Area',
           'apply_filter': 'Apply Filter',
           'featured': 'Featured ',
-          'About this property :': 'About this property :'
+          'About this property :': 'About this property :',
+          'Create': 'Create',
         },
         'ar': {
           'hello': 'مرحبًا',
@@ -87,7 +88,8 @@ class Languages extends Translations {
           'area': 'المساحة',
           'apply_filter': 'تطبيق الفلتر',
           'featured': 'مميز',
-          'About this property :': ' :عن العقار'
+          'About this property :': ' :عن العقار',
+          'Create': 'انشاء'
         },
         'fr': {
           'hello': 'Bonjour',

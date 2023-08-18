@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,9 +6,6 @@ import 'package:property_management_system/utils/languages.dart';
 import 'package:property_management_system/utils/theme_service.dart';
 
 void main() async {
-  // Languages languages = Languages();
-  // String originalLanguaeg = window.locale.languageCode;
-
   WidgetsFlutterBinding.ensureInitialized();
   final themeService = await ThemeService.instance;
   var initTheme = themeService.initial;

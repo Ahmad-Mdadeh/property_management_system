@@ -14,6 +14,7 @@ class PropertyCard extends StatelessWidget {
   final _favoritesController = Get.put(FavoritesController());
   final _propertyDetailsController = Get.put(PropertyDetailsController());
   final RxBool isHighlighted = true.obs;
+  final RxBool isLoadingHart = true.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -54,12 +55,14 @@ class PropertyCard extends StatelessWidget {
               onHighlightChanged: (value) {
                 isHighlighted(!(isHighlighted.value));
               },
-              onTap: () {
+              onTap: () async{
                 _favoritesController.postType =
                 _propertyDetailsController.postType;
                 _favoritesController.idProperties =
                 _propertyDetailsController.id;
-                _favoritesController.addOrRemoveFavoritesProperties();
+                isLoadingHart.value =false;
+                await _favoritesController.addOrRemoveFavoritesProperties();
+                isLoadingHart.value = true;
               },
               child: Obx(
                 () {
@@ -83,7 +86,8 @@ class PropertyCard extends StatelessWidget {
                       color: Theme.of(context).appBarTheme.backgroundColor,
                       shape: BoxShape.circle,
                     ),
-                    child: Icon(
+                    child:  isLoadingHart.value
+                        ? Icon(
                       _favoritesController.idList.contains(
                         _propertyDetailsController.id,
                       )
@@ -91,6 +95,9 @@ class PropertyCard extends StatelessWidget {
                           : Icons.favorite_outline,
                       color: Theme.of(context).iconTheme.color,
                       size: isHighlighted.value ? 22 : 19,
+                    )  : CircularProgressIndicator(
+                      color: Theme.of(context).iconTheme.color,
+                      strokeWidth: 2,
                     ),
                   );
                 },

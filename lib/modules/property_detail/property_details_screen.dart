@@ -11,10 +11,8 @@ import 'package:property_management_system/resources/color_manager.dart';
 import 'package:property_management_system/resources/font_manager.dart';
 import 'package:property_management_system/resources/text_manager.dart';
 import 'package:property_management_system/resources/values_manager.dart';
-import 'package:property_management_system/utils/scroll_glow.dart';
 import 'package:property_management_system/widget/property_details/contact_button.dart';
 import 'package:property_management_system/widget/property_details/property_card.dart';
-import 'package:property_management_system/widget/property_details/property_detail_bottom_bar.dart';
 import 'package:property_management_system/widget/property_details/property_rate.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:readmore/readmore.dart';
@@ -78,9 +76,11 @@ class PropertyDetailsScreen extends StatelessWidget {
           textDirection: TextDirection.ltr,
           child: Obx(
             () => _propertyDetailsController.isLoading.value
-                ? ScrollConfiguration(
-                    behavior: MyBehavior(),
-                    child: SingleChildScrollView(
+                ? SingleChildScrollView(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: MediaQuery.of(context).size.width * 0.01,
+                      ),
                       child: Column(
                         children: [
                           Padding(
@@ -198,8 +198,12 @@ class PropertyDetailsScreen extends StatelessWidget {
                                         Row(
                                           children: [
                                             TextUtils(
-                                              text:
-                                                  '\$ ${_propertyDetailsController.propertyDetails.monthlyRent}',
+                                              text: _propertyDetailsController
+                                                          .propertyDetails
+                                                          .monthlyRent !=
+                                                      null
+                                                  ? '\$ ${_propertyDetailsController.propertyDetails.monthlyRent}'
+                                                  : '\$ ${_propertyDetailsController.propertyDetails.price}',
                                               color: Theme.of(
                                                       contextPropertyDetailsScreen)
                                                   .iconTheme
@@ -457,9 +461,32 @@ class PropertyDetailsScreen extends StatelessWidget {
                                                 scrollGesturesEnabled: true,
                                                 myLocationButtonEnabled: true,
                                                 trafficEnabled: true,
-                                                onTap: (argument) {
+                                                onTap: (value) {
+                                                  print(
+                                                    _propertyDetailsController
+                                                        .propertyDetails
+                                                        .property!
+                                                        .latitude!,
+                                                  );
+                                                  print(
+                                                    _propertyDetailsController
+                                                        .propertyDetails
+                                                        .property!
+                                                        .longitude!,
+                                                  );
+
                                                   Get.to(
                                                     () => MapScreen(
+                                                      latLng: LatLng(
+                                                        _propertyDetailsController
+                                                            .propertyDetails
+                                                            .property!
+                                                            .latitude!,
+                                                        _propertyDetailsController
+                                                            .propertyDetails
+                                                            .property!
+                                                            .longitude!,
+                                                      ),
                                                       contextMapScreen:
                                                           contextPropertyDetailsScreen,
                                                     ),
@@ -467,17 +494,34 @@ class PropertyDetailsScreen extends StatelessWidget {
                                                 },
                                                 onMapCreated:
                                                     _propertyDetailsController
-                                                        .onMapCreated,
+                                                        .onMapCreated(
+                                                  LatLng(
+                                                    _propertyDetailsController
+                                                        .propertyDetails
+                                                        .property!
+                                                        .latitude!,
+                                                    _propertyDetailsController
+                                                        .propertyDetails
+                                                        .property!
+                                                        .longitude!,
+                                                  ),
+                                                ),
                                                 markers:
                                                     _propertyDetailsController
                                                         .markers
                                                         .toSet(),
                                                 initialCameraPosition:
                                                     CameraPosition(
-                                                  target:
-                                                      _propertyDetailsController
-                                                          .initialPosition
-                                                          .value,
+                                                  target: LatLng(
+                                                    _propertyDetailsController
+                                                        .propertyDetails
+                                                        .property!
+                                                        .latitude!,
+                                                    _propertyDetailsController
+                                                        .propertyDetails
+                                                        .property!
+                                                        .longitude!,
+                                                  ),
                                                   zoom: 16.0,
                                                 ),
                                               ),
@@ -533,7 +577,6 @@ class PropertyDetailsScreen extends StatelessWidget {
                   ),
           ),
         ),
-        bottomNavigationBar: const PropertyDetailBottomBar(),
       ),
     );
   }

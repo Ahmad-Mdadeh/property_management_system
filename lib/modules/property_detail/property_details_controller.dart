@@ -16,10 +16,9 @@ import 'package:share/share.dart';
   late String price;
 
   late String mapLink;
-
   final PropertiesDetailsService _propertiesDetailsService =
       PropertiesDetailsService();
-  Rx<LatLng> initialPosition = const LatLng(32.716323, 36.573041).obs;
+  // Rx<LatLng> initialPosition = const LatLng(32.716323, 36.573041).obs;
   Rx<MapType> mapType = MapType.normal.obs;
   RxList<Marker> markers = <Marker>[].obs;
   late PropertiesDetails propertyDetails;
@@ -46,15 +45,16 @@ import 'package:share/share.dart';
     super.onInit();
   }
 
-  void onMapCreated(GoogleMapController controller) {
+    onMapCreated(LatLng latLng) {
     markers.assignAll(
       [
-        const Marker(
-          markerId: MarkerId('maze_marker'),
-          position: LatLng(32.716323, 36.573041),
-          infoWindow: InfoWindow(
-            title: 'Maze',
-            snippet: 'Damascus',
+         Marker(
+
+          markerId: const MarkerId(''),
+          position: latLng,
+          infoWindow: const InfoWindow(
+            title: '',
+            snippet: '',
           ),
         ),
       ],

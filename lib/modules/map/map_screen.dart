@@ -8,14 +8,14 @@ import 'package:property_management_system/resources/values_manager.dart';
 
 class MapScreen extends StatelessWidget {
   final BuildContext contextMapScreen;
+final LatLng latLng;
+  MapScreen({super.key, required this.contextMapScreen, required this.latLng});
 
-  MapScreen({super.key, required this.contextMapScreen});
-
-  final PropertyDetailsController mapController =
-      Get.put(PropertyDetailsController());
+  final PropertyDetailsController mapController = Get.put(PropertyDetailsController());
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(contextMapScreen).appBarTheme.backgroundColor,
@@ -58,11 +58,11 @@ class MapScreen extends StatelessWidget {
           myLocationEnabled: true,
           myLocationButtonEnabled: true,
           mapType: MapType.satellite,
-          onMapCreated: mapController.onMapCreated,
+          onMapCreated: (controller) => mapController.onMapCreated(latLng),
           markers: mapController.markers.toSet(),
           trafficEnabled: true,
           initialCameraPosition: CameraPosition(
-            target: mapController.initialPosition.value,
+            target: latLng,
             zoom: 17.0,
           ),
         ),

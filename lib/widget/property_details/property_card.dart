@@ -46,6 +46,7 @@ class PropertyCard extends StatelessWidget {
               fontSize: 12,
             ),
           ),
+        if(_propertyDetailsController.propertyDetails.approval!=null)
           Positioned(
             top: AppSize.s14,
             right: AppSize.s14,

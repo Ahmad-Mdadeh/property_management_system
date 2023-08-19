@@ -52,4 +52,6 @@ class FavoritesController extends GetxController {
     isLoading.value = false;
     await getFavoritesProperties();
   }
+
+
 }

@@ -17,9 +17,8 @@ class MyPropertiesCard extends StatelessWidget {
 
   final settingController = Get.put(SettingController());
   final _myPropertiesController = Get.put(MyPropertiesController());
-  final _favoritesController = Get.put(FavoritesController());
   final RxBool isHighlighted = true.obs;
-  final RxBool isLoadingHart = true.obs;
+  final RxBool isLoadingDelete = true.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -159,8 +158,8 @@ class MyPropertiesCard extends StatelessWidget {
                     child: TextUtils(
                       textOverflow: TextOverflow.ellipsis,
                       text: _myPropertiesController.isSelectedRent.value
-                          ? '${_myPropertiesController.postRent[index].propertyId}'
-                          : '${_myPropertiesController.postSale[index].propertyId}',
+                          ? '${_myPropertiesController.postRent[index].property.name}'
+                          : '${_myPropertiesController.postSale[index].property.name}',
                       color: Theme.of(context).textTheme.bodyMedium!.color,
                       fontWeight: FontWeightManager.regular,
                       fontSize: FontSize.s18,
@@ -178,11 +177,14 @@ class MyPropertiesCard extends StatelessWidget {
                       ),
                       Expanded(
                         child: TextUtils(
-                            textOverflow: TextOverflow.ellipsis,
-                            text: "32",
-                            color: Theme.of(context).textTheme.bodySmall!.color,
-                            fontWeight: FontWeightManager.semilight,
-                            fontSize: FontSize.s12),
+                          textOverflow: TextOverflow.ellipsis,
+                          text: _myPropertiesController.isSelectedRent.value
+                              ? '${_myPropertiesController.postRent[index].property.address}'
+                              : '${_myPropertiesController.postSale[index].property.address}',
+                          color: Theme.of(context).textTheme.bodySmall!.color,
+                          fontWeight: FontWeightManager.semilight,
+                          fontSize: FontSize.s12,
+                        ),
                       )
                     ],
                   ),
@@ -202,17 +204,17 @@ class MyPropertiesCard extends StatelessWidget {
                   isHighlighted(!(isHighlighted.value));
                 },
                 onTap: () async {
-                  _favoritesController.postType =
+                  _myPropertiesController.postType =
                       _myPropertiesController.isSelectedRent.value
                           ? _myPropertiesController.postRent[index].posttype!
                           : _myPropertiesController.postSale[index].posttype!;
-                  _favoritesController.idProperties =
+                  _myPropertiesController.id =
                       _myPropertiesController.isSelectedRent.value
                           ? _myPropertiesController.postRent[index].id!
                           : _myPropertiesController.postSale[index].id!;
-                  isLoadingHart.value = false;
-                  await _favoritesController.addOrRemoveFavoritesProperties();
-                  isLoadingHart.value = true;
+                  isLoadingDelete.value = false;
+                  _myPropertiesController.checkIsDeleteMyProperty();
+                  isLoadingDelete.value = true;
                 },
                 child: Obx(
                   () {
@@ -238,16 +240,9 @@ class MyPropertiesCard extends StatelessWidget {
                         color: Theme.of(context).appBarTheme.backgroundColor,
                         shape: BoxShape.circle,
                       ),
-                      child: isLoadingHart.value
+                      child: isLoadingDelete.value
                           ? Icon(
-                              _favoritesController.idList.contains(
-                                _myPropertiesController.isSelectedRent.value
-                                    ? _myPropertiesController.postRent[index].id
-                                    : _myPropertiesController
-                                        .postSale[index].id,
-                              )
-                                  ? Icons.favorite
-                                  : Icons.favorite_outline,
+                              Icons.delete,
                               color: Theme.of(context).iconTheme.color,
                               size: isHighlighted.value ? 22 : 19,
                             )

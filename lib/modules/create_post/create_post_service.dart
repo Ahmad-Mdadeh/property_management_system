@@ -47,7 +47,7 @@ class CreatePostService {
           "price": price,
           "monthly_rent": monthlyRent,
           "max_duration": maxDuration,
-          "latitude": longitude,
+          "latitude": latitude,
           "longitude": longitude,
           "name": name,
           "address": address,
@@ -72,15 +72,10 @@ class CreatePostService {
           'Authorization': 'Bearer $token',
         },
       );
-      print('=============================');
-      print(response.statusCode);
-      print(response.body);
+
       if (response.statusCode == 200) {
         message = createPostFromJson(response.body).message!;
         success = createPostFromJson(response.body).success!;
-        print('+++++++++++++++++');
-
-        print(success);
         return success;
       } else {
         message = createPostFromJson(response.body).message!;

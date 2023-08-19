@@ -22,6 +22,7 @@ class PropertiesDetails {
   DateTime? updatedAt;
   Property? property;
   String? posttype;
+  int? price;
 
   PropertiesDetails({
     this.id,
@@ -37,6 +38,8 @@ class PropertiesDetails {
     this.updatedAt,
     this.property,
     this.posttype,
+    this.price,
+
   });
 
   factory PropertiesDetails.fromJson(Map<String, dynamic> json) => PropertiesDetails(
@@ -53,6 +56,8 @@ class PropertiesDetails {
     updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
     property: json["property"] == null ? null : Property.fromJson(json["property"]),
     posttype: json["posttype"],
+    price: json["price"],
+
   );
 
   Map<String, dynamic> toJson() => {
@@ -69,6 +74,8 @@ class PropertiesDetails {
     "updated_at": updatedAt?.toIso8601String(),
     "property": property?.toJson(),
     "posttype": posttype,
+    "price": price,
+
   };
 }
 

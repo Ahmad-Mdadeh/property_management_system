@@ -65,14 +65,14 @@ class HomeScreen extends StatelessWidget {
                         ),
                         // margin: const EdgeInsets.only(right: 8.0),
                         child: IconButton(
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
                           icon: Icon(
                             Icons.filter_list,
                             color: Theme.of(context).iconTheme.color,
                           ),
                           onPressed: () {
-                            Get.to(
-                              FiltersScreen(),
-                            );
+
                           },
                         ),
                       ),

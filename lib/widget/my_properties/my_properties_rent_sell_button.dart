@@ -28,7 +28,7 @@ class MyPropertiesRentSellButton extends StatelessWidget {
                   _myPropertiesController.isSelectedSell(
                       !(_myPropertiesController.isSelectedSell.value));
                   _myPropertiesController.isSelectedRent.value = false;
-                  _myPropertiesController.getTypeMyProperties();
+                await  _myPropertiesController.getTypeMyProperties();
                 }
               },
               child: Container(
@@ -74,13 +74,13 @@ class MyPropertiesRentSellButton extends StatelessWidget {
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
               enableFeedback: false,
-              onTap: () {
+              onTap: () async{
                 if (!_myPropertiesController.isSelectedRent.value) {
                   _myPropertiesController.isLoading.value = false;
                   _myPropertiesController.isSelectedRent(
                       !(_myPropertiesController.isSelectedRent.value));
                   _myPropertiesController.isSelectedSell.value = false;
-                  _myPropertiesController.getTypeMyProperties();
+               await _myPropertiesController.getTypeMyProperties();
                 }
               },
               child: Container(

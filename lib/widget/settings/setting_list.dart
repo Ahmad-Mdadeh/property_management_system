@@ -88,7 +88,9 @@ class SettingList extends StatelessWidget {
         ),
         InkWell(
           onTap: () {
-            Get.to(() => CreatePostScreen(buildContext: context),);
+            Get.to(
+              () => CreatePostScreen(buildContext: context),
+            );
           },
           child: Row(
             children: [

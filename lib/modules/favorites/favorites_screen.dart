@@ -39,7 +39,7 @@ class FavoritesScreen extends StatelessWidget {
               horizontal: AppPadding.p8,
             ),
             child: _favoritesController.isLoading.value
-                ?  FavoritesListWidget()
+                ? FavoritesListWidget()
                 : FavoritesListShimmerWidget(),
           ),
         ),

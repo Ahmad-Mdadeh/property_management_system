@@ -46,6 +46,9 @@ class Languages extends Translations {
           'featured': 'Featured ',
           'About this property :': 'About this property :',
           'Create': 'Create',
+          'Favorite': 'Favorite',
+          'Sign Out': 'Sign Out',
+          'Create Post': 'Create Post'
         },
         'ar': {
           'hello': 'مرحبًا',
@@ -89,7 +92,10 @@ class Languages extends Translations {
           'apply_filter': 'تطبيق الفلتر',
           'featured': 'مميز',
           'About this property :': ' :عن العقار',
-          'Create': 'انشاء'
+          'Create': 'انشاء',
+          'Favorite': 'المفضلة',
+          'Sign Out': 'تسجيل خروج',
+          'Create Post': 'انشاء منشور'
         },
         'fr': {
           'hello': 'Bonjour',
@@ -132,7 +138,10 @@ class Languages extends Translations {
           'area': 'Surface',
           'apply_filter': 'Appliquer le filtre',
           'featured': 'Vedette',
-          'About this property :': 'À propos de cette propriété :'
+          'About this property :': 'À propos de cette propriété :',
+          'Favorite': 'Favorite',
+          'Sign Out': 'Se déconnecter',
+          'Create Post': 'Créer un poste'
         },
       };
 }
